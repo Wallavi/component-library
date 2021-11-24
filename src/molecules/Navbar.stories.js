@@ -16,4 +16,17 @@ export default {
 const Template = (args) => <Navbar {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  menu: ["DASHBOARD", "PRODUCTS", "CONTENTOH", "TASKS"],
+};
+
+export const Minimized = Template.bind({});
+Minimized.args = {
+  menu: ["DASHBOARD", "PRODUCTS", "PROVIDERS", "CONTENTOH", "TASKS"],
+  minimized: true,
+};
+
+export const Retailers = Template.bind({});
+Retailers.args = {
+  menu: ["DASHBOARD", "PRODUCTS", "PROVIDERS", "CONTENTOH", "TASKS"],
+};

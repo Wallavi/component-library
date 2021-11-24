@@ -8,14 +8,23 @@ import MenuItem from "../atoms/MenuItem";
 import minMax from "../assets/minMax.svg";
 
 const MainContainer = styled.div`
-  width: 210px;
+  width: ${(props) => (props.minimized ? "58px" : "210px")};
   height: 100%;
   background: linear-gradient(180deg, #e33aa9 0%, #3b1366 100%);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px 20px 20px 20px;
+  align-items: ${(props) => (props.minimized ? "center" : "flex-end")};
+  padding: ${(props) => (props.minimized ? "20px 0px" : "20px")};
+`;
+
+const InnerContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const MinimizeMaximize = styled.figure`
@@ -26,50 +35,37 @@ const MinimizeMaximize = styled.figure`
 `;
 
 export default function Navbar(props) {
-  // Need to be able to select different navbars according to the app
-  const providersMenu = ["DASHBOARD", "PRODUCTS"];
-  const creatorsMenu = ["DASHBOARD", "PRODUCTS"];
-  const retailersMenu = [
-    "DASHBOARD",
-    "PRODUCTS",
-    "PROVIDERS",
-    "CONTENTOH",
-    "TASKS",
-  ];
-
-  const [menuItemSelected, setSelectedMenuItem] = useState(retailersMenu[0]);
+  const [menuItemSelected, setSelectedMenuItem] = useState(props.menu[0]);
   const handleOnClickMenuItem = (e) => {
     setSelectedMenuItem(e);
   };
 
-  const [minimizedMaximized, setMinimizedMaximized] = useState(false);
+  const [minimized, setminimized] = useState(props.minimized);
   const handleOnClickMinMax = () => {
-    setMinimizedMaximized(!minimizedMaximized);
+    setminimized(!minimized);
   };
 
   return (
-    <MainContainer {...props}>
-      <div>
+    <MainContainer {...props} minimized={minimized}>
+      <InnerContainer>
         <Logo
           type="WHITE"
           margin="10px 0 60px 0"
-          minimized={minimizedMaximized}
+          padding={minimized ? "0px 10px" : null}
+          minimized={minimized}
         ></Logo>
-        {retailersMenu.map((e) => (
+        {props.menu.map((e) => (
           <MenuItem
             type={e}
             selected={e === menuItemSelected ? true : false}
             onClick={handleOnClickMenuItem}
             margin="5px 0px"
-            minimized={minimizedMaximized}
+            minimized={minimized}
           />
         ))}
-      </div>
+      </InnerContainer>
 
-      <MinimizeMaximize
-        onClick={handleOnClickMinMax}
-        minimized={minimizedMaximized}
-      >
+      <MinimizeMaximize onClick={handleOnClickMinMax} minimized={minimized}>
         <img src={minMax} alt="Expand or minimize"></img>
       </MinimizeMaximize>
     </MainContainer>
@@ -77,16 +73,9 @@ export default function Navbar(props) {
 }
 
 Navbar.propTypes = {
-  text: PropTypes.string.isRequired,
-  color: PropTypes.string,
-  bgColor: PropTypes.string,
-  size: PropTypes.oneOf(["SMALL", "BIG"]),
-  onClick: PropTypes.func,
+  minimized: PropTypes.bool,
 };
 
 Navbar.defaultProps = {
-  text: "Continuar",
-  color: "white",
-  bgColor: "#323946",
-  size: "SMALL",
+  minimized: false,
 };

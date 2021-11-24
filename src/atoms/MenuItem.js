@@ -13,12 +13,17 @@ const MainContainer = styled.div`
   border-radius: 100px;
   align-items: center;
   height: 44px;
-  width: ${(props) => (props.minimized ? "44px" : null)};
+  width: ${(props) => (props.minimized ? "44px" : "100%")};
   color: white;
   margin: ${(props) => (props.margin ? props.margin : "0px")};
   display: flex;
   align-items: center;
   justify-content: ${(props) => (props.minimized ? "center" : "flex-start")};
+  border: ${(props) =>
+    props.selected ? "1px solid #e33aa9" : "1px solid rgba(0, 0, 0, 0)"};
+  &:hover {
+    border: 1px solid #e33aa9;
+  }
   figure {
     width: 24px;
     height: 24px;
@@ -32,11 +37,6 @@ const MainContainer = styled.div`
     font-family: "Raleway";
     font-size: 18px;
     font-weight: ${(props) => (props.selected ? "700" : "400")};
-  }
-  border: ${(props) =>
-    props.selected ? "1px solid #e33aa9" : "1px solid rgba(0, 0, 0, 0)"};
-  &:hover {
-    border: 1px solid #e33aa9;
   }
 `;
 

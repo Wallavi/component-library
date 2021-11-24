@@ -17,6 +17,7 @@ const MainContainer = styled.figure`
   }
   width: ${(props) => (props.width ? props.width : "100%")};
   margin: ${(props) => (props.margin ? props.margin : "0px")};
+  padding: ${(props) => (props.padding ? props.padding : "0px")};
 `;
 
 export default function Logo(props) {
@@ -38,6 +39,7 @@ Logo.propTypes = {
   type: PropTypes.oneOf(["MAIN", "WHITE"]),
   width: PropTypes.string,
   margin: PropTypes.string,
+  padding: PropTypes.string,
   minimized: PropTypes.bool,
 };
 
@@ -45,4 +47,5 @@ Logo.defaultProps = {
   type: "MAIN",
   width: "100%",
   margin: "0px",
+  padding: "0px",
 };
