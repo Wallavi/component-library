@@ -15,11 +15,10 @@ const MainContainer = styled.figure`
     height: 100%;
   }
   width: ${(props) => (props.width ? props.width : "100%")};
-  height: ${(props) => (props.height ? props.height : "100%")};
+  margin: ${(props) => (props.margin ? props.margin : "0px")};
 `;
 
 export default function Logo(props) {
-  console.log(props);
   const source = props.type === "MAIN" ? logo : whiteLogo;
 
   return (
@@ -32,10 +31,11 @@ export default function Logo(props) {
 Logo.propTypes = {
   type: PropTypes.oneOf(["MAIN", "WHITE"]),
   width: PropTypes.string,
-  height: PropTypes.string,
+  margin: PropTypes.string,
 };
 
 Logo.defaultProps = {
   type: "MAIN",
   width: "100%",
+  margin: "0px",
 };

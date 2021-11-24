@@ -15,6 +15,7 @@ const MainContainer = styled.div`
   align-items: center;
   height: 44px;
   color: white;
+  margin: ${(props) => (props.margin ? props.margin : "0px")};
   figure {
     width: 24px;
     height: 24px;
@@ -27,7 +28,7 @@ const MainContainer = styled.div`
   p {
     font-family: "Raleway";
     font-size: 18px;
-    font-weight: ${(props) => (props.selected ? "700" : "700")};
+    font-weight: ${(props) => (props.selected ? "700" : "400")};
   }
   border: ${(props) =>
     props.selected ? "1px solid #e33aa9" : "1px solid rgba(0, 0, 0, 0)"};
@@ -36,7 +37,7 @@ const MainContainer = styled.div`
   }
 `;
 
-export default function Button(props) {
+export default function MenuItem(props) {
   const types = {
     DASHBOARD: {
       image: dashboardIcon,
@@ -61,7 +62,7 @@ export default function Button(props) {
   };
 
   return (
-    <MainContainer {...props} onClick={props.onClick}>
+    <MainContainer {...props} onClick={() => props.onClick(props.type)}>
       <figure>
         <img src={types[props.type].image} alt="Menu"></img>
       </figure>
@@ -70,7 +71,7 @@ export default function Button(props) {
   );
 }
 
-Button.propTypes = {
+MenuItem.propTypes = {
   type: PropTypes.oneOf([
     "DASHBOARD",
     "PROVIDERS",
@@ -79,8 +80,10 @@ Button.propTypes = {
     "CONTENTOH",
   ]),
   selected: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
+  margin: PropTypes.string,
 };
 
-Button.defaultProps = {
+MenuItem.defaultProps = {
   type: "DASHBOARD",
 };
