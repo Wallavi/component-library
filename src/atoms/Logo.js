@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import logo from "../assets/logo.svg";
 import whiteLogo from "../assets/whiteLogo.svg";
+import minimizedLogo from "../assets/minimizedLogo.svg";
 
 const MainContainer = styled.figure`
   display: flex;
@@ -19,7 +20,12 @@ const MainContainer = styled.figure`
 `;
 
 export default function Logo(props) {
-  const source = props.type === "MAIN" ? logo : whiteLogo;
+  let source;
+  if (props.minimized) {
+    source = minimizedLogo;
+  } else {
+    source = props.type === "MAIN" ? logo : whiteLogo;
+  }
 
   return (
     <MainContainer {...props}>
@@ -32,6 +38,7 @@ Logo.propTypes = {
   type: PropTypes.oneOf(["MAIN", "WHITE"]),
   width: PropTypes.string,
   margin: PropTypes.string,
+  minimized: PropTypes.bool,
 };
 
 Logo.defaultProps = {

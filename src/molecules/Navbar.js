@@ -22,9 +22,11 @@ const MinimizeMaximize = styled.figure`
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
+  transform: ${(props) => (props.minimized ? "rotate(180deg)" : null)};
 `;
 
 export default function Navbar(props) {
+  // Need to be able to select different navbars according to the app
   const providersMenu = ["DASHBOARD", "PRODUCTS"];
   const creatorsMenu = ["DASHBOARD", "PRODUCTS"];
   const retailersMenu = [
@@ -40,24 +42,34 @@ export default function Navbar(props) {
     setSelectedMenuItem(e);
   };
 
+  const [minimizedMaximized, setMinimizedMaximized] = useState(false);
   const handleOnClickMinMax = () => {
-    console.log("clicked");
+    setMinimizedMaximized(!minimizedMaximized);
   };
 
   return (
     <MainContainer {...props}>
       <div>
-        <Logo type="WHITE" margin="10px 0 60px 0"></Logo>
+        <Logo
+          type="WHITE"
+          margin="10px 0 60px 0"
+          minimized={minimizedMaximized}
+        ></Logo>
         {retailersMenu.map((e) => (
           <MenuItem
             type={e}
             selected={e === menuItemSelected ? true : false}
             onClick={handleOnClickMenuItem}
             margin="5px 0px"
+            minimized={minimizedMaximized}
           />
         ))}
       </div>
-      <MinimizeMaximize onClick={handleOnClickMinMax}>
+
+      <MinimizeMaximize
+        onClick={handleOnClickMinMax}
+        minimized={minimizedMaximized}
+      >
         <img src={minMax} alt="Expand or minimize"></img>
       </MinimizeMaximize>
     </MainContainer>
