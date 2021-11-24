@@ -1,4 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-ReactDOM.render(<p>Component Library</p>, document.getElementById("root"));
+import Test from "./atoms/MenuItem";
+
+ReactDOM.render(<Test></Test>, document.getElementById("root"));
