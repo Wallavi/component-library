@@ -1,9 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TextField } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+const CustomInput = styled(TextField)`
+  background: pink;
+  border: none;
+`;
 
 export default function Input(props) {
-  return <TextField {...props}></TextField>;
+  return <CustomInput {...props}></CustomInput>;
 }
 
 Input.propTypes = {
