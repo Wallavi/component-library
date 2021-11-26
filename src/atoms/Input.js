@@ -4,8 +4,7 @@ import { TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const CustomInput = styled(TextField)`
-  background: pink;
-  border: none;
+  width: 100%;
 `;
 
 export default function Input(props) {

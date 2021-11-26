@@ -1,32 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import { styled } from "@mui/material/styles";
 
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
+import MUIStepper from "@mui/material/Stepper";
+import MUIStep from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 
-const MainContainer = styled.div`
+const Stepper = styled(MUIStepper)`
+  margin: 20px 0px;
   width: 100%;
+`;
+
+const Step = styled(MUIStep)`
+  cursor: pointer;
 `;
 
 export default function Main(props) {
   return (
-    <MainContainer {...props} onClick={props.onClick}>
-      <Stepper activeStep={props.selected} alternativeLabel>
-        {props.steps.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-    </MainContainer>
+    <Stepper {...props} activeStep={props.selected} alternativeLabel>
+      {props.steps.map((label, index) => (
+        <Step key={label} onClick={() => props.handleClick(index)}>
+          <StepLabel>{label}</StepLabel>
+        </Step>
+      ))}
+    </Stepper>
   );
 }
 
 Main.propTypes = {
   selected: PropTypes.number.isRequired,
   steps: PropTypes.array.isRequired,
+  handleClick: PropTypes.func,
 };
 
 Main.defaultProps = {

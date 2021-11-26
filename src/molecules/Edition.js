@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Input from "../atoms/Input";
+import Step from "../atoms/Step";
 
 const MainContainer = styled.div`
   position: fixed;
@@ -16,13 +16,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   -webkit-box-align: center;
   align-items: center;
-  padding: 35px;
-`;
-
-const SpaceBetween = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 30px 20px;
 `;
 
 const Title = styled.p`
@@ -33,32 +27,31 @@ const Title = styled.p`
 `;
 
 export default function Navbar(props) {
-  const [sectionSelected, setSelectedSection] = useState(0);
-  const handleOnClickStep = (e) => {
-    setSelectedSection(e);
-  };
-
   return (
-    <MainContainer {...props}>
+    <MainContainer {...props} id="mainContainer">
       <Title>{props.title}</Title>
-      <Input label="Nombre del artículo"></Input>
-      <SpaceBetween>
-        <Input label="SKU"></Input>
-        <Input label="Alarma"></Input>
-      </SpaceBetween>
-      <SpaceBetween>
-        <Input label="Unidad de medida"></Input>
-        <Input label="Divisa"></Input>
-      </SpaceBetween>
-      <SpaceBetween>
-        <Input label="Precio de compra"></Input>
-        <Input label="Precio de venta"></Input>
-      </SpaceBetween>
-      <Input label="Notas"></Input>
+      {props.steps.length !== 0 ? (
+        <Step
+          selected={props.selected}
+          steps={props.steps}
+          handleClick={props.handleClick}
+        />
+      ) : null}
+
+      {props.children && props.children[props.selected]}
     </MainContainer>
   );
 }
 
-Navbar.propTypes = {};
+Navbar.propTypes = {
+  title: PropTypes.string.isRequired,
+  selected: PropTypes.number,
+  steps: PropTypes.array,
+  children: PropTypes.arrayOf(PropTypes.element),
+  handleClick: PropTypes.func,
+};
 
-Navbar.defaultProps = {};
+Navbar.defaultProps = {
+  selected: 0,
+  steps: [],
+};

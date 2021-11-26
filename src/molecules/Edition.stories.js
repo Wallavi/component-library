@@ -9,4 +9,8 @@ export default {
 const Template = (args) => <Edition {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  title: "Nuevo artículo",
+  steps: ["One", "Two", "Three"],
+  handleClick: () => {},
+};

@@ -14,13 +14,13 @@ const MainContainer = styled.button`
 export default function Button(props) {
   return (
     <MainContainer {...props} onClick={props.onClick}>
-      {props.text}
+      {props.label}
     </MainContainer>
   );
 }
 
 Button.propTypes = {
-  text: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   color: PropTypes.string,
   bgColor: PropTypes.string,
   size: PropTypes.oneOf(["SMALL", "BIG"]),
@@ -28,7 +28,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  text: "Continuar",
+  label: "Continuar",
   color: "white",
   bgColor: "#323946",
   size: "SMALL",
