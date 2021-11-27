@@ -3,7 +3,7 @@ import EditArticle from "./EditArticle";
 
 export default {
   component: EditArticle,
-  title: "Implementation/EditArticle",
+  title: "Screens/EditArticle",
 };
 
 const Template = (args) => <EditArticle {...args} />;

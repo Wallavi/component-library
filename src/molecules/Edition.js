@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Step from "../atoms/Step";
+import Button from "../atoms/Button";
 
 const MainContainer = styled.div`
   position: fixed;
@@ -39,6 +40,12 @@ export default function Navbar(props) {
       ) : null}
 
       {props.children && props.children[props.selected]}
+
+      <Button
+        label="Continuar"
+        size="BIG"
+        onClick={() => props.handleClick(props.selected + 1)}
+      ></Button>
     </MainContainer>
   );
 }

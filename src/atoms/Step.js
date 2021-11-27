@@ -9,6 +9,22 @@ import StepLabel from "@mui/material/StepLabel";
 const Stepper = styled(MUIStepper)`
   margin: 20px 0px;
   width: 100%;
+
+  .MuiStepLabel-alternativeLabel {
+    color: #99a7bf;
+
+    .Mui-completed {
+      color: #5590ff;
+    }
+
+    .Mui-active {
+      color: #5590ff;
+    }
+  }
+
+  .MuiStepIcon-root {
+    color: #99a7bf;
+  }
 `;
 
 const Step = styled(MUIStep)`
