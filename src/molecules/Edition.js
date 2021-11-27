@@ -15,16 +15,16 @@ const MainContainer = styled.div`
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  -webkit-box-align: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 30px 20px;
 `;
 
 const Title = styled.p`
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 500;
   text-align: center;
-  margin-bottom: 20 px;
+  margin-bottom: 20px 0px;
+  width: 100%;
 `;
 
 export default function Navbar(props) {
@@ -42,6 +42,7 @@ export default function Navbar(props) {
       {props.children && props.children[props.selected]}
 
       <Button
+        margin="15px 0 0 0"
         label="Continuar"
         size="BIG"
         onClick={() => props.handleClick(props.selected + 1)}

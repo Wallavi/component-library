@@ -9,4 +9,6 @@ export default {
 const Template = (args) => <SpaceBetween {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  children: [<p>First element</p>, <p>Second Element</p>],
+};

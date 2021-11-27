@@ -6,6 +6,7 @@ const MainContainer = styled.button`
   background: ${(props) => props.bgColor};
   color: ${(props) => props.color};
   border-radius: 100px;
+  margin: ${(props) => props.margin};
   padding: ${(props) => (props.size === "BIG" ? "15px 25px" : "10px 20px")};
   font-weight: ${(props) => (props.size === "BIG" ? 400 : 500)};
   border: none;
@@ -25,6 +26,7 @@ Button.propTypes = {
   bgColor: PropTypes.string,
   size: PropTypes.oneOf(["SMALL", "BIG"]),
   onClick: PropTypes.func,
+  margin: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -32,4 +34,5 @@ Button.defaultProps = {
   color: "white",
   bgColor: "#323946",
   size: "SMALL",
+  margin: "0px",
 };
