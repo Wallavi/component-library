@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Input from "../../atoms/Input";
+import DropImage from "../../atoms/DropImage";
+import Thumbnail from "../../atoms/Thumbnail";
 
 const MainContainer = styled.div`
   width: 100%;
@@ -12,14 +13,35 @@ const MainContainer = styled.div`
   align-items: center;
 `;
 
-export default function Navbar(props) {
+const ThumbnailContainer = styled.div`
+  width: 100%;
+  display: flex;
+  overflow: scroll;
+`;
+
+export default function Images(props) {
   return (
     <MainContainer {...props}>
-      <Input label="Nombre del artículo"></Input>
+      <DropImage
+        handleOnDropImage={props.handleOnDropImage}
+        images={props.newImages}
+      ></DropImage>
+      <ThumbnailContainer>
+        {props.images.map((element) => {
+          return <Thumbnail source={element} isNewImage={true}></Thumbnail>;
+        })}
+      </ThumbnailContainer>
     </MainContainer>
   );
 }
 
-Navbar.propTypes = {};
+Images.propTypes = {
+  images: PropTypes.array.isRequired,
+  newImages: PropTypes.array.isRequired,
+  handleOnDropImage: PropTypes.func,
+};
 
-Navbar.defaultProps = {};
+Images.defaultProps = {
+  images: [],
+  newImages: [],
+};

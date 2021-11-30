@@ -7,7 +7,7 @@ import Button from "../atoms/Button";
 
 const MainContainer = styled.div`
   position: fixed;
-  width: 400px;
+  width: 450px;
   border-radius: 10px;
   left: 50%;
   top: 50%;

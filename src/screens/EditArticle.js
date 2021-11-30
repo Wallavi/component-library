@@ -2,13 +2,20 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import Edition from "../molecules/Edition";
-import DataStep from "../molecules/edition-steps/Data";
+import DataStep from "../molecules/edition-steps/ArticleData";
 import ImagesStep from "../molecules/edition-steps/Images";
 
-export default function Navbar(props) {
+export default function EditArticle(props) {
   const [sectionSelected, setSelectedSection] = useState(0);
+  const [newImages, setImagesState] = useState([]);
+  const allTheImages = newImages.map((e) => e.base64).concat(props.images);
+
   const handleOnClickStep = (newStep) => {
     setSelectedSection(newStep);
+  };
+
+  const handleOnDropImage = (images) => {
+    setImagesState(images);
   };
 
   return (
@@ -20,7 +27,11 @@ export default function Navbar(props) {
           handleClick={handleOnClickStep}
           selected={sectionSelected}
         ></DataStep>,
-        <ImagesStep></ImagesStep>,
+        <ImagesStep
+          images={allTheImages}
+          newImages={newImages}
+          handleOnDropImage={handleOnDropImage}
+        ></ImagesStep>,
       ]}
       selected={sectionSelected}
       handleClick={handleOnClickStep}
@@ -28,6 +39,10 @@ export default function Navbar(props) {
   );
 }
 
-Navbar.propTypes = {};
+EditArticle.propTypes = {
+  images: PropTypes.array,
+};
 
-Navbar.defaultProps = {};
+EditArticle.defaultProps = {
+  images: [],
+};
