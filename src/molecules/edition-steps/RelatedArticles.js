@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Label from "../../atoms/labels/CompoundArticle";
+import SearchArticle from "../../organisms/Dropdown";
 import Row from "../SelectArticleQuantity";
 
 const MainContainer = styled.div``;
@@ -26,6 +27,8 @@ export default function ComponentName(props) {
         articleName={props.articleName}
         unitMeasure={props.unitMeasure}
       ></Label>
+
+      <SearchArticle label="Buscar artículo por nombre o SKU" />
 
       {props.articlesSelected.length >= 1 && (
         <RelatedArticlesSelected>

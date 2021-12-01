@@ -27,7 +27,7 @@ const Title = styled.p`
   width: 100%;
 `;
 
-export default function Navbar(props) {
+export default function Edition(props) {
   return (
     <MainContainer {...props} id="mainContainer">
       <Title>{props.title}</Title>
@@ -51,7 +51,7 @@ export default function Navbar(props) {
   );
 }
 
-Navbar.propTypes = {
+Edition.propTypes = {
   title: PropTypes.string.isRequired,
   selected: PropTypes.number,
   steps: PropTypes.array,
@@ -59,7 +59,7 @@ Navbar.propTypes = {
   handleClick: PropTypes.func,
 };
 
-Navbar.defaultProps = {
+Edition.defaultProps = {
   selected: 0,
   steps: [],
 };

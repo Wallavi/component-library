@@ -3,7 +3,7 @@ import Edition from "./Edition";
 
 export default {
   component: Edition,
-  title: "Molecules/Edition",
+  title: "Organisms/Edition",
 };
 
 const Template = (args) => <Edition {...args} />;

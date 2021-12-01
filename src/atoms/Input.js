@@ -34,8 +34,18 @@ export default function Input(props) {
     <CustomInput
       {...props}
       isFocused={isFocused}
-      onFocus={handleFocus}
-      onBlur={handleFocus}
+      onFocus={() => {
+        if (props.onFocus) {
+          props.onFocus();
+        }
+        handleFocus();
+      }}
+      onBlur={() => {
+        if (props.onBlur) {
+          props.onBlur();
+        }
+        handleFocus();
+      }}
     ></CustomInput>
   );
 }

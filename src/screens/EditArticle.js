@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import Edition from "../molecules/Edition";
+import Edition from "../organisms/Edition";
 import DataStep from "../molecules/edition-steps/ArticleData";
 import ImagesStep from "../molecules/edition-steps/Images";
 import RelatedArticlesStep from "../molecules/edition-steps/RelatedArticles";
