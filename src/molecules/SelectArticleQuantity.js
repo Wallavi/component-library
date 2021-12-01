@@ -45,7 +45,7 @@ export default function SelectArticleQuantity(props) {
         required={true}
       ></Input>
       <TrashContainer>
-        <TrashIcon icon={faTrash} />
+        <TrashIcon icon={faTrash} onClick={props.onClick} />
       </TrashContainer>
     </MainContainer>
   );
@@ -55,4 +55,5 @@ SelectArticleQuantity.propTypes = {
   articleName: PropTypes.string.isRequired,
   unitMeasure: PropTypes.string.isRequired,
   qty: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

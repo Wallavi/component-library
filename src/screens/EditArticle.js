@@ -33,7 +33,19 @@ export default function EditArticle(props) {
           newImages={newImages}
           handleOnDropImage={handleOnDropImage}
         ></ImagesStep>,
-        <RelatedArticlesStep></RelatedArticlesStep>,
+        <RelatedArticlesStep
+          articles={[]}
+          articlesSelected={[
+            { articleName: "uno", unitMeasure: "Kilogramo", qty: "1" },
+            { articleName: "dos", unitMeasure: "Pieza", qty: "" },
+            { articleName: "tres", unitMeasure: "Kilogramo", qty: "1" },
+            { articleName: "cuatro", unitMeasure: "Kilogramo", qty: "1" },
+            { articleName: "cinco", unitMeasure: "Kilogramo", qty: "1" },
+            { articleName: "seis", unitMeasure: "Kilogramo", qty: "1" },
+          ]}
+          articleName="Nombre"
+          unitMeasure="Pieza"
+        ></RelatedArticlesStep>,
       ]}
       selected={sectionSelected}
       handleClick={handleOnClickStep}
