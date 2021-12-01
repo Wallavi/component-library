@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Edition from "../molecules/Edition";
 import DataStep from "../molecules/edition-steps/ArticleData";
 import ImagesStep from "../molecules/edition-steps/Images";
+import RelatedArticlesStep from "../molecules/edition-steps/RelatedArticles";
 
 export default function EditArticle(props) {
   const [sectionSelected, setSelectedSection] = useState(0);
@@ -21,7 +22,7 @@ export default function EditArticle(props) {
   return (
     <Edition
       title="Editar artículo"
-      steps={["Información", "Imágenes"]}
+      steps={["Información", "Imágenes", "Artículos relacionados"]}
       children={[
         <DataStep
           handleClick={handleOnClickStep}
@@ -32,6 +33,7 @@ export default function EditArticle(props) {
           newImages={newImages}
           handleOnDropImage={handleOnDropImage}
         ></ImagesStep>,
+        <RelatedArticlesStep></RelatedArticlesStep>,
       ]}
       selected={sectionSelected}
       handleClick={handleOnClickStep}

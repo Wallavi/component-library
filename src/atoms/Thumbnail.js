@@ -23,7 +23,7 @@ const Banner = styled.p`
   position: absolute;
   top: 0;
   left: 0;
-  border-radius: 12px 0;
+  border-radius: 8px 0;
   background-color: #2bde73;
   color: #fff;
   font-weight: 400;
