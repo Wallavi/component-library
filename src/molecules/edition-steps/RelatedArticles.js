@@ -21,6 +21,7 @@ const RelatedArticlesSelected = styled.div`
 `;
 
 export default function ComponentName(props) {
+  console.log(props);
   return (
     <MainContainer>
       <Label
@@ -28,7 +29,10 @@ export default function ComponentName(props) {
         unitMeasure={props.unitMeasure}
       ></Label>
 
-      <SearchArticle label="Buscar artículo por nombre o SKU" />
+      <SearchArticle
+        label="Buscar artículo por nombre o SKU"
+        listItems={props.articles}
+      />
 
       {props.articlesSelected.length >= 1 && (
         <RelatedArticlesSelected>
@@ -49,6 +53,7 @@ export default function ComponentName(props) {
 ComponentName.propTypes = {
   articleName: PropTypes.string.isRequired,
   unitMeasure: PropTypes.string.isRequired,
+  articles: PropTypes.array.isRequired,
   articlesSelected: PropTypes.arrayOf(
     PropTypes.shape({
       articleName: PropTypes.string.isRequired,

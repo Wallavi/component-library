@@ -1,6 +1,8 @@
 import React from "react";
 import RelatedArticles from "./RelatedArticles";
 
+import * as Stories from "../../organisms/Dropdown.stories";
+
 export default {
   component: RelatedArticles,
   title: "Molecules/RelatedArticles",
@@ -14,6 +16,7 @@ Default.args = {
   unitMeasure: "Pieza",
   qty: "10",
   articlesSelected: [],
+  articles: Stories.Default.args.listItems,
 };
 
 export const ArticlesSelected = Template.bind({});

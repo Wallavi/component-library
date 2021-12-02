@@ -17,17 +17,20 @@ const MainContainer = styled.div`
 `;
 
 export default function List(props) {
-  const items = props.listItems.map((e) => (
+  const items = props.listItems.map((item, index) => (
     <ListItem
-      source={e.source}
-      mainData={e.mainData}
-      secondaryData={e.secondaryData}
-      onClick={props.onClick}
+      source={item.source}
+      mainData={item.mainData}
+      secondaryData={item.secondaryData}
+      key={item.id}
+      onClick={() => props.onClick(item)}
+      onMouseOver={() => props.onMouseOver(index)}
+      highlight={index === props.highlight ? true : false}
     ></ListItem>
   ));
 
   return (
-    <MainContainer {...props}>
+    <MainContainer width={props.width}>
       {props.listItems.length >= 1 ? items : <EmptyList />}
     </MainContainer>
   );
@@ -35,9 +38,11 @@ export default function List(props) {
 
 List.propTypes = {
   width: PropTypes.string,
+  highlight: PropTypes.number,
   listItems: PropTypes.arrayOf(
     PropTypes.shape({
       source: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
       mainData: PropTypes.string,
       secondaryData: PropTypes.string,
     })

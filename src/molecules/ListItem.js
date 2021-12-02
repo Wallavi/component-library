@@ -8,9 +8,8 @@ const MainContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  :hover {
-    background: rgba(256, 256, 256, 0.4);
-  }
+  background: ${(props) =>
+    props.highlight ? "rgba(256, 256, 256, 0.4)" : null};
   padding: 5px;
   border-radius: 8px;
   margin: 3px 0;
@@ -32,7 +31,7 @@ const Data = styled.div`
 
 export default function ListItem(props) {
   return (
-    <MainContainer>
+    <MainContainer {...props}>
       <Avatar source={props.source} radius="8px" />
       <Data>
         <p>{props.mainData}</p>
@@ -46,4 +45,5 @@ ListItem.propTypes = {
   source: PropTypes.string.isRequired,
   mainData: PropTypes.string.isRequired,
   secondaryData: PropTypes.string.isRequired,
+  highlight: PropTypes.bool,
 };
