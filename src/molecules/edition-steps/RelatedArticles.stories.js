@@ -1,8 +1,6 @@
 import React from "react";
 import RelatedArticles from "./RelatedArticles";
 
-import * as DropdownStories from "../../organisms/Dropdown.stories";
-
 export default {
   component: RelatedArticles,
   title: "Molecules/RelatedArticles",
@@ -16,18 +14,36 @@ Default.args = {
   unitMeasure: "Pieza",
   qty: "10",
   articlesSelected: [],
-  articles: DropdownStories.Default.args.listItems,
-};
-
-export const SelectedArticles = Template.bind({});
-SelectedArticles.args = {
-  ...Default.args,
-  articlesSelected: [
+  articles: [
     {
-      articleName: "Test here",
       unitMeasure: "Pieza",
-      qty: "1",
+      name: "bodega",
+      sku: "123412341234",
+      id: 1,
+    },
+    {
+      unitMeasure: "Litro",
+      name: "Main Data",
+      sku: "123412341234",
+      id: 2,
+    },
+    {
+      unitMeasure: "Pieza",
+      name: "Main Data",
+      sku: "123412341234",
+      id: 3,
+    },
+    {
+      unitMeasure: "Pieza",
+      name: "auto",
+      sku: "123412341234",
       id: 4,
+    },
+    {
+      unitMeasure: "Kilogramo",
+      name: "Auto",
+      sku: "123412341234",
+      id: 5,
     },
   ],
 };

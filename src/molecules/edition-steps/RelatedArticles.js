@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Label from "../../atoms/labels/CompoundArticle";
 import SearchArticle from "../../organisms/Dropdown";
-import Row from "../SelectArticleQuantity";
+import Row from "../SelectQuantity";
 
 const MainContainer = styled.div``;
 
@@ -24,6 +24,12 @@ export default function RelatedArticles(props) {
   const [articlesSelected, setArticlesSelected] = useState(
     props.articlesSelected ? props.articlesSelected : []
   );
+  const formattedDataForDropdown = props.articles.map((e) => {
+    return {
+      mainData: e.name,
+      secondaryData: e.sku,
+    };
+  });
 
   const removeArticle = (articleToBeRemoved) => {
     const temp = {};
@@ -54,7 +60,7 @@ export default function RelatedArticles(props) {
 
       <SearchArticle
         label="Buscar artículo por nombre o SKU"
-        listItems={props.articles}
+        listItems={formattedDataForDropdown}
         onSelect={(articleToBeAdded) => addArticle(articleToBeAdded)}
       />
 
@@ -63,7 +69,7 @@ export default function RelatedArticles(props) {
           {articlesSelected.map((e) => (
             <Row
               key={e.id}
-              articleName={e.articleName}
+              label={e.articleName}
               unitMeasure={e.unitMeasure}
               qty={e.qty}
               id={e.id}
@@ -82,13 +88,21 @@ export default function RelatedArticles(props) {
 RelatedArticles.propTypes = {
   articleName: PropTypes.string.isRequired,
   unitMeasure: PropTypes.string.isRequired,
-  articles: PropTypes.array.isRequired,
+  articles: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      unitMeasure: PropTypes.string.isRequired,
+      sku: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      images: PropTypes.arrayOf(PropTypes.string),
+    })
+  ).isRequired,
   articlesSelected: PropTypes.arrayOf(
     PropTypes.shape({
-      articleName: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
       unitMeasure: PropTypes.string.isRequired,
       qty: PropTypes.string.isRequired,
       id: PropTypes.number.isRequired,
     })
-  ),
+  ).isRequired,
 };

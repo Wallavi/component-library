@@ -12,6 +12,8 @@ const Template = (args) => <List {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
+  handleMouseOver: () => {},
+  handleClick: () => {},
   listItems: [
     {
       source: testingImage,
@@ -58,5 +60,6 @@ Default.args = {
 
 export const EmptyList = Template.bind({});
 EmptyList.args = {
+  ...Default.args,
   listItems: [],
 };

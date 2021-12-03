@@ -40,7 +40,7 @@ export default function Thumbnail(props) {
 }
 
 Thumbnail.propTypes = {
-  source: PropTypes.string,
+  source: PropTypes.string.isRequired,
   isNewImage: PropTypes.bool,
 };
 

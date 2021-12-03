@@ -48,7 +48,7 @@ export default function Main(props) {
 Main.propTypes = {
   selected: PropTypes.number.isRequired,
   steps: PropTypes.array.isRequired,
-  handleClick: PropTypes.func,
+  handleClick: PropTypes.func.isRequired,
 };
 
 Main.defaultProps = {

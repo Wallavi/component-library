@@ -25,7 +25,7 @@ Button.propTypes = {
   color: PropTypes.string,
   bgColor: PropTypes.string,
   size: PropTypes.oneOf(["SMALL", "BIG"]),
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   margin: PropTypes.string,
 };
 

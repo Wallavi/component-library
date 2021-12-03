@@ -24,7 +24,7 @@ export default function List(props) {
       secondaryData={item.secondaryData}
       key={item.id}
       onClick={() => props.handleClick(item)}
-      onMouseOver={() => props.onMouseOver(index)}
+      onMouseOver={() => props.handleMouseOver(index)}
       highlight={index === props.highlight ? true : false}
     ></ListItem>
   ));
@@ -39,16 +39,9 @@ export default function List(props) {
 List.propTypes = {
   width: PropTypes.string,
   highlight: PropTypes.number,
-  listItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      source: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-      mainData: PropTypes.string,
-      secondaryData: PropTypes.string,
-    })
-  ),
-  onMouseOver: PropTypes.func,
-  handleClick: PropTypes.func,
+  listItems: PropTypes.arrayOf(PropTypes.shape(ListItem.propTypes)).isRequired,
+  handleMouseOver: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 List.defaultProps = {

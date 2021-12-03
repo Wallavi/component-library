@@ -38,10 +38,10 @@ const TrashIcon = styled(FontAwesomeIcon)`
   font-size: 17px;
 `;
 
-export default function SelectArticleQuantity(props) {
+export default function SelectQuantity(props) {
   return (
     <MainContainer>
-      <ArticleName>{props.articleName}</ArticleName>
+      <ArticleName>{props.label}</ArticleName>
       <Input
         label={`Cantidad en ${props.unitMeasure}`}
         value={props.qty}
@@ -55,9 +55,10 @@ export default function SelectArticleQuantity(props) {
   );
 }
 
-SelectArticleQuantity.propTypes = {
-  articleName: PropTypes.string.isRequired,
+SelectQuantity.propTypes = {
+  label: PropTypes.string.isRequired,
   unitMeasure: PropTypes.string.isRequired,
   qty: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };

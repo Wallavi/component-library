@@ -6,6 +6,8 @@ import Fuse from "fuse.js";
 import Input from "../atoms/Input";
 import List from "./List";
 
+import ListItem from "../molecules/ListItem";
+
 const MainContainer = styled.div`
   position: relative;
 `;
@@ -126,7 +128,7 @@ export default function Dropdown(props) {
             listItems={filteredItems}
             handleClick={handleDropdownOnClick}
             highlight={possiblySelectedItem}
-            onMouseOver={(index) => setPossiblySelectedItemState(index)}
+            handleMouseOver={(index) => setPossiblySelectedItemState(index)}
           ></List>
         </AbsoluteContainer>
       )}
@@ -136,12 +138,6 @@ export default function Dropdown(props) {
 
 Dropdown.propTypes = {
   label: PropTypes.string,
-  listItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      source: PropTypes.string.isRequired,
-      mainData: PropTypes.string.isRequired,
-      secondaryData: PropTypes.string.isRequired,
-    })
-  ),
+  listItems: PropTypes.arrayOf(PropTypes.shape(ListItem.propTypes)).isRequired,
   onSelect: PropTypes.func.isRequired,
 };
