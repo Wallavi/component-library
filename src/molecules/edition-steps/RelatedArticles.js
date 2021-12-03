@@ -21,15 +21,23 @@ const RelatedArticlesSelected = styled.div`
 `;
 
 export default function RelatedArticles(props) {
+  const formatData = (article) => {
+    return article.map((e) => {
+      return {
+        ...e,
+        source: e.images[0],
+        mainData: e.name,
+        secondaryData: e.sku,
+        qty: e.qty ? e.qty : "0",
+      };
+    });
+  };
+
   const [articlesSelected, setArticlesSelected] = useState(
-    props.articlesSelected ? props.articlesSelected : []
+    props.articlesSelected ? formatData(props.articlesSelected) : []
   );
-  const formattedDataForDropdown = props.articles.map((e) => {
-    return {
-      mainData: e.name,
-      secondaryData: e.sku,
-    };
-  });
+
+  const formattedArticles = formatData(props.articles);
 
   const removeArticle = (articleToBeRemoved) => {
     const temp = {};
@@ -60,7 +68,7 @@ export default function RelatedArticles(props) {
 
       <SearchArticle
         label="Buscar artículo por nombre o SKU"
-        listItems={formattedDataForDropdown}
+        listItems={formattedArticles}
         onSelect={(articleToBeAdded) => addArticle(articleToBeAdded)}
       />
 
@@ -69,7 +77,7 @@ export default function RelatedArticles(props) {
           {articlesSelected.map((e) => (
             <Row
               key={e.id}
-              label={e.articleName}
+              label={e.mainData}
               unitMeasure={e.unitMeasure}
               qty={e.qty}
               id={e.id}
