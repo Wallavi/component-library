@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -20,16 +20,31 @@ const ThumbnailContainer = styled.div`
 `;
 
 export default function Images(props) {
+  const [newImages, setNewImagesState] = useState([]);
+
+  const handleDropImage = (images) => {
+    setNewImagesState(images);
+  };
+
   return (
     <MainContainer {...props}>
       <DropImage
-        handleDropImage={props.handleDropImage}
-        images={props.newImages}
+        handleDropImage={handleDropImage}
+        images={[...newImages]}
       ></DropImage>
       <ThumbnailContainer>
         {props.images.map((element, index) => (
-          <Thumbnail key={index} source={element} isNewImage={true}></Thumbnail>
+          <Thumbnail key={index} source={element}></Thumbnail>
         ))}
+        {newImages.map((element, index) => {
+          return (
+            <Thumbnail
+              key={index}
+              source={element.base64}
+              isNewImage={true}
+            ></Thumbnail>
+          );
+        })}
       </ThumbnailContainer>
     </MainContainer>
   );
@@ -37,11 +52,8 @@ export default function Images(props) {
 
 Images.propTypes = {
   images: PropTypes.array.isRequired,
-  newImages: PropTypes.array.isRequired,
-  handleDropImage: PropTypes.func,
 };
 
 Images.defaultProps = {
   images: [],
-  newImages: [],
 };

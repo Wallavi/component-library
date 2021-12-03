@@ -8,15 +8,9 @@ import RelatedArticlesStep from "../molecules/edition-steps/RelatedArticles";
 
 export default function EditArticle(props) {
   const [sectionSelected, setSelectedSection] = useState(0);
-  const [newImages, setImagesState] = useState([]);
-  const allTheImages = newImages.map((e) => e.base64).concat(props.images);
 
   const handleClickStep = (newStep) => {
     setSelectedSection(newStep);
-  };
-
-  const handleDropImage = (images) => {
-    setImagesState(images);
   };
 
   return (
@@ -25,12 +19,7 @@ export default function EditArticle(props) {
       steps={["Información", "Imágenes", "Artículos relacionados"]}
       children={[
         <DataStep key="1" selected={sectionSelected}></DataStep>,
-        <ImagesStep
-          key="2"
-          images={allTheImages}
-          newImages={newImages}
-          handleDropImage={handleDropImage}
-        ></ImagesStep>,
+        <ImagesStep key="2" images={props.images}></ImagesStep>,
         <RelatedArticlesStep
           key="3"
           articles={[]}
