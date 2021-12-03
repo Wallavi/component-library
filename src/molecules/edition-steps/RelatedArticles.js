@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -20,8 +20,31 @@ const RelatedArticlesSelected = styled.div`
   box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px 1px;
 `;
 
-export default function ComponentName(props) {
-  console.log(props);
+export default function RelatedArticles(props) {
+  const [articlesSelected, setArticlesSelected] = useState(
+    props.articlesSelected ? props.articlesSelected : []
+  );
+
+  const removeArticle = (articleToBeRemoved) => {
+    const temp = {};
+    articlesSelected.forEach((element) => {
+      temp[element.id] = element;
+    });
+
+    delete temp[articleToBeRemoved.id];
+    setArticlesSelected(Object.values(temp));
+  };
+
+  const addArticle = (articleToBeAdded) => {
+    const temp = {};
+    articlesSelected.forEach((element) => {
+      temp[element.id] = element;
+    });
+
+    temp[articleToBeAdded.id] = articleToBeAdded;
+    setArticlesSelected(Object.values(temp));
+  };
+
   return (
     <MainContainer>
       <Label
@@ -32,16 +55,22 @@ export default function ComponentName(props) {
       <SearchArticle
         label="Buscar artículo por nombre o SKU"
         listItems={props.articles}
+        onSelect={(articleToBeAdded) => addArticle(articleToBeAdded)}
       />
 
-      {props.articlesSelected.length >= 1 && (
+      {articlesSelected.length >= 1 && (
         <RelatedArticlesSelected>
-          {props.articlesSelected.map((e) => (
+          {articlesSelected.map((e) => (
             <Row
-              articleName={e.articleName}
+              key={e.id}
+              articleName={e.mainData}
               unitMeasure={e.unitMeasure}
               qty={e.qty}
-              onClick={""}
+              id={e.id}
+              onClick={(articleToBeRemoved) =>
+                removeArticle(articleToBeRemoved)
+              }
+              onChange={() => {}}
             />
           ))}
         </RelatedArticlesSelected>
@@ -50,7 +79,7 @@ export default function ComponentName(props) {
   );
 }
 
-ComponentName.propTypes = {
+RelatedArticles.propTypes = {
   articleName: PropTypes.string.isRequired,
   unitMeasure: PropTypes.string.isRequired,
   articles: PropTypes.array.isRequired,
@@ -59,6 +88,7 @@ ComponentName.propTypes = {
       articleName: PropTypes.string.isRequired,
       unitMeasure: PropTypes.string.isRequired,
       qty: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
     })
   ),
 };

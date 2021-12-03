@@ -34,8 +34,9 @@ export default function Dropdown(props) {
   const handleOnKeyUp = (e) => {
     setFocusedState(true);
     if (e.key === "Enter" && filteredItems.length > 0) {
+      props.onSelect(filteredItems[possiblySelectedItem]);
       setItemSelectedState(filteredItems[possiblySelectedItem]);
-      setInputValue(filteredItems[possiblySelectedItem].mainData);
+      setInputValue("");
       setFocusedState(false);
     }
     if (e.key === "ArrowUp" && possiblySelectedItem >= 1) {
@@ -55,8 +56,9 @@ export default function Dropdown(props) {
 
   const handleDropdownOnClick = (data) => {
     if (data.mainData) {
+      props.onSelect(filteredItems[possiblySelectedItem]);
       setItemSelectedState(data);
-      setInputValue(data.mainData);
+      setInputValue("");
       setFocusedState(false);
     }
   };
@@ -143,4 +145,5 @@ Dropdown.propTypes = {
       secondaryData: PropTypes.string.isRequired,
     })
   ),
+  onSelect: PropTypes.func.isRequired,
 };

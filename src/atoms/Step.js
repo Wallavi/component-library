@@ -35,7 +35,7 @@ export default function Main(props) {
   return (
     <Stepper {...props} activeStep={props.selected} alternativeLabel>
       {props.steps.map((label, index) => (
-        <Step key={label} onClick={() => props.handleClick(index)}>
+        <Step key={label} onClick={() => props.onClick(index)}>
           <StepLabel>{label}</StepLabel>
         </Step>
       ))}
@@ -46,7 +46,7 @@ export default function Main(props) {
 Main.propTypes = {
   selected: PropTypes.number.isRequired,
   steps: PropTypes.array.isRequired,
-  handleClick: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 Main.defaultProps = {

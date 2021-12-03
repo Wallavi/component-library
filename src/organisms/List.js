@@ -42,11 +42,13 @@ List.propTypes = {
   listItems: PropTypes.arrayOf(
     PropTypes.shape({
       source: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       mainData: PropTypes.string,
       secondaryData: PropTypes.string,
     })
   ),
+  onMouseOver: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 List.defaultProps = {

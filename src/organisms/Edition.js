@@ -35,7 +35,7 @@ export default function Edition(props) {
         <Step
           selected={props.selected}
           steps={props.steps}
-          handleClick={props.handleClick}
+          onClick={props.handleClick}
         />
       ) : null}
 

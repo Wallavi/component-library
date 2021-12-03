@@ -27,9 +27,9 @@ export default function Images(props) {
         images={props.newImages}
       ></DropImage>
       <ThumbnailContainer>
-        {props.images.map((element) => {
-          return <Thumbnail source={element} isNewImage={true}></Thumbnail>;
-        })}
+        {props.images.map((element, index) => (
+          <Thumbnail key={index} source={element} isNewImage={true}></Thumbnail>
+        ))}
       </ThumbnailContainer>
     </MainContainer>
   );

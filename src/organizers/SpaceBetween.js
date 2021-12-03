@@ -16,7 +16,7 @@ const Space = styled.div`
 export default function SpaceBetween(props) {
   let children = [];
   children.push(props.children[0]);
-  children.push(<Space spaceSize={props.spaceSize} />);
+  children.push(<Space key={3} spaceSize={props.spaceSize} />);
   children.push(props.children[1]);
 
   return <MainContainer>{children}</MainContainer>;

@@ -19,7 +19,7 @@ const CustomInput = styled(TextField)`
   .MuiOutlinedInput-root {
     fieldset {
       border-color: ${(props) =>
-        props.isFocused ? "#5590ff !important" : "#99a7bf !important"};
+        props.focused ? "#5590ff !important" : "#99a7bf !important"};
     }
   }
 `;
@@ -33,7 +33,7 @@ export default function Input(props) {
   return (
     <CustomInput
       {...props}
-      isFocused={isFocused}
+      focused={isFocused}
       onFocus={(e) => {
         if (props.onFocus) {
           props.onFocus(e);

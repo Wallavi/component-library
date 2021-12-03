@@ -18,16 +18,16 @@ export default function ArticleData(props) {
     <MainContainer {...props}>
       <Input label="Nombre del artículo"></Input>
       <SpaceBetween>
-        <Input label="SKU"></Input>
-        <Input label="Alarma"></Input>
+        <Input key="1" label="SKU"></Input>
+        <Input key="2" label="Alarma"></Input>
       </SpaceBetween>
       <SpaceBetween>
-        <Input label="Unidad de medida"></Input>
-        <Input label="Divisa"></Input>
+        <Input key="1" label="Unidad de medida"></Input>
+        <Input key="2" label="Divisa"></Input>
       </SpaceBetween>
       <SpaceBetween>
-        <Input label="Precio de compra"></Input>
-        <Input label="Precio de venta"></Input>
+        <Input key="1" label="Precio de compra"></Input>
+        <Input key="2" label="Precio de venta"></Input>
       </SpaceBetween>
       <Input label="Notas"></Input>
     </MainContainer>

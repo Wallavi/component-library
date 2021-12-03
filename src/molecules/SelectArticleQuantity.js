@@ -24,10 +24,13 @@ const TrashContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: black;
+  background: gray;
   border-radius: 100px;
   flex-shrink: 0;
   margin-left: 10px;
+  :hover {
+    background: black;
+  }
 `;
 
 const TrashIcon = styled(FontAwesomeIcon)`
@@ -43,9 +46,10 @@ export default function SelectArticleQuantity(props) {
         label={`Cantidad en ${props.unitMeasure}`}
         value={props.qty}
         required={true}
+        onChange={props.onChange}
       ></Input>
-      <TrashContainer>
-        <TrashIcon icon={faTrash} onClick={props.onClick} />
+      <TrashContainer onClick={() => props.onClick(props)}>
+        <TrashIcon icon={faTrash} />
       </TrashContainer>
     </MainContainer>
   );
