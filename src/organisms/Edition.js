@@ -28,6 +28,14 @@ const Title = styled.p`
 `;
 
 export default function Edition(props) {
+  const handleClick = (index) => {
+    if (typeof index === "number") {
+      props.handleClick(index);
+    } else {
+      props.handleClick(props.selected + 1);
+    }
+  };
+
   return (
     <MainContainer {...props} id="mainContainer">
       <Title>{props.title}</Title>
@@ -35,7 +43,7 @@ export default function Edition(props) {
         <Step
           selected={props.selected}
           steps={props.steps}
-          onClick={props.handleClick}
+          handleClick={handleClick}
         />
       ) : null}
 
@@ -45,7 +53,7 @@ export default function Edition(props) {
         margin="15px 0 0 0"
         label="Continuar"
         size="BIG"
-        onClick={() => props.handleClick(props.selected + 1)}
+        onClick={handleClick}
       ></Button>
     </MainContainer>
   );

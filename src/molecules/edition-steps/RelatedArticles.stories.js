@@ -18,3 +18,16 @@ Default.args = {
   articlesSelected: [],
   articles: DropdownStories.Default.args.listItems,
 };
+
+export const SelectedArticles = Template.bind({});
+SelectedArticles.args = {
+  ...Default.args,
+  articlesSelected: [
+    {
+      articleName: "Test here",
+      unitMeasure: "Pieza",
+      qty: "1",
+      id: 4,
+    },
+  ],
+};

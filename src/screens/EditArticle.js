@@ -11,11 +11,11 @@ export default function EditArticle(props) {
   const [newImages, setImagesState] = useState([]);
   const allTheImages = newImages.map((e) => e.base64).concat(props.images);
 
-  const handleOnClickStep = (newStep) => {
+  const handleClickStep = (newStep) => {
     setSelectedSection(newStep);
   };
 
-  const handleOnDropImage = (images) => {
+  const handleDropImage = (images) => {
     setImagesState(images);
   };
 
@@ -24,31 +24,23 @@ export default function EditArticle(props) {
       title="Editar artículo"
       steps={["Información", "Imágenes", "Artículos relacionados"]}
       children={[
-        <DataStep
-          handleClick={handleOnClickStep}
-          selected={sectionSelected}
-        ></DataStep>,
+        <DataStep key="1" selected={sectionSelected}></DataStep>,
         <ImagesStep
+          key="2"
           images={allTheImages}
           newImages={newImages}
-          handleOnDropImage={handleOnDropImage}
+          handleDropImage={handleDropImage}
         ></ImagesStep>,
         <RelatedArticlesStep
+          key="3"
           articles={[]}
-          articlesSelected={[
-            { articleName: "uno", unitMeasure: "Kilogramo", qty: "1" },
-            { articleName: "dos", unitMeasure: "Pieza", qty: "" },
-            { articleName: "tres", unitMeasure: "Kilogramo", qty: "1" },
-            { articleName: "cuatro", unitMeasure: "Kilogramo", qty: "1" },
-            { articleName: "cinco", unitMeasure: "Kilogramo", qty: "1" },
-            { articleName: "seis", unitMeasure: "Kilogramo", qty: "1" },
-          ]}
+          articlesSelected={[]}
           articleName="Nombre"
           unitMeasure="Pieza"
         ></RelatedArticlesStep>,
       ]}
       selected={sectionSelected}
-      handleClick={handleOnClickStep}
+      handleClick={handleClickStep}
     ></Edition>
   );
 }

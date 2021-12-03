@@ -23,7 +23,7 @@ export default function Images(props) {
   return (
     <MainContainer {...props}>
       <DropImage
-        handleOnDropImage={props.handleOnDropImage}
+        handleDropImage={props.handleDropImage}
         images={props.newImages}
       ></DropImage>
       <ThumbnailContainer>
@@ -38,7 +38,7 @@ export default function Images(props) {
 Images.propTypes = {
   images: PropTypes.array.isRequired,
   newImages: PropTypes.array.isRequired,
-  handleOnDropImage: PropTypes.func,
+  handleDropImage: PropTypes.func,
 };
 
 Images.defaultProps = {

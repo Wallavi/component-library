@@ -23,7 +23,7 @@ export default function List(props) {
       mainData={item.mainData}
       secondaryData={item.secondaryData}
       key={item.id}
-      onClick={() => props.onClick(item)}
+      onClick={() => props.handleClick(item)}
       onMouseOver={() => props.onMouseOver(index)}
       highlight={index === props.highlight ? true : false}
     ></ListItem>
@@ -48,7 +48,7 @@ List.propTypes = {
     })
   ),
   onMouseOver: PropTypes.func,
-  onClick: PropTypes.func,
+  handleClick: PropTypes.func,
 };
 
 List.defaultProps = {

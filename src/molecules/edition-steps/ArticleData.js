@@ -16,26 +16,39 @@ const MainContainer = styled.div`
 export default function ArticleData(props) {
   return (
     <MainContainer {...props}>
-      <Input label="Nombre del artículo"></Input>
+      <Input label="Nombre del artículo" value={""} onChange={() => {}}></Input>
       <SpaceBetween>
-        <Input key="1" label="SKU"></Input>
-        <Input key="2" label="Alarma"></Input>
+        <Input key="random" label="SKU" value={""} onChange={() => {}}></Input>
+        <Input key="key" label="Alarma" value={""} onChange={() => {}}></Input>
       </SpaceBetween>
       <SpaceBetween>
-        <Input key="1" label="Unidad de medida"></Input>
-        <Input key="2" label="Divisa"></Input>
+        <Input
+          key="for"
+          label="Unidad de medida"
+          value={""}
+          onChange={() => {}}
+        ></Input>
+        <Input key="thje" label="Divisa" value={""} onChange={() => {}}></Input>
       </SpaceBetween>
       <SpaceBetween>
-        <Input key="1" label="Precio de compra"></Input>
-        <Input key="2" label="Precio de venta"></Input>
+        <Input
+          key="1"
+          label="Precio de compra"
+          value={""}
+          onChange={() => {}}
+        ></Input>
+        <Input
+          key="2"
+          label="Precio de venta"
+          value={""}
+          onChange={() => {}}
+        ></Input>
       </SpaceBetween>
-      <Input label="Notas"></Input>
+      <Input label="Notas" value={""} onChange={() => {}}></Input>
     </MainContainer>
   );
 }
 
-ArticleData.propTypes = {
-  onClick: PropTypes.func,
-};
+ArticleData.propTypes = {};
 
 ArticleData.defaultProps = {};

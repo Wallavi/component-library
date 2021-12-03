@@ -57,5 +57,7 @@ Input.propTypes = {
   required: PropTypes.bool,
   error: PropTypes.bool,
   helperText: PropTypes.string,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func.isRequired,
 };

@@ -55,12 +55,10 @@ export default function Dropdown(props) {
   };
 
   const handleDropdownOnClick = (data) => {
-    if (data.mainData) {
-      props.onSelect(filteredItems[possiblySelectedItem]);
-      setItemSelectedState(data);
-      setInputValue("");
-      setFocusedState(false);
-    }
+    props.onSelect(filteredItems[possiblySelectedItem]);
+    setItemSelectedState(data);
+    setInputValue("");
+    setFocusedState(false);
   };
 
   useEffect(() => {
@@ -126,7 +124,7 @@ export default function Dropdown(props) {
         <AbsoluteContainer>
           <List
             listItems={filteredItems}
-            onClick={handleDropdownOnClick}
+            handleClick={handleDropdownOnClick}
             highlight={possiblySelectedItem}
             onMouseOver={(index) => setPossiblySelectedItemState(index)}
           ></List>

@@ -63,7 +63,7 @@ export default function RelatedArticles(props) {
           {articlesSelected.map((e) => (
             <Row
               key={e.id}
-              articleName={e.mainData}
+              articleName={e.articleName}
               unitMeasure={e.unitMeasure}
               qty={e.qty}
               id={e.id}

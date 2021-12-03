@@ -45,7 +45,7 @@ export default function DropImage(props) {
         path: droppedFiles[i].path,
       });
     }
-    props.handleOnDropImage(files);
+    props.handleDropImage(files);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -68,6 +68,9 @@ export default function DropImage(props) {
   );
 }
 
-DropImage.propTypes = {};
+DropImage.propTypes = {
+  handleDropImage: PropTypes.func.isRequired,
+  images: PropTypes.array.isRequired,
+};
 
 DropImage.defaultProps = {};

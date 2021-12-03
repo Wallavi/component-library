@@ -33,10 +33,12 @@ const Step = styled(MUIStep)`
 
 export default function Main(props) {
   return (
-    <Stepper {...props} activeStep={props.selected} alternativeLabel>
+    <Stepper activeStep={props.selected} alternativeLabel>
       {props.steps.map((label, index) => (
-        <Step key={label} onClick={() => props.onClick(index)}>
-          <StepLabel>{label}</StepLabel>
+        <Step key={label}>
+          <StepLabel onClick={() => props.handleClick(index)}>
+            {label}
+          </StepLabel>
         </Step>
       ))}
     </Stepper>
@@ -46,7 +48,7 @@ export default function Main(props) {
 Main.propTypes = {
   selected: PropTypes.number.isRequired,
   steps: PropTypes.array.isRequired,
-  onClick: PropTypes.func,
+  handleClick: PropTypes.func,
 };
 
 Main.defaultProps = {
