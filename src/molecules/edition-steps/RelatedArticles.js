@@ -39,24 +39,25 @@ export default function RelatedArticles(props) {
 
   const formattedArticles = formatData(props.articles);
 
-  const removeArticle = (articleToBeRemoved) => {
+  const modifyRelatedArticles = (operation, article) => {
     const temp = {};
     articlesSelected.forEach((element) => {
       temp[element.id] = element;
     });
 
-    delete temp[articleToBeRemoved.id];
-    setArticlesSelected(Object.values(temp));
-  };
+    if (operation === "ADD") {
+      temp[article.id] = article;
+    } else {
+      delete temp[article.id];
+    }
 
-  const addArticle = (articleToBeAdded) => {
-    const temp = {};
-    articlesSelected.forEach((element) => {
-      temp[element.id] = element;
-    });
-
-    temp[articleToBeAdded.id] = articleToBeAdded;
+    //Save locally
     setArticlesSelected(Object.values(temp));
+
+    //Save on parent component
+    if (props.handleChange) {
+      props.handleChange(Object.values(temp));
+    }
   };
 
   return (
@@ -69,7 +70,7 @@ export default function RelatedArticles(props) {
       <SearchArticle
         label="Buscar artículo por nombre o SKU"
         listItems={formattedArticles}
-        onSelect={(articleToBeAdded) => addArticle(articleToBeAdded)}
+        onSelect={(article) => modifyRelatedArticles("ADD", article)}
       />
 
       {articlesSelected.length >= 1 && (
@@ -81,9 +82,7 @@ export default function RelatedArticles(props) {
               unitMeasure={e.unitMeasure}
               qty={e.qty}
               id={e.id}
-              onClick={(articleToBeRemoved) =>
-                removeArticle(articleToBeRemoved)
-              }
+              onClick={(article) => modifyRelatedArticles("REMOVE", article)}
               handleChange={() => {}}
             />
           ))}
@@ -113,4 +112,5 @@ RelatedArticles.propTypes = {
       id: PropTypes.number.isRequired,
     })
   ).isRequired,
+  handleChange: PropTypes.func,
 };

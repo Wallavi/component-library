@@ -18,10 +18,18 @@ export default function ArticleData(props) {
 
   const handleChange = (e) => {
     const name = e.target.name;
-    setArticleDataState({
+    const temp = {
       ...articleData,
       [name]: e.target.value,
-    });
+    };
+
+    //Save locally
+    setArticleDataState(temp);
+
+    //Save on parent component
+    if (props.handleChange) {
+      props.handleChange(temp);
+    }
   };
 
   return (
@@ -101,6 +109,7 @@ ArticleData.propTypes = {
     notes: PropTypes.string.isRequired,
     currency: PropTypes.string.isRequired,
   }).isRequired,
+  handleChange: PropTypes.func,
 };
 
 ArticleData.defaultProps = {};

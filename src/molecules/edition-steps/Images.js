@@ -20,10 +20,18 @@ const ThumbnailContainer = styled.div`
 `;
 
 export default function Images(props) {
-  const [newImages, setNewImagesState] = useState([]);
+  const [newImages, setNewImagesState] = useState(
+    props.newImages ? props.newImages : []
+  );
 
   const handleDropImage = (images) => {
+    //Save locally
     setNewImagesState(images);
+
+    //Save on parent component
+    if (props.handleChange) {
+      props.handleChange(images);
+    }
   };
 
   return (
@@ -52,6 +60,8 @@ export default function Images(props) {
 
 Images.propTypes = {
   images: PropTypes.array.isRequired,
+  newImages: PropTypes.array,
+  handleChange: PropTypes.func,
 };
 
 Images.defaultProps = {

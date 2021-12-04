@@ -8,10 +8,23 @@ import RelatedArticlesStep from "../molecules/edition-steps/RelatedArticles";
 import ArticleData from "../molecules/edition-steps/ArticleData";
 
 export default function EditArticle(props) {
+  const [data, setDataState] = useState({
+    articleData: props.articleData,
+    articleImages: props.articleImages,
+    articlesRelated: props.articlesRelated,
+    newImages: [],
+  });
   const [sectionSelected, setSelectedSection] = useState(0);
 
   const handleClickStep = (newStep) => {
     setSelectedSection(newStep);
+  };
+
+  const handleChange = (section, value) => {
+    setDataState({
+      ...data,
+      [section]: value,
+    });
   };
 
   return (
@@ -22,15 +35,22 @@ export default function EditArticle(props) {
         <DataStep
           key="1"
           selected={sectionSelected}
-          articleData={props.articleData}
+          articleData={data.articleData}
+          handleChange={(value) => handleChange("articleData", value)}
         ></DataStep>,
-        <ImagesStep key="2" images={props.images}></ImagesStep>,
+        <ImagesStep
+          key="2"
+          images={data.articleImages}
+          newImages={data.newImages}
+          handleChange={(value) => handleChange("newImages", value)}
+        ></ImagesStep>,
         <RelatedArticlesStep
           key="3"
-          articles={[]}
-          articlesSelected={[]}
-          articleName="Nombre"
-          unitMeasure="Pieza"
+          articles={props.articles}
+          articlesSelected={data.articlesRelated}
+          articleName={data.articleData.name}
+          unitMeasure={data.articleData.unitMeasure}
+          handleChange={(value) => handleChange("articlesRelated", value)}
         ></RelatedArticlesStep>,
       ]}
       selected={sectionSelected}
@@ -40,10 +60,8 @@ export default function EditArticle(props) {
 }
 
 EditArticle.propTypes = {
-  images: PropTypes.array,
   articleData: ArticleData.propTypes.articleData,
-};
-
-EditArticle.defaultProps = {
-  images: [],
+  articleImages: PropTypes.array,
+  articles: RelatedArticlesStep.propTypes.articles,
+  articlesRelated: RelatedArticlesStep.propTypes.articlesSelected,
 };
