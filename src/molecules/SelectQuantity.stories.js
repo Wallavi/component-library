@@ -13,5 +13,5 @@ Default.args = {
   label: "Nombre del artículo",
   unitMeasure: "Kilogramos",
   qty: "1",
-  onChange: () => {},
+  handleChange: () => {},
 };

@@ -46,7 +46,7 @@ export default function SelectQuantity(props) {
         label={`Cantidad en ${props.unitMeasure}`}
         value={props.qty}
         required={true}
-        onChange={props.onChange}
+        handleChange={props.handleChange}
       ></Input>
       <TrashContainer onClick={() => props.onClick(props)}>
         <TrashIcon icon={faTrash} />
@@ -60,5 +60,5 @@ SelectQuantity.propTypes = {
   unitMeasure: PropTypes.string.isRequired,
   qty: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };

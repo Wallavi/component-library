@@ -84,7 +84,7 @@ export default function RelatedArticles(props) {
               onClick={(articleToBeRemoved) =>
                 removeArticle(articleToBeRemoved)
               }
-              onChange={() => {}}
+              handleChange={() => {}}
             />
           ))}
         </RelatedArticlesSelected>

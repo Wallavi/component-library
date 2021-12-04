@@ -118,8 +118,8 @@ export default function Dropdown(props) {
             setFocusedState(false);
           }, 0);
         }}
-        onKeyUp={handleOnKeyUp}
-        onChange={handleOnChange}
+        handleKeyUp={handleOnKeyUp}
+        handleChange={handleOnChange}
         onClick={handleInputOnClick}
       ></Input>
       {focused && (

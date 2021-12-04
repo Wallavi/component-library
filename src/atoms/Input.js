@@ -32,7 +32,10 @@ export default function Input(props) {
 
   return (
     <CustomInput
-      {...props}
+      name={props.name}
+      label={props.label}
+      onKeyUp={props.handleKeyUp}
+      onChange={props.handleChange}
       focused={isFocused}
       onFocus={(e) => {
         if (props.onFocus) {
@@ -52,6 +55,7 @@ export default function Input(props) {
 }
 
 Input.propTypes = {
+  name: PropTypes.string,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   required: PropTypes.bool,
@@ -59,5 +63,6 @@ Input.propTypes = {
   helperText: PropTypes.string,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  onChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleKeyUp: PropTypes.func,
 };

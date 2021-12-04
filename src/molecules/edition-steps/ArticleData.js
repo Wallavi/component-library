@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -14,41 +14,93 @@ const MainContainer = styled.div`
 `;
 
 export default function ArticleData(props) {
+  const [articleData, setArticleDataState] = useState(props.articleData);
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    setArticleDataState({
+      ...articleData,
+      [name]: e.target.value,
+    });
+  };
+
   return (
     <MainContainer {...props}>
-      <Input label="Nombre del artículo" value={""} onChange={() => {}}></Input>
+      <Input
+        label="Nombre del artículo"
+        value={articleData.name}
+        handleChange={handleChange}
+        name="name"
+      ></Input>
       <SpaceBetween>
-        <Input key="random" label="SKU" value={""} onChange={() => {}}></Input>
-        <Input key="key" label="Alarma" value={""} onChange={() => {}}></Input>
+        <Input
+          key="1"
+          label="SKU"
+          value={articleData.sku}
+          handleChange={handleChange}
+          name="sku"
+        ></Input>
+        <Input
+          key="2"
+          label="Alarma"
+          value={articleData.alarm}
+          handleChange={handleChange}
+          name="alarm"
+        ></Input>
       </SpaceBetween>
       <SpaceBetween>
         <Input
-          key="for"
+          key="1"
           label="Unidad de medida"
-          value={""}
-          onChange={() => {}}
+          value={articleData.unitMeasure}
+          handleChange={handleChange}
+          name="unitMeasure"
         ></Input>
-        <Input key="thje" label="Divisa" value={""} onChange={() => {}}></Input>
+        <Input
+          key="2"
+          label="Divisa"
+          value={articleData.currency}
+          handleChange={handleChange}
+          name="currency"
+        ></Input>
       </SpaceBetween>
       <SpaceBetween>
         <Input
           key="1"
           label="Precio de compra"
-          value={""}
-          onChange={() => {}}
+          value={articleData.price}
+          handleChange={handleChange}
+          name="price"
         ></Input>
         <Input
           key="2"
           label="Precio de venta"
-          value={""}
-          onChange={() => {}}
+          value={articleData.priceToSell}
+          handleChange={handleChange}
+          name="priceToSell"
         ></Input>
       </SpaceBetween>
-      <Input label="Notas" value={""} onChange={() => {}}></Input>
+      <Input
+        label="Notas"
+        value={articleData.notes}
+        handleChange={handleChange}
+        name="notes"
+      ></Input>
     </MainContainer>
   );
 }
 
-ArticleData.propTypes = {};
+ArticleData.propTypes = {
+  articleData: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    unitMeasure: PropTypes.string.isRequired,
+    alarm: PropTypes.string.isRequired,
+    sku: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    priceToSell: PropTypes.string.isRequired,
+    notes: PropTypes.string.isRequired,
+    currency: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 ArticleData.defaultProps = {};
