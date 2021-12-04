@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
+import { colors } from "../colorPalette";
 
 import MUIStepper from "@mui/material/Stepper";
 import MUIStep from "@mui/material/Step";
@@ -11,19 +12,19 @@ const Stepper = styled(MUIStepper)`
   width: 100%;
 
   .MuiStepLabel-alternativeLabel {
-    color: #99a7bf;
+    color: ${(props) => props.colors.secondaryMiddleBlue};
 
     .Mui-completed {
-      color: #5590ff;
+      color: ${(props) => props.colors.primaryBlue};
     }
 
     .Mui-active {
-      color: #5590ff;
+      color: ${(props) => props.colors.primaryBlue};
     }
   }
 
   .MuiStepIcon-root {
-    color: #99a7bf;
+    color: ${(props) => props.colors.secondaryMiddleBlue};
   }
 `;
 
@@ -33,7 +34,7 @@ const Step = styled(MUIStep)`
 
 export default function Main(props) {
   return (
-    <Stepper activeStep={props.selected} alternativeLabel>
+    <Stepper activeStep={props.selected} alternativeLabel colors={colors}>
       {props.steps.map((label, index) => (
         <Step key={label}>
           <StepLabel onClick={() => props.handleClick(index)}>

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { colors } from "../colorPalette";
 
 import { useDropzone } from "react-dropzone";
 import resizeFile from "../_helpers/resizeImage";
@@ -24,10 +25,10 @@ const dropzoneStyle = {
   padding: "20px",
   borderWidth: 2,
   borderRadius: 2,
-  borderColor: "#eeeeee",
+  borderColor: colors.neutral_3,
   borderStyle: "dashed",
-  backgroundColor: "#fafafa",
-  color: "#bdbdbd",
+  backgroundColor: colors.neutral_1,
+  color: colors.neutral_6,
   outline: "none",
   cursor: "pointer",
 };

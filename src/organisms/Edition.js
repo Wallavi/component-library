@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { colors } from "../colorPalette";
 
 import Step from "../atoms/Step";
 import Button from "../atoms/Button";
@@ -25,6 +26,7 @@ const Title = styled.p`
   text-align: center;
   margin-bottom: 20px 0px;
   width: 100%;
+  color: ${(props) => props.colors.primaryDarkBlue};
 `;
 
 export default function Edition(props) {
@@ -38,7 +40,7 @@ export default function Edition(props) {
 
   return (
     <MainContainer {...props} id="mainContainer">
-      <Title>{props.title}</Title>
+      <Title colors={colors}>{props.title}</Title>
       {props.steps.length !== 0 ? (
         <Step
           selected={props.selected}

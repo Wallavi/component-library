@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { colors } from "../colorPalette";
 
 const MainContainer = styled.button`
   background: ${(props) => props.bgColor};
@@ -32,7 +33,7 @@ Button.propTypes = {
 Button.defaultProps = {
   label: "Continuar",
   color: "white",
-  bgColor: "#323946",
+  bgColor: colors.primaryDarkBlue,
   size: "SMALL",
   margin: "0px",
 };
