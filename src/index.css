@@ -15,3 +15,8 @@ button {
 input {
   display: block;
 }
+
+p {
+  /* This is the same color as primaryDarkBlue from colorpalette */
+  color: #323946;
+}

@@ -9,15 +9,12 @@ import Row from "../SelectQuantity";
 const MainContainer = styled.div``;
 
 const RelatedArticlesSelected = styled.div`
-  max-height: 300px;
+  max-height: 250px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   margin-top: 30px;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px 1px;
 `;
 
 export default function RelatedArticles(props) {

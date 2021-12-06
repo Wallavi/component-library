@@ -12,6 +12,7 @@ const MainContainer = styled.figure`
     height: 100%;
   }
   object-fit: cover;
+  flex-shrink: 0;
 `;
 
 export default function Avatar(props) {

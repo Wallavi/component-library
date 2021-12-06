@@ -14,6 +14,7 @@ const MainContainer = styled.section`
 
 const Description = styled.p`
   text-align: center;
+  color: ${(props) => colors.neutral_6};
 `;
 
 const dropzoneStyle = {
@@ -28,7 +29,6 @@ const dropzoneStyle = {
   borderColor: colors.neutral_3,
   borderStyle: "dashed",
   backgroundColor: colors.neutral_1,
-  color: colors.neutral_6,
   outline: "none",
   cursor: "pointer",
 };
@@ -61,7 +61,7 @@ export default function DropImage(props) {
     <MainContainer>
       <div {...getRootProps({ className: "dropzone", style: dropzoneStyle })}>
         <input {...getInputProps()} />
-        <Description>
+        <Description colors={colors}>
           Arrastra las imágenes o da click aquí para seleccionarlas.
         </Description>
       </div>

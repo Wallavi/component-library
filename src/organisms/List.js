@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { colors } from "../colorPalette";
 
 import ListItem from "../molecules/ListItem";
 import EmptyList from "../atoms/labels/UpperImage";
@@ -11,7 +12,7 @@ const MainContainer = styled.div`
   max-height: 200px;
   overflow-y: scroll;
   border-radius: 10px;
-  background: #323946;
+  background: ${(props) => props.colors.primaryDarkBlue};
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.4);
   padding: 8px 10px;
 `;
@@ -30,7 +31,7 @@ export default function List(props) {
   ));
 
   return (
-    <MainContainer width={props.width}>
+    <MainContainer width={props.width} colors={colors}>
       {props.listItems.length >= 1 ? items : <EmptyList />}
     </MainContainer>
   );

@@ -16,7 +16,6 @@ const ArticleName = styled.p`
   width: 45%;
   overflow-x: scroll;
   flex-shrink: 0;
-  color: ${(props) => props.colors.primaryDarkBlue};
 `;
 
 const TrashContainer = styled.div`
@@ -43,7 +42,7 @@ const TrashIcon = styled(FontAwesomeIcon)`
 export default function SelectQuantity(props) {
   return (
     <MainContainer>
-      <ArticleName colors={colors}>{props.label}</ArticleName>
+      <ArticleName>{props.label}</ArticleName>
       <Input
         label={`Cantidad en ${props.unitMeasure}`}
         value={props.qty}

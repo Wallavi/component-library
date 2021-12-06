@@ -10,7 +10,6 @@ const MainContainer = styled.div`
     color: ${(props) => props.colors.primaryBlue};
     font-weight: 500;
   }
-  color: ${(props) => props.colors.primaryDarkBlue};
 `;
 
 export default function CompoundArticleLabel(props) {

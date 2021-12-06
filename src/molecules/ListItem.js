@@ -18,7 +18,9 @@ const MainContainer = styled.div`
 
 const Data = styled.div`
   margin-left: 10px;
-  color: white;
+  p {
+    color: white;
+  }
   p:nth-child(1) {
     font-weight: 500;
     white-space: nowrap;
