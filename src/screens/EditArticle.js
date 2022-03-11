@@ -14,7 +14,9 @@ export default function EditArticle(props) {
     articleImages: props.articleImages,
     articlesRelated: props.articlesRelated,
     newImages: [],
+    locations: props.locations,
   });
+
   const [sectionSelected, setSelectedSection] = useState(0);
 
   const handleClickStep = (newStep) => {
@@ -30,7 +32,7 @@ export default function EditArticle(props) {
 
   return (
     <Edition
-      title="Editar artículo"
+      title={props.newArticle ? "Nuevo artículo" : "Editar artículo"}
       steps={["Información", "Imágenes", "Artículos relacionados", "Almacenes"]}
       children={[
         <DataStep
@@ -53,7 +55,13 @@ export default function EditArticle(props) {
           unitMeasure={data.articleData.unitMeasure}
           handleChange={(value) => handleChange("articlesRelated", value)}
         ></RelatedArticlesStep>,
-        <LocationsStep key="4" locations={props.locations}></LocationsStep>,
+        <LocationsStep
+          key="4"
+          locations={data.locations}
+          handleChange={(value) => {
+            handleChange("locations", value);
+          }}
+        ></LocationsStep>,
       ]}
       selected={sectionSelected}
       handleClick={handleClickStep}
@@ -62,9 +70,14 @@ export default function EditArticle(props) {
 }
 
 EditArticle.propTypes = {
+  newArticle: PropTypes.bool.isRequired,
   articleData: ArticleData.propTypes.articleData,
   articleImages: PropTypes.array,
   articles: RelatedArticlesStep.propTypes.articles,
   articlesRelated: RelatedArticlesStep.propTypes.articlesSelected,
   locations: LocationsStep.propTypes.locations,
+};
+
+EditArticle.defaultProps = {
+  newArticle: true,
 };

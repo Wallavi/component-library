@@ -12,7 +12,7 @@ const Template = (args) => <Locations {...args} />;
 
 const multipleLocation = [];
 for (let i = 0; i < 5; i++) {
-  multipleLocation.push(SelectLocationStories.Default.args);
+  multipleLocation.push({ ...SelectLocationStories.Default.args, id: i });
 }
 
 export const Default = Template.bind({});
