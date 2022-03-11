@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Input from "../../atoms/Input";
+import Dropdown from "../../atoms/Dropdown";
 import SpaceBetween from "../../organizers/SpaceBetween";
 
 const MainContainer = styled.div`
@@ -14,7 +15,9 @@ const MainContainer = styled.div`
 `;
 
 export default function ArticleData(props) {
-  const [articleData, setArticleDataState] = useState(props.articleData);
+  const [articleData, setArticleDataState] = useState(() => {
+    return { ...props.articleData, unitMeasure: "PIECE", currency: "MXN" };
+  });
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -57,20 +60,34 @@ export default function ArticleData(props) {
         ></Input>
       </SpaceBetween>
       <SpaceBetween>
-        <Input
+        <Dropdown
           key="1"
           label="Unidad de medida"
-          value={articleData.unitMeasure}
-          handleChange={handleChange}
           name="unitMeasure"
-        ></Input>
-        <Input
+          value={articleData.unitMeasure}
+          options={[
+            { value: "PIECE", name: "Pieza" },
+            { value: "KILOGRAM", name: "Kilo" },
+            { value: "LITER", name: "Litro" },
+            { value: "METER", name: "Metro" },
+          ]}
+          handleChange={handleChange}
+        ></Dropdown>
+        <Dropdown
           key="2"
           label="Divisa"
-          value={articleData.currency}
-          handleChange={handleChange}
           name="currency"
-        ></Input>
+          value={articleData.currency}
+          options={[
+            { value: "MXN", name: "Peso Mexicano" },
+            { value: "USD", name: "Dólar Americano" },
+            { value: "EUR", name: "Euro" },
+            { value: "GBP", name: "Libra Esterlina" },
+            { value: "JPY", name: "Yen Japonés" },
+            { value: "CNY", name: "Yuan Chino" },
+          ]}
+          handleChange={handleChange}
+        ></Dropdown>
       </SpaceBetween>
       <SpaceBetween>
         <Input
@@ -111,5 +128,3 @@ ArticleData.propTypes = {
   }).isRequired,
   handleChange: PropTypes.func,
 };
-
-ArticleData.defaultProps = {};

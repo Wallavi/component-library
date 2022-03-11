@@ -44,7 +44,7 @@ const Pin = styled(FontAwesomeIcon)`
 
 export default function SelectLocation(props) {
   return (
-    <MainContainer colors={colors}>
+    <MainContainer colors={colors} onClick={props.handleChange}>
       <Avatar source={props.source} width="90px" height="90px"></Avatar>
       <LocationContainer>
         <MainData>{props.name}</MainData>
@@ -60,6 +60,8 @@ SelectLocation.propTypes = {
   name: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
   selected: PropTypes.bool,
+  id: PropTypes.number.isRequired,
+  handleChange: PropTypes.func,
 };
 
 SelectLocation.defaultProps = {

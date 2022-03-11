@@ -16,4 +16,5 @@ Default.args = {
   name: "Ubicación mencionada",
   address: "Calle Margarita Viuda de Alvarado #152 col. Caminera Tepic Nayarit",
   selected: true,
+  id: 1,
 };

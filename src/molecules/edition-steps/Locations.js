@@ -11,8 +11,6 @@ const MainContainer = styled.div`
 `;
 
 export default function Locations(props) {
-  // TODO: Be able to select and unselect every location
-
   return (
     <MainContainer>
       {props.locations.map((e, index) => (
@@ -22,6 +20,8 @@ export default function Locations(props) {
           name={e.name}
           address={e.address}
           selected={e.selected}
+          id={e.id}
+          handleChange={() => props.handleChange(index)}
         ></SelectLocation>
       ))}
     </MainContainer>
@@ -34,4 +34,5 @@ Locations.propTypes = {
     PropTypes.shape(SelectLocation.propTypes)
   ),
   newLocations: PropTypes.arrayOf(PropTypes.shape(SelectLocation.propTypes)),
+  handleChange: PropTypes.func.isRequired,
 };
