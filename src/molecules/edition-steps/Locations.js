@@ -11,6 +11,22 @@ const MainContainer = styled.div`
 `;
 
 export default function Locations(props) {
+  const handleChange = (index) => {
+    const temp = [
+      ...props.locations.slice(0, index),
+      {
+        ...props.locations[index],
+        selected: !props.locations[index].selected,
+      },
+      ...props.locations.slice(index + 1, props.locations.length + 1),
+    ];
+
+    //Save on parent component
+    if (props.handleChange) {
+      props.handleChange(temp);
+    }
+  };
+
   return (
     <MainContainer>
       {props.locations.map((e, index) => (
@@ -21,7 +37,7 @@ export default function Locations(props) {
           address={e.address}
           selected={e.selected}
           id={e.id}
-          handleChange={() => props.handleChange(index)}
+          handleChange={() => handleChange(index)}
         ></SelectLocation>
       ))}
     </MainContainer>

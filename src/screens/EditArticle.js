@@ -58,15 +58,8 @@ export default function EditArticle(props) {
         <LocationsStep
           key="4"
           locations={data.locations}
-          handleChange={(index) => {
-            handleChange("locations", [
-              ...data.locations.slice(0, index),
-              {
-                ...data.locations[index],
-                selected: !data.locations[index].selected,
-              },
-              ...data.locations.slice(index + 1, data.locations.length + 1),
-            ]);
+          handleChange={(value) => {
+            handleChange("locations", value);
           }}
         ></LocationsStep>,
       ]}
