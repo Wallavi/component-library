@@ -13,13 +13,30 @@ const Space = styled.div`
   margin: ${(props) => props.spaceSize};
 `;
 
-export default function SpaceBetween(props) {
-  let children = [];
-  children.push(props.children[0]);
-  children.push(<Space key="space" spaceSize={props.spaceSize} />);
-  children.push(props.children[1]);
+const Container = styled.div`
+  width: 50%;
+  display: flex;
+  align-items: center;
+`;
 
-  return <MainContainer>{children}</MainContainer>;
+export default function SpaceBetween(props) {
+  let leftChild = props.children[0];
+  let rightChild = [];
+
+  if (props.children[2]) {
+    rightChild.push(props.children[1]);
+    rightChild.push(props.children[2]);
+  } else {
+    rightChild.push(props.children[1]);
+  }
+
+  return (
+    <MainContainer>
+      <Container>{leftChild}</Container>
+      <Space key="space" spaceSize={props.spaceSize} />
+      <Container>{rightChild}</Container>
+    </MainContainer>
+  );
 }
 
 SpaceBetween.propTypes = {
