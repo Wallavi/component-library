@@ -32,9 +32,6 @@ const HelperContainer = styled.p`
   border-radius: 6px;
   transform: translate(-90%, 0);
   top: 50px;
-  font-size: 14px;
-  font-weight: 500;
-  display: block;
   z-index: 1000000000;
 `;
 
