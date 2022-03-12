@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Input from "../../atoms/Input";
 import Dropdown from "../../atoms/Dropdown";
 import SpaceBetween from "../../organizers/SpaceBetween";
+import Helper from "../../atoms/Helper";
 
 const MainContainer = styled.div`
   width: 100%;
@@ -53,11 +54,12 @@ export default function ArticleData(props) {
         ></Input>
         <Input
           key="2"
-          label="Alarma"
+          label="Alerta"
           value={articleData.alarm}
           handleChange={handleChange}
           name="alarm"
         ></Input>
+        <Helper label="Se emite una alerta cuando el stock en inventario es igual o menor a la cantidad especificada"></Helper>
       </SpaceBetween>
       <SpaceBetween>
         <Dropdown
