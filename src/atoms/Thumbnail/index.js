@@ -70,7 +70,7 @@ export default function Thumbnail(props) {
           colors={colors}
           isRemoved={props.isRemoved}
         >
-          {props.isRemoved ? "+" : "X"}
+          {props.isRemoved ? <span>&#43;</span> : <span>&#9747;</span>}
         </DeleteBtn>
       )}
     </MainContainer>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Label from "../../../atoms/labels/CompoundArticle";
-import SearchArticle from "../../../organisms/Dropdown";
+import SearchArticle from "../../../organisms/SearchArticle";
 import Row from "../../SelectQuantity";
 
 const MainContainer = styled.div``;

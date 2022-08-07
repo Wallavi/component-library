@@ -1,14 +1,14 @@
 import React from "react";
-import Dropdown from "./index";
+import SearchArticle from "./index";
 
 import * as ListStories from "../List/List.stories";
 
 export default {
-  component: Dropdown,
-  title: "Organisms/Dropdown",
+  component: SearchArticle,
+  title: "Organisms/SearchArticle",
 };
 
-const Template = (args) => <Dropdown {...args} />;
+const Template = (args) => <SearchArticle {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

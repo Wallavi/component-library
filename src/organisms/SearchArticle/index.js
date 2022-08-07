@@ -9,6 +9,7 @@ import ListItem from "../../molecules/ListItem";
 
 const MainContainer = styled.div`
   position: relative;
+  width: ${({ width }) => width};
 `;
 
 const AbsoluteContainer = styled.div`
@@ -19,7 +20,7 @@ const AbsoluteContainer = styled.div`
   z-index: 2;
 `;
 
-export default function Dropdown(props) {
+export default function SearchArticle(props) {
   const [focused, setFocusedState] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
@@ -81,7 +82,8 @@ export default function Dropdown(props) {
     };
 
     setFuseState(configureMatching(items));
-  }, [props.listItems]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (inputValue) {
@@ -104,7 +106,7 @@ export default function Dropdown(props) {
   }, [fuse, inputValue, props.listItems]);
 
   return (
-    <MainContainer>
+    <MainContainer width={props.width}>
       <Input
         label={props.label}
         value={inputValue}
@@ -117,7 +119,7 @@ export default function Dropdown(props) {
         handleKeyUp={handleOnKeyUp}
         handleChange={handleOnChange}
         onClick={handleInputOnClick}
-      ></Input>
+      />
       {focused && (
         <AbsoluteContainer>
           <List
@@ -125,14 +127,14 @@ export default function Dropdown(props) {
             handleClick={handleDropdownOnClick}
             highlight={possiblySelectedItem}
             handleMouseOver={(index) => setPossiblySelectedItemState(index)}
-          ></List>
+          />
         </AbsoluteContainer>
       )}
     </MainContainer>
   );
 }
 
-Dropdown.propTypes = {
+SearchArticle.propTypes = {
   label: PropTypes.string,
   listItems: PropTypes.arrayOf(PropTypes.shape(ListItem.propTypes)).isRequired,
   onSelect: PropTypes.func.isRequired,

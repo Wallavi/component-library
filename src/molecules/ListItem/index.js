@@ -48,4 +48,5 @@ ListItem.propTypes = {
   mainData: PropTypes.string.isRequired,
   secondaryData: PropTypes.string.isRequired,
   highlight: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
 };

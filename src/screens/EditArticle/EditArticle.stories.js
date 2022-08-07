@@ -5,6 +5,7 @@ import * as ArticleDataStories from "../../molecules/edition-steps/ArticleData/A
 import * as ImagesStories from "../../molecules/edition-steps/Images/Images.stories";
 import * as RelatedArticlesStories from "../../molecules/edition-steps/RelatedArticles/RelatedArticles.stories";
 import * as LocationsStories from "../../molecules/edition-steps/Locations/Locations.stories";
+import * as ComboStories from "../../molecules/edition-steps/Combo/Combo.stories";
 
 export default {
   component: EditArticle,
@@ -33,5 +34,15 @@ NewArticle.storyName = "New Article";
 NewArticle.args = {
   articles: RelatedArticlesStories.Default.args.articles,
   locations: LocationsStories.Default.args.locations,
+  saveCallback: (evt) => console.log(evt),
+};
+
+export const Combo = Template.bind({});
+Combo.storyName = "Combo";
+Combo.args = {
+  articleType: "combo",
+  articles: RelatedArticlesStories.Default.args.articles,
+  locations: LocationsStories.Default.args.locations,
+  articlesRelated: ComboStories.Edit.args.articlesRelated,
   saveCallback: (evt) => console.log(evt),
 };

@@ -58,7 +58,7 @@ export default function Edition(props) {
         }
         size="BIG"
         onClick={handleClick}
-      ></Button>
+      />
     </MainContainer>
   );
 }

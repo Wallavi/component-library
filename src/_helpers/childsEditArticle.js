@@ -2,6 +2,7 @@ import DataStep from "../molecules/edition-steps/ArticleData";
 import ImagesStep from "../molecules/edition-steps/Images";
 import RelatedArticlesStep from "../molecules/edition-steps/RelatedArticles";
 import LocationsStep from "../molecules/edition-steps/Locations";
+import ComboStep from "../molecules/edition-steps/Combo";
 
 export const childsEditArticle = (params) => {
   const {
@@ -13,6 +14,7 @@ export const childsEditArticle = (params) => {
     setDataState,
     articles,
     locations,
+    articlesRelated,
   } = params;
   return {
     Información: (
@@ -44,6 +46,14 @@ export const childsEditArticle = (params) => {
         key="4"
         locations={locations}
         articleLocations={data.locations}
+        handleChange={setDataState}
+      />
+    ),
+    Combo: (
+      <ComboStep
+        key="5"
+        articles={articles}
+        articlesRelated={articlesRelated}
         handleChange={setDataState}
       />
     ),

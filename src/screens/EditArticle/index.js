@@ -78,7 +78,10 @@ export default function EditArticle(props) {
         // setChildren(children)
         break;
       case "combo":
-        setSteps([]);
+        stepsNames = ["Información", "Imágenes", "Combo"];
+        childrenComponents = stepsNames.map((s) => childs[s]);
+        setChildren(childrenComponents);
+        setSteps(stepsNames);
         break;
       default:
         stepsNames = ["Información", "Imágenes"];

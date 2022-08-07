@@ -26,8 +26,8 @@ export default function List(props) {
       key={item.id}
       onClick={() => props.handleClick(item)}
       onMouseOver={() => props.handleMouseOver(index)}
-      highlight={index === props.highlight ? true : false}
-    ></ListItem>
+      highlight={index === props.highlight}
+    />
   ));
 
   return (
