@@ -70,6 +70,7 @@ Temporary Items
 logs
 **/*.backup.*
 **/*.back.*
+build
 
 node_modules
 bower_components
