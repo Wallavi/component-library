@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "npm run storybook",
-    "build": "react-scripts build",
+    "build": "cross-env BABEL_ENV=production babel src -d dist",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
@@ -56,6 +56,16 @@
       }
     ]
   },
+  "babel": {
+    "presets": [
+      [
+        "react-app",
+        {
+          "absoluteRuntime:false": false
+        }
+      ]
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -69,6 +79,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
     "@mdx-js/loader": "^2.0.0-rc.2",
     "@storybook/addon-actions": "^6.4.9",
     "@storybook/addon-docs": "^6.4.9",
@@ -80,6 +91,7 @@
     "@storybook/react": "^6.4.9",
     "@storybook/testing-library": "0.0.7",
     "chromatic": "^6.7.4",
+    "cross-env": "^7.0.3",
     "semantic-release": "^20.1.0"
   }
 }
