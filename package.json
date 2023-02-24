@@ -1,7 +1,6 @@
 {
-  "name": "depot-component-library",
+  "name": "@wallavi-rockstars/depot-center-component-library",
   "version": "0.1.0",
-  "private": false,
   "dependencies": {
     "@emotion/css": "^11.5.0",
     "@emotion/react": "^11.6.0",
@@ -93,5 +92,17 @@
     "chromatic": "^6.7.4",
     "cross-env": "^7.0.3",
     "semantic-release": "^20.1.0"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wallavi/component-library.git"
+  },
+  "author": "Ulises Salmeron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wallavi/component-library/issues"
+  },
+  "homepage": "https://github.com/Wallavi/component-library#readme"
 }
