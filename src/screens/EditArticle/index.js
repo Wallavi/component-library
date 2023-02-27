@@ -8,7 +8,8 @@ import Images from "../../molecules/edition-steps/Images";
 import { childsEditArticle } from "../../_helpers/childsEditArticle";
 import EditArticleReducer from "./EditArticleReducer";
 import { useActive } from "../../hooks/useActive";
-export default function EditArticle(props) {
+
+export const EditArticle = (props) => {
   const loading = useActive();
   const [steps, setSteps] = useState([]);
   const [children, setChildren] = useState([]);
@@ -131,7 +132,7 @@ export default function EditArticle(props) {
       handleClick={handleClickStep}
     />
   );
-}
+};
 
 EditArticle.propTypes = {
   newArticle: PropTypes.bool.isRequired,
