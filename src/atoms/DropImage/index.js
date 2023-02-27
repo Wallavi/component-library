@@ -31,6 +31,7 @@ const dropzoneStyle = {
   backgroundColor: colors.neutral_1,
   outline: "none",
   cursor: "pointer",
+  boxSizing: "border-box",
 };
 
 export default function DropImage(props) {
