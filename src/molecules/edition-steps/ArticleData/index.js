@@ -116,16 +116,16 @@ export default function ArticleData(props) {
         <Input
           key="1"
           label="Precio de compra"
-          value={articleData.price}
+          value={articleData.cost}
           handleChange={handleChange}
           name="price"
         />
         <Input
           key="2"
           label="Precio de venta"
-          value={articleData.priceToSell}
+          value={articleData.price}
           handleChange={handleChange}
-          name="priceToSell"
+          name="cost"
         />
       </SpaceBetween>
       <Input
@@ -144,8 +144,8 @@ ArticleData.propTypes = {
     unitMeasure: PropTypes.string.isRequired,
     alarm: PropTypes.string.isRequired,
     sku: PropTypes.string.isRequired,
+    cost: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    priceToSell: PropTypes.string.isRequired,
     notes: PropTypes.string.isRequired,
     currency: PropTypes.string.isRequired,
   }).isRequired,

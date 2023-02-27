@@ -18,8 +18,8 @@ export const EditArticle = (props) => {
       unitMeasure: "",
       alarm: "",
       sku: "",
+      cost: "",
       price: "",
-      priceToSell: "",
       notes: "",
       currency: "",
       ...props.articleData,
@@ -65,7 +65,7 @@ export const EditArticle = (props) => {
     let stepsNames;
     let childrenComponents;
     switch (props.articleType) {
-      case "composite":
+      case "COMPOUND":
         stepsNames = [
           "Información",
           "Imágenes",
@@ -77,7 +77,7 @@ export const EditArticle = (props) => {
         setSteps(stepsNames);
         // setChildren(children)
         break;
-      case "combo":
+      case "COMBO":
         stepsNames = ["Información", "Imágenes", "Combo"];
         childrenComponents = stepsNames.map((s) => childs[s]);
         setChildren(childrenComponents);
@@ -110,7 +110,12 @@ export const EditArticle = (props) => {
       if (Object.keys(errors).length) return;
     }
     if (newStep < steps.length) setSelectedSection(newStep);
-    else props.saveCallback && props.saveCallback(data);
+    else
+      props.saveCallback &&
+        props.saveCallback({
+          ...data,
+          articleType: props.articleType ?? "BASIC",
+        });
   };
 
   return (
@@ -131,7 +136,7 @@ EditArticle.propTypes = {
   articles: RelatedArticlesStep.propTypes.articles,
   articlesRelated: RelatedArticlesStep.propTypes.articlesSelected,
   locations: LocationsStep.propTypes.locations,
-  articleType: PropTypes.oneOf(["normal", "composite", "combo"]),
+  articleType: PropTypes.oneOf(["BASIC", "COMPOUND", "COMBO"]),
   saveCallback: PropTypes.func.isRequired,
 };
 
