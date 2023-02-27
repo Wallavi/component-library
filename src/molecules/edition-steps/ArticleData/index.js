@@ -53,7 +53,7 @@ export default function ArticleData(props) {
         name="sku"
       />
     );
-    if (props.articleType === "normal") {
+    if (props.articleType === "BASIC") {
       return (
         <SpaceBetween>
           {input}
@@ -118,14 +118,14 @@ export default function ArticleData(props) {
           label="Precio de compra"
           value={articleData.cost}
           handleChange={handleChange}
-          name="price"
+          name="cost"
         />
         <Input
           key="2"
           label="Precio de venta"
           value={articleData.price}
           handleChange={handleChange}
-          name="cost"
+          name="price"
         />
       </SpaceBetween>
       <Input

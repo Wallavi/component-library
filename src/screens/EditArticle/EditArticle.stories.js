@@ -40,7 +40,7 @@ NewArticle.args = {
 export const Combo = Template.bind({});
 Combo.storyName = "Combo";
 Combo.args = {
-  articleType: "combo",
+  articleType: "COMBO",
   articles: RelatedArticlesStories.Default.args.articles,
   locations: LocationsStories.Default.args.locations,
   articlesRelated: ComboStories.Edit.args.articlesRelated,

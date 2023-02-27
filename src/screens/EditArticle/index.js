@@ -142,5 +142,5 @@ EditArticle.propTypes = {
 
 EditArticle.defaultProps = {
   newArticle: true,
-  articleType: "normal",
+  articleType: "BASIC",
 };
