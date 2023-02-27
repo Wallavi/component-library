@@ -52,6 +52,7 @@ export default function Edition(props) {
       {props.children && props.children[props.selected]}
 
       <Button
+        loading={props.loading}
         margin="15px 0 0 0"
         label={
           props.selected < props.steps.length - 1 ? "Continuar" : "Guardar"

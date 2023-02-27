@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
 import PropTypes from "prop-types";
-
 import ArticleData from "../../molecules/edition-steps/ArticleData";
 import Edition from "../../organisms/Edition";
 import RelatedArticlesStep from "../../molecules/edition-steps/RelatedArticles";
@@ -8,8 +7,9 @@ import LocationsStep from "../../molecules/edition-steps/Locations";
 import Images from "../../molecules/edition-steps/Images";
 import { childsEditArticle } from "../../_helpers/childsEditArticle";
 import EditArticleReducer from "./EditArticleReducer";
-
-export const EditArticle = (props) => {
+import { useActive } from "../../hooks/useActive";
+export default function EditArticle(props) {
+  const loading = useActive();
   const [steps, setSteps] = useState([]);
   const [children, setChildren] = useState([]);
   const [data, setDataState] = useReducer(EditArticleReducer, {
@@ -110,16 +110,20 @@ export const EditArticle = (props) => {
       if (Object.keys(errors).length) return;
     }
     if (newStep < steps.length) setSelectedSection(newStep);
-    else
+    else {
+      loading.on();
       props.saveCallback &&
         props.saveCallback({
           ...data,
           articleType: props.articleType ?? "BASIC",
         });
+      loading.off();
+    }
   };
 
   return (
     <Edition
+      loading={loading.value}
       title={props.newArticle ? "Nuevo artículo" : "Editar artículo"}
       steps={steps}
       children={children}
@@ -127,7 +131,7 @@ export const EditArticle = (props) => {
       handleClick={handleClickStep}
     />
   );
-};
+}
 
 EditArticle.propTypes = {
   newArticle: PropTypes.bool.isRequired,
