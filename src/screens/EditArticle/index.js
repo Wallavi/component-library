@@ -100,7 +100,7 @@ export const EditArticle = (props) => {
     sectionSelected,
   ]);
 
-  const handleClickStep = (newStep) => {
+  const handleClickStep = async (newStep) => {
     if (sectionSelected === 0) {
       const errors = {};
       const { name, unitMeasure, currency } = data.articleData;
@@ -114,10 +114,10 @@ export const EditArticle = (props) => {
     else {
       loading.on();
       props.saveCallback &&
-        props.saveCallback({
+        (await props.saveCallback({
           ...data,
           articleType: props.articleType ?? "BASIC",
-        });
+        }));
       loading.off();
     }
   };
