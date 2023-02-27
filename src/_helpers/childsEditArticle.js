@@ -3,6 +3,7 @@ import ImagesStep from "../molecules/edition-steps/Images";
 import RelatedArticlesStep from "../molecules/edition-steps/RelatedArticles";
 import LocationsStep from "../molecules/edition-steps/Locations";
 import ComboStep from "../molecules/edition-steps/Combo";
+import React from "react";
 
 export const childsEditArticle = (params) => {
   const {
