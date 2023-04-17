@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Label from "../../../atoms/labels/CompoundArticle";
 import SearchArticle from "../../../organisms/SearchArticle";
 import Row from "../../SelectQuantity";
+import { getImage } from "../../../general-utils/get-image";
 
 const MainContainer = styled.div``;
 
@@ -30,7 +31,7 @@ export default function RelatedArticles(props) {
   const formatData = (article) =>
     article.map((e) => ({
       ...e,
-      source: e.images[0],
+      source: getImage(e.images[0], 100, 100),
       mainData: e.name,
       secondaryData: e.sku,
       qty: e.qty ? e.qty : "0",

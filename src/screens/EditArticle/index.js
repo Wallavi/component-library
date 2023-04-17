@@ -9,7 +9,7 @@ import { childsEditArticle } from "../../_helpers/childsEditArticle";
 import EditArticleReducer from "./EditArticleReducer";
 import { useActive } from "../../hooks/useActive";
 
-export const EditArticle = (props) => {
+const EditArticle = (props) => {
   const loading = useActive();
   const [steps, setSteps] = useState([]);
   const [children, setChildren] = useState([]);
@@ -149,3 +149,5 @@ EditArticle.defaultProps = {
   newArticle: true,
   articleType: "BASIC",
 };
+
+export default EditArticle;
