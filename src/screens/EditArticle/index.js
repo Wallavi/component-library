@@ -1,13 +1,14 @@
-import React, { useEffect, useReducer, useState } from "react";
+import Images from "../../molecules/edition-steps/Images";
+import Edition from "../../organisms/Edition";
 import PropTypes from "prop-types";
 import ArticleData from "../../molecules/edition-steps/ArticleData";
-import Edition from "../../organisms/Edition";
-import RelatedArticlesStep from "../../molecules/edition-steps/RelatedArticles";
 import LocationsStep from "../../molecules/edition-steps/Locations";
-import Images from "../../molecules/edition-steps/Images";
-import { childsEditArticle } from "../../_helpers/childsEditArticle";
 import EditArticleReducer from "./EditArticleReducer";
+import RelatedArticlesStep from "../../molecules/edition-steps/RelatedArticles";
+
 import { useActive } from "../../hooks/useActive";
+import { childsEditArticle } from "../../_helpers/childsEditArticle";
+import React, { useEffect, useReducer, useState } from "react";
 
 const EditArticle = (props) => {
   const loading = useActive();

@@ -25,7 +25,7 @@ Default.args = {
   ...ImagesStories.Default.args,
   locations: LocationsStories.Default.args.locations,
   articleLocations: LocationsStories.ArticleLocations.args.articleLocations,
-  saveCallback: (evt) => console.log(evt),
+  saveCallback: (evt) => {},
 };
 
 // 👇 Each story then reuses that template
@@ -34,7 +34,7 @@ NewArticle.storyName = "New Article";
 NewArticle.args = {
   articles: RelatedArticlesStories.Default.args.articles,
   locations: LocationsStories.Default.args.locations,
-  saveCallback: (evt) => console.log(evt),
+  saveCallback: (evt) => {},
 };
 
 export const Combo = Template.bind({});
@@ -44,5 +44,5 @@ Combo.args = {
   articles: RelatedArticlesStories.Default.args.articles,
   locations: LocationsStories.Default.args.locations,
   articlesRelated: ComboStories.Edit.args.articlesRelated,
-  saveCallback: (evt) => console.log(evt),
+  saveCallback: (evt) => {},
 };

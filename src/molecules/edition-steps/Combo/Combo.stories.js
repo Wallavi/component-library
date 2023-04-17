@@ -13,7 +13,7 @@ const Template = (args) => <ArticleData {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   articles: RelatedArticlesStories.Default.args.articles,
-  handleChange: (e) => console.log(e),
+  handleChange: (e) => {},
 };
 
 export const Edit = Template.bind({});
@@ -25,5 +25,5 @@ Edit.args = {
       { id: 2, qty: "24", name: "Segunda Sección", articles: [2, 4] },
     ],
   },
-  handleChange: (e) => console.log(e),
+  handleChange: (e) => {},
 };

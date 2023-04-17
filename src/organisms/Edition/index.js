@@ -1,15 +1,15 @@
+import Step from "../../atoms/Step";
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
+import Button from "../../atoms/Button";
+import PropTypes from "prop-types";
+
 import { colors } from "../../colorPalette";
 
-import Step from "../../atoms/Step";
-import Button from "../../atoms/Button";
-
 const MainContainer = styled.div`
+  border-radius: 10px;
   position: fixed;
   width: 450px;
-  border-radius: 10px;
   left: 50%;
   top: 50%;
   background: white;

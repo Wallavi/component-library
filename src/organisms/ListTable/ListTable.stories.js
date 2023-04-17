@@ -20,5 +20,5 @@ Default.args = {
     { name: "Producto 1", src: image },
     { name: "Producto 2", src: image },
   ],
-  handleClick: (evt) => console.log(evt),
+  handleClick: (evt) => {},
 };

@@ -10,8 +10,6 @@ const Template = (args) => <DropImage {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  handleDropImage: (files) => {
-    console.log(files);
-  },
+  handleDropImage: (files) => {},
   images: [],
 };

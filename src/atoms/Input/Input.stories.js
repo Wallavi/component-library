@@ -12,9 +12,7 @@ export const Default = Template.bind({});
 Default.args = {
   label: "Placeholder",
   value: "",
-  handleChange: () => {
-    console.log("onChange");
-  },
+  handleChange: () => {},
 };
 
 export const Required = Template.bind({});

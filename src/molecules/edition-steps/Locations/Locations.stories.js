@@ -25,7 +25,7 @@ for (let i = 0; i < 5; i++) {
 export const Default = Template.bind({});
 Default.args = {
   locations: multipleLocation,
-  handleChange: (evt) => console.log(evt),
+  handleChange: (evt) => {},
 };
 
 export const ArticleLocations = Template.bind({});
@@ -36,5 +36,5 @@ ArticleLocations.args = {
     oldLocations: articleLocation,
     removedLocations: [4],
   },
-  handleChange: (evt) => console.log(evt),
+  handleChange: (evt) => {},
 };

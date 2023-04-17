@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Label from "../../../atoms/labels/CompoundArticle";
 import SearchArticle from "../../../organisms/SearchArticle";
 import Row from "../../SelectQuantity";
-import { getImage } from "../../../general-utils/get-image";
 
 const MainContainer = styled.div``;
 
@@ -19,19 +18,20 @@ const RelatedArticlesSelected = styled.div`
 `;
 
 export default function RelatedArticles(props) {
-  const formatArticlesSel = (selected) =>
-    Object.keys(selected).reduce(
+  const formatArticlesSel = (selected) => {
+    return Object.keys(selected).reduce(
       (prev, key) => [
         ...prev,
         ...selected[key].map((e) => ({ ...e, origin: key })),
       ],
       []
     );
+  };
 
   const formatData = (article) =>
     article.map((e) => ({
       ...e,
-      source: getImage(e.images[0], 100, 100),
+      source: e.images[0],
       mainData: e.name,
       secondaryData: e.sku,
       qty: e.qty ? e.qty : "0",
@@ -51,13 +51,14 @@ export default function RelatedArticles(props) {
   const modifyRelatedArticles = (operation, article, index) => {
     if (operation === "ADD") {
       const ids = articlesSelected.map((e) => e.id);
-      if (!ids.includes(article.id))
+      if (!ids.includes(article.id)) {
         //Save on parent component
         props.handleChange &&
           props.handleChange({
             type: "addRelatedArticles",
             value: article,
           });
+      }
     } else {
       props.handleChange &&
         props.handleChange({

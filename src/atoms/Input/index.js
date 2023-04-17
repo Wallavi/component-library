@@ -65,7 +65,7 @@ export default function Input(props) {
         }
         handleFocus();
       }}
-      value={props.value}
+      defaultValue={props.value}
       required={props.required}
       error={props.error}
       helperText={props.helperText}
