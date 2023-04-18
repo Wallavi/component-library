@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Fuse from "fuse.js";
-
 import List from "../List";
 import Input from "../../atoms/Input";
 import ListItem from "../../molecules/ListItem";
+import ClickAwayListener from "@mui/base/ClickAwayListener";
 
 const MainContainer = styled.div`
   position: relative;
@@ -21,7 +21,7 @@ const AbsoluteContainer = styled.div`
 `;
 
 export default function SearchArticle(props) {
-  const [focused, setFocusedState] = useState(false);
+  const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
   const [fuse, setFuseState] = useState(null);
@@ -29,15 +29,13 @@ export default function SearchArticle(props) {
 
   const handleOnChange = (e) => {
     setInputValue(e.target.value);
-    setFocusedState(true);
   };
 
   const handleOnKeyUp = (e) => {
-    setFocusedState(true);
     if (e.key === "Enter" && filteredItems.length > 0) {
       props.onSelect(filteredItems[possiblySelectedItem]);
       setInputValue("");
-      setFocusedState(false);
+      setOpen(false);
     }
     if (e.key === "ArrowUp" && possiblySelectedItem >= 1) {
       setPossiblySelectedItemState(possiblySelectedItem - 1);
@@ -50,14 +48,10 @@ export default function SearchArticle(props) {
     }
   };
 
-  const handleInputOnClick = () => {
-    setFocusedState(true);
-  };
-
   const handleDropdownOnClick = (data) => {
     props.onSelect(filteredItems[possiblySelectedItem]);
     setInputValue("");
-    setFocusedState(false);
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -106,31 +100,27 @@ export default function SearchArticle(props) {
   }, [fuse, inputValue, props.listItems]);
 
   return (
-    <MainContainer width={props.width}>
-      <Input
-        label={props.label}
-        value={inputValue}
-        onFocus={() => setFocusedState(true)}
-        onBlur={(e) => {
-          setTimeout(() => {
-            setFocusedState(false);
-          }, 0);
-        }}
-        handleKeyUp={handleOnKeyUp}
-        handleChange={handleOnChange}
-        onClick={handleInputOnClick}
-      />
-      {focused && (
-        <AbsoluteContainer>
-          <List
-            listItems={filteredItems}
-            handleClick={handleDropdownOnClick}
-            highlight={possiblySelectedItem}
-            handleMouseOver={(index) => setPossiblySelectedItemState(index)}
-          />
-        </AbsoluteContainer>
-      )}
-    </MainContainer>
+    <ClickAwayListener onClickAway={() => setOpen(false)}>
+      <MainContainer width={props.width}>
+        <Input
+          label={props.label}
+          value={inputValue}
+          onFocus={() => setOpen(true)}
+          handleKeyUp={handleOnKeyUp}
+          handleChange={handleOnChange}
+        />
+        {open && (
+          <AbsoluteContainer>
+            <List
+              listItems={filteredItems}
+              handleClick={handleDropdownOnClick}
+              highlight={possiblySelectedItem}
+              handleMouseOver={(index) => setPossiblySelectedItemState(index)}
+            />
+          </AbsoluteContainer>
+        )}
+      </MainContainer>
+    </ClickAwayListener>
   );
 }
 
