@@ -34,3 +34,6 @@ jobs:
       - run: npm publish ./dist
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    env:
+      NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      PUBLISH_DIR: ./dist
