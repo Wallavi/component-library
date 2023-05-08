@@ -7,7 +7,7 @@ import MUIStepper from "@mui/material/Stepper";
 import MUIStep from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 
-export interface StepProps {
+interface StepProps {
   selected: number;
   steps?: string[];
   handleClick?: (number: number) => void;
@@ -58,6 +58,6 @@ Step.propTypes = {
   handleClick: PropTypes.func.isRequired,
 };
 
-Step.defaultProps = {
-  selected: 1,
-};
+// Step.defaultProps = {
+//   selected: 1,
+// };

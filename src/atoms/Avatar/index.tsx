@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
 interface MainContainerStylesProps {
-  width: string;
-  height: string;
-  radius: string;
+  width?: string;
+  height?: string;
+  radius?: string;
 }
 
 interface MainContainerProps extends MainContainerStylesProps {
@@ -25,23 +24,14 @@ const MainContainer = styled.figure<MainContainerStylesProps>`
   flex-shrink: 0;
 `;
 
-export default function Avatar({ source, ...props }: MainContainerProps) {
+export default function Avatar({ source, width="50px", height="50px", radius = "1000px" }: MainContainerProps) {
   return (
-    <MainContainer {...props}>
-      <img src={source} alt=""></img>
+    <MainContainer 
+      width={width} 
+      height={height} 
+      radius = {radius}
+    >
+      <img src={source} alt="" />
     </MainContainer>
   );
 }
-
-Avatar.propTypes = {
-  source: PropTypes.string.isRequired,
-  width: PropTypes.string,
-  height: PropTypes.string,
-  radius: PropTypes.string,
-};
-
-Avatar.defaultProps = {
-  width: "50px",
-  height: "50px",
-  radius: "1000px",
-};
