@@ -2,7 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const MainContainer = styled.figure`
+interface MainContainerStylesProps {
+  width: string;
+  height: string;
+  radius: string;
+}
+
+interface MainContainerProps extends MainContainerStylesProps {
+  source?: string;
+}
+
+const MainContainer = styled.figure<MainContainerStylesProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: ${(props) => props.radius};
@@ -15,10 +25,10 @@ const MainContainer = styled.figure`
   flex-shrink: 0;
 `;
 
-export default function Avatar(props) {
+export default function Avatar({ source, ...props }: MainContainerProps) {
   return (
     <MainContainer {...props}>
-      <img src={props.source} alt=""></img>
+      <img src={source} alt=""></img>
     </MainContainer>
   );
 }

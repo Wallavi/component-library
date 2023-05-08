@@ -10,6 +10,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.3",
+    "@rollup/plugin-typescript": "^11.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -28,11 +29,11 @@
   "scripts": {
     "prepare": "npm run build",
     "start": "npm run storybook",
-    "build": "cross-env BABEL_ENV=production babel src -d dist",
+    "build": "rollup -c",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "storybook dev -p 6006 -s public",
-    "build-storybook": "storybook build -s public",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "chromatic": "npx chromatic --project-token=eef55ea97642"
   },
   "eslintConfig": {
@@ -94,8 +95,10 @@
     "@storybook/react": "^7.0.8",
     "@storybook/react-webpack5": "^7.0.8",
     "@storybook/testing-library": "0.1.0",
+    "@types/styled-components": "^5.1.26",
     "chromatic": "^6.17.4",
     "cross-env": "^7.0.3",
+    "rollup": "^2.79.1",
     "semantic-release": "^21.0.2",
     "storybook": "^7.0.8"
   },
@@ -104,6 +107,7 @@
     "dist"
   ],
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Wallavi/component-library.git"
