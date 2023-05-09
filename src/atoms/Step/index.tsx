@@ -1,5 +1,5 @@
 import React from 'react';
-import * as PropTypes from "prop-types";
+// import * as PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import { colors } from "../../colorPalette";
 
@@ -9,7 +9,7 @@ import StepLabel from "@mui/material/StepLabel";
 
 interface StepProps {
   selected: number;
-  steps?: string[];
+  steps: string[];
   handleClick?: (number: number) => void;
 }
 
@@ -52,11 +52,11 @@ export default function Step({ selected, steps, handleClick }: StepProps) {
   );
 }
 
-Step.propTypes = {
-  selected: PropTypes.number.isRequired,
-  steps: PropTypes.array.isRequired,
-  handleClick: PropTypes.func.isRequired,
-};
+// Step.propTypes = {
+//   selected: PropTypes.number.isRequired,
+//   steps: PropTypes.array.isRequired,
+//   handleClick: PropTypes.func.isRequired,
+// };
 
 // Step.defaultProps = {
 //   selected: 1,

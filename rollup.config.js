@@ -14,6 +14,12 @@ export default [
         format: "esm",
         sourcemap: true,
       },
+      {
+        file: "dist/index.module.js",
+        format: "esm",
+        sourcemap: true,
+        exports: "named",
+      },
     ],
     plugins: [typescript()],
     external: ["react", "react-dom"],
