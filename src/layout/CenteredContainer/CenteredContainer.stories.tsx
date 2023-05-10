@@ -14,9 +14,10 @@ export default meta;
 
 export const Primary: Story = {
   args: {
+    error: true,
     children: <Step 
                 selected={1} 
-                steps= {["One", "Two", "Three"]} 
+                steps= {["One", "Two", "Three"]}
               />
   },
 };

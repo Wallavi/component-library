@@ -9,6 +9,7 @@ interface CenteredContainerProps extends BoxProps {
 const CenteredContainer = styled(Box, {
   shouldForwardProp: (prop) => prop !== "error",
 })<CenteredContainerProps>(({ error, theme }) => ({
+  ...errorAnimation,
   position: "fixed",
   width: 400,
   borderRadius: "10px",
@@ -21,7 +22,7 @@ const CenteredContainer = styled(Box, {
   alignItems: "center",
   padding: "35px",
   ...(error && {
-    animationName: `${errorAnimation} errorAlertFixed`,
+    animationName: `errorAlertFixed`,
     animationDuration: "0.3s",
     animationIterationCount: 3,
   }),
