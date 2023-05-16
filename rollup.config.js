@@ -5,17 +5,17 @@ export default [
     input: "src/index.tsx",
     output: [
       {
-        file: "dist/index.js",
+        file: "components/index.js",
         format: "cjs",
         sourcemap: true,
       },
       {
-        file: "dist/index.esm.js",
+        file: "components/index.esm.js",
         format: "esm",
         sourcemap: true,
       },
       {
-        file: "dist/index.module.js",
+        file: "components/index.module.js",
         format: "esm",
         sourcemap: true,
         exports: "named",
@@ -29,12 +29,12 @@ export default [
     input: "theme/index.ts",
     output: [
       {
-        file: "dist/theme/index.js",
+        file: "theme/index.js",
         format: "cjs",
         sourcemap: true,
       },
       {
-        file: "dist/theme/index.esm.js",
+        file: "theme/index.esm.js",
         format: "esm",
         sourcemap: true,
       },

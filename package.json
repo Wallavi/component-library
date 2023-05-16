@@ -104,10 +104,10 @@
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "files": [
-    "dist"
+    "components"
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "main": "components/index.js",
+  "module": "components/index.esm.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Wallavi/component-library.git"
