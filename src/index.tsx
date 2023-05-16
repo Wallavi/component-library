@@ -9,6 +9,7 @@
 import Step from "atoms/Step";
 import CenteredContainer from "layout/CenteredContainer";
 import CenterInputsContainer from "layout/CenterInputsContainer";
+import Input from "atoms/Input";
 // export * from "./atoms/Thumbnail";
 
 // molecules
@@ -27,4 +28,4 @@ import CenterInputsContainer from "layout/CenterInputsContainer";
 
 // screens
 // export * from "./screens/EditArticle";
-export { Step, CenteredContainer, CenterInputsContainer };
+export { Step, CenteredContainer, CenterInputsContainer, Input };

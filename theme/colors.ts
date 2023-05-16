@@ -8,6 +8,9 @@ const PrimaryColor = {
   },
   success: {
     main: '#2bde73',
+  },
+  middleblue: {
+    main: "#99a7bf",
   }
 }
 

@@ -51,13 +51,3 @@ export default function Step({ selected, steps, handleClick }: StepProps) {
     </Stepper>
   );
 }
-
-// Step.propTypes = {
-//   selected: PropTypes.number.isRequired,
-//   steps: PropTypes.array.isRequired,
-//   handleClick: PropTypes.func.isRequired,
-// };
-
-// Step.defaultProps = {
-//   selected: 1,
-// };
