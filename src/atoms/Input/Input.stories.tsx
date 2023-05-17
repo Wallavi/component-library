@@ -22,6 +22,7 @@ export const Required: Story = {
   args: {
     ...Primary.args,
     required: true,
+    autoFocus: true
   },
 };
 

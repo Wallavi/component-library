@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import { TextField, TextFieldProps } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
@@ -31,6 +31,32 @@ const CustomInput = styled(TextField)<TextFieldProps>`
   }
 `;
 
-export default function Input({ ...props }: TextFieldProps) {
-  return <CustomInput {...props}></CustomInput>;
+export default function Input({ autoFocus, ...props }: TextFieldProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (autoFocus && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [autoFocus]);
+
+  const handleMouseEnter = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
+  };
+
+  return (
+  <CustomInput
+    inputRef={inputRef}
+    onMouseEnter={handleMouseEnter}
+    onMouseLeave={handleMouseLeave}
+    {...props} 
+  />);
 }
