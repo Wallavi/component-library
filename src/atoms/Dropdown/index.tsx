@@ -47,7 +47,7 @@ const CustomSelect = styled(Select)<SelectProps>`
 
 export default function Dropdown({ options, label, ...props }: DropdownProps) {
   const items = options.map((e: HTMLInputElement) => (
-    <MenuItem value={e.value}>{e.name}</MenuItem>
+    <MenuItem key={e.value} value={e.value}>{e.name}</MenuItem>
   ));
 
   return (
@@ -56,7 +56,6 @@ export default function Dropdown({ options, label, ...props }: DropdownProps) {
       <CustomSelect
         label={label}
         labelId="dropdownLabel"
-        id="dropdown"
         {...props}
       >
         {items}

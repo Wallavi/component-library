@@ -8,4 +8,11 @@ import Dropdown from "atoms/Dropdown";
 import CenteredContainer from "layout/CenteredContainer";
 import CenterInputsContainer from "layout/CenterInputsContainer";
 
-export { Step, CenteredContainer, CenterInputsContainer, Input, LightTooltip, Dropdown };
+export {
+  Step,
+  CenteredContainer,
+  CenterInputsContainer,
+  Input,
+  LightTooltip,
+  Dropdown,
+};
