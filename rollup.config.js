@@ -1,4 +1,5 @@
 import typescript from "@rollup/plugin-typescript";
+import dts from "rollup-plugin-dts";
 
 export default [
   {
@@ -42,5 +43,10 @@ export default [
     plugins: [typescript()],
     external: ["react", "react-dom"],
     exclude: "**/*.stories.tsx",
+  },
+  {
+    input: "theme/index.ts",
+    output: [{ file: "dist/theme/index.d.ts", format: "es" }],
+    plugins: [dts()],
   },
 ];
