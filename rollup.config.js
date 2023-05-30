@@ -1,4 +1,5 @@
 import typescript from "@rollup/plugin-typescript";
+import del from "rollup-plugin-delete";
 
 export default [
   {
@@ -39,13 +40,13 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [typescript()],
+    plugins: [typescript({ declaration: true }), del({ targets: "dist/*" })],
     external: ["react", "react-dom"],
     exclude: "**/*.stories.tsx",
   },
-  {
-    input: "src/theme/mui.d.ts",
-    output: [{ file: "dist/theme/mui.d.ts", format: "es" }],
-    plugins: [typescript({ declaration: true })],
-  },
+  // {
+  //   input: "theme/mui.d.ts",
+  //   output: [{ file: "dist/theme/mui.d.ts", format: "es" }],
+  //   plugins: [typescript({ declaration: true })],
+  // },
 ];
