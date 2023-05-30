@@ -21,7 +21,7 @@ export default [
         exports: "named",
       },
     ],
-    plugins: [typescript()],
+    plugins: [typescript({ declaration: true })],
     external: ["react", "react-dom"],
     exclude: "**/*.stories.tsx",
   },
@@ -44,8 +44,8 @@ export default [
     exclude: "**/*.stories.tsx",
   },
   {
-    input: "theme/index.ts",
-    output: [{ file: "dist/theme/index.d.ts", format: "es" }],
+    input: "src/theme/mui.d.ts",
+    output: [{ file: "dist/theme/mui.d.ts", format: "es" }],
     plugins: [typescript({ declaration: true })],
   },
 ];
