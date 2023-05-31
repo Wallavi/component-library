@@ -99,7 +99,6 @@
     "chromatic": "^6.17.4",
     "cross-env": "^7.0.3",
     "rollup": "^2.79.1",
-    "rollup-plugin-delete": "^2.0.0",
     "semantic-release": "^21.0.2",
     "storybook": "^7.0.8"
   },
