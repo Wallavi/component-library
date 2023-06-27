@@ -41,6 +41,6 @@ export default [
     ],
     plugins: [typescript()],
     external: ["react", "react-dom"],
-    exclude: ["**/*.stories.tsx", "src/**"],
+    exclude: "**/*.stories.tsx",
   },
 ];

@@ -5,6 +5,9 @@ const primaryFonts = {
   h5: {
     fontSize: 17,
   },
+  button: {
+    TextTransform: "none",
+  }
 }
 
 export default primaryFonts

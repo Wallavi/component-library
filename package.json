@@ -98,7 +98,7 @@
     "@types/styled-components": "^5.1.26",
     "chromatic": "^6.17.4",
     "cross-env": "^7.0.3",
-    "rollup": "^2.79.1",
+    "rollup": "^3.23.0",
     "semantic-release": "^21.0.2",
     "storybook": "^7.0.8"
   },
