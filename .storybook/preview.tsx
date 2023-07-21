@@ -1,4 +1,9 @@
 import "../src/index.css";
+import React from "react";
+
+import { Preview } from "@storybook/react";
+import theme from "../theme/theme";
+import { ThemeProvider } from "@mui/material/styles";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -22,3 +27,15 @@ export const parameters = {
     ],
   },
 };
+
+const preview: Preview = {
+  decorators: [
+    (Story) => (
+      <ThemeProvider theme={theme}>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
+};
+
+export default preview;
