@@ -21,7 +21,6 @@ interface TableExpandCellProps {
 }
 
 const TableExpandCell = ({ value }: TableExpandCellProps) => {
-  console.log("value", value);
   return (
     <Box>
       <CardContent>

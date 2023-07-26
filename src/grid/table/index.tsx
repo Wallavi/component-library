@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableBody from "@mui/material/TableBody";
 import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
+import TableSortLabel from "@mui/material/TableSortLabel";
 
 import { TableListProps } from "./types";
 
@@ -15,11 +16,16 @@ import { VisibleRows } from "./sorting-pagination";
 const TableList = <T extends Record<string, any>>({
   rows,
   columns,
+  rowsPerPagePagination,
+  ...rest
 }: TableListProps<T>) => {
-  // const [order, setOrder] = React.useState<"asc" | "desc">("asc");
-  // const [orderBy, setOrderBy] = React.useState<string>("name");
+  type Row = (typeof rows)[number];
+  const [order, setOrder] = React.useState<"asc" | "desc">("asc");
+  const [orderBy, setOrderBy] = React.useState<string | symbol | number>("");
   const [openRow, setOpenRow] = useState<string | null | number>(null);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(
+    rowsPerPagePagination ? rowsPerPagePagination : 5
+  );
   const [page, setPage] = useState(0);
 
   const handleOpenRow = (rowId: string | null | number) => {
@@ -34,17 +40,36 @@ const TableList = <T extends Record<string, any>>({
     setRowsPerPage(parseInt(event.target.value, 10));
   };
 
-  // const rowsToShow = VisibleRows(page, rowsPerPage, rows, order, orderBy);
-  const rowsToShow = VisibleRows(page, rowsPerPage, rows, "asc", "name");
+  const handleRequestSort = (
+    event: React.MouseEvent<unknown>,
+    property: keyof Row
+  ) => {
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
+    setOrderBy(property);
+  };
+
+  const createSortHandler =
+    (property: keyof Row) => (event: React.MouseEvent<unknown>) => {
+      handleRequestSort(event, property);
+    };
+
+  const rowsToShow = VisibleRows(page, rowsPerPage, rows, order, orderBy);
 
   return (
-    <TableContainer>
-      <Table sx={{ minWidth: 1200 }}>
+    <TableContainer {...rest}>
+      <Table>
         <TableHead>
           <TableRow>
             {columns.map((column) => (
               <TableCell key={column.field as string} width={column.width}>
-                {column.headerName}
+                <TableSortLabel
+                  active={orderBy === column.field}
+                  direction={orderBy === column.field ? order : "asc"}
+                  onClick={createSortHandler(column.field)}
+                >
+                  {column.headerName}
+                </TableSortLabel>
               </TableCell>
             ))}
           </TableRow>
@@ -129,8 +154,8 @@ const TableList = <T extends Record<string, any>>({
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
               count={rows.length}
-              rowsPerPage={rowsPerPage ? rowsPerPage : 5}
-              page={page ? page : 0}
+              rowsPerPage={rowsPerPage}
+              page={page}
               onPageChange={handlePageChange}
               onRowsPerPageChange={handleRowsPerPageChange}
             />

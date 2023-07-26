@@ -1,4 +1,6 @@
 
+import { SxProps } from '@mui/system';
+
 export interface RenderCellProps {
   open?: boolean;
   handleOpenRow?: (rowId: string | null | number) => void;
@@ -18,9 +20,6 @@ export interface TableColumn<T> {
 export interface TableListProps<T> {
   rows: T[];
   columns: TableColumn<T>[];
-  rowsPerPage?: number;
-  page?: number;
-  onPageChange?: (event: any, newPage: any) => void;
-  onRowsPerPageChange?: (event: any) => void;
-  countPages?: number
+  rowsPerPagePagination?: number;
+  sx?: SxProps;
 }

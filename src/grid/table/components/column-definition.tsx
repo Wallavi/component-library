@@ -63,12 +63,12 @@ export const rows = [
     id: 1,
     expand: "",
     name: {
-      name: "Makeup Lancome",
+      value: "Makeup Lancome",
       category: "makeup",
       image: "https://plus.unsplash.com/premium_photo-1677526496597-aa0f49053ce2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFrZSUyMHVwfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
     },
     stock: {
-      quantity: 10,
+      value: 10,
       variants: 2,
     },
     status: "Published",
@@ -78,12 +78,12 @@ export const rows = [
     id: 2,
     expand: "",
     name: {
-      name: "Makeup Lipstick",
+      value: "Makeup Lipstick",
       category: "makeup",
       image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWFrZSUyMHVwfGVufDB8fDB8fHww&auto=format&fit=crop&w=100&q=60"
     },
     stock: {
-      quantity: 0,
+      value: 0,
       variants: 0,
     },
     status: "Draft",
@@ -93,11 +93,11 @@ export const rows = [
     id: 3,
     expand: "",
     name: {
-      name: "Healthcare Erbology",
+      value: "Healthcare Erbology",
       category: "healthcare",
     },
     stock: {
-      quantity: 0,
+      value: 0,
       variants: 0,
     },
     status: "Draft",
@@ -107,11 +107,11 @@ export const rows = [
     id: 4,
     expand: "",
     name: {
-      name: "Healthcare Ritual",
+      value: "Healthcare Ritual",
       category: "healthcare",
     },
     stock: {
-      quantity: 30,
+      value: 30,
       variants: 4,
     },
     status: "Published",
@@ -121,11 +121,11 @@ export const rows = [
     id: 5,
     expand: "",
     name: {
-      name: "Healthcare more",
+      value: "Healthcare more",
       category: "healthcare",
     },
     stock: {
-      quantity: 80,
+      value: 80,
       variants: 3,
     },
     status: "Published",
@@ -135,11 +135,11 @@ export const rows = [
     id: 6,
     expand: "",
     name: {
-      name: "Layering Bracelets Collection",
+      value: "Layering Bracelets Collection",
       category: "jewelry",
     },
     stock: {
-      quantity: 60,
+      value: 60,
       variants: 6,
     },
     status: "Published",
@@ -149,11 +149,11 @@ export const rows = [
     id: 7,
     expand: "",
     name: {
-      name: "Skincare Necessaire",
+      value: "Skincare Necessaire",
       category: "skincare",
     },
     stock: {
-      quantity: 0,
+      value: 0,
       variants: 0,
     },
     status: "Draft",
@@ -163,11 +163,11 @@ export const rows = [
     id: 8,
     expand: "",
     name: {
-      name: "Skincare Soja CO",
+      value: "Skincare Soja CO",
       category: "skincare",
     },
     stock: {
-      quantity: 60,
+      value: 60,
       variants: 6,
     },
     status: "Draft",
@@ -177,11 +177,11 @@ export const rows = [
     id: 9,
     expand: "",
     name: {
-      name: "Healthcare Ritual Pro",
+      value: "Healthcare Ritual Pro",
       category: "healthcare",
     },
     stock: {
-      quantity: 30,
+      value: 30,
       variants: 4,
     },
     status: "Published",
@@ -191,11 +191,11 @@ export const rows = [
     id: 10,
     expand: "",
     name: {
-      name: "Healthcare Pro",
+      value: "Healthcare Pro",
       category: "healthcare",
     },
     stock: {
-      quantity: 80,
+      value: 80,
       variants: 8,
     },
     status: "Published",

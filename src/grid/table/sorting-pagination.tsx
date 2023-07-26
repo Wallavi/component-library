@@ -1,6 +1,14 @@
 import { useMemo } from "react";
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+  if (typeof a[orderBy] === "object") {
+    if ((b[orderBy] as { value: string }).value < (a[orderBy] as { value: string }).value) {
+      return -1;
+    }
+    if ((b[orderBy] as { value: string }).value > (a[orderBy] as { value: string }).value) {
+      return 1;
+    }
+  }
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -28,7 +36,9 @@ function stableSort<T>(
   array: readonly T[],
   comparator: (a: T, b: T) => number
 ) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+  const stabilizedThis = array.map((el, index) => {
+    return [el, index] as [T, number];
+  });
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) {
@@ -39,12 +49,12 @@ function stableSort<T>(
   return stabilizedThis.map((el) => el[0]);
 }
 
-export const VisibleRows= <T extends Record<string, any>> (
+export const VisibleRows = <T extends Record<string, any>>(
   page: number,
   rowsPerPage: number,
   rows: T[],
   order: "desc" | "asc",
-  orderBy: string
+  orderBy: string | symbol | number
 ) =>
   useMemo(
     () =>
