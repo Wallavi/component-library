@@ -8,7 +8,7 @@ import Dropdown from "atoms/Dropdown";
 import CenteredContainer from "layout/CenteredContainer";
 import CenterInputsContainer from "layout/CenterInputsContainer";
 
-//grid
+// grid
 import TableList from "grid/table";
 
 export {
@@ -18,5 +18,5 @@ export {
   Input,
   LightTooltip,
   Dropdown,
-  TableList
+  TableList,
 };

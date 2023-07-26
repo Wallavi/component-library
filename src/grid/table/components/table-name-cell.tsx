@@ -6,7 +6,7 @@ import ImageIcon from "@mui/icons-material/Image";
 
 interface TableNameProps {
   image: string;
-  name: string;
+  value: string;
   category: string;
 }
 
@@ -16,7 +16,6 @@ interface TableNameCellProps {
 }
 
 const TableNameCell = ({ value, width }: TableNameCellProps) => {
-  console.log(value.image)
   return (
     <TableCell width={width}>
       <Box
@@ -62,7 +61,7 @@ const TableNameCell = ({ value, width }: TableNameCellProps) => {
             ml: 2,
           }}
         >
-          <Typography variant="subtitle2">{value.name}</Typography>
+          <Typography variant="subtitle2">{value.value}</Typography>
           <Typography color="textSecondary" variant="body2">
             in {value.category}
           </Typography>

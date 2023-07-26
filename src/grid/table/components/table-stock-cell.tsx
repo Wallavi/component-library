@@ -4,7 +4,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
 
 interface TableStockProps {
-  quantity: number;
+  value: number;
   variants: number;
 }
 
@@ -17,16 +17,16 @@ const TableStockCell = ({ value, width }: TableStockCellProps) => {
   return (
     <TableCell width={width}>
       <LinearProgress
-        value={value.quantity}
+        value={value.value}
         variant="determinate"
-        color={value.quantity >= 10 ? "success" : "error"}
+        color={value.value >= 10 ? "success" : "error"}
         sx={{
           height: 8,
           width: 36,
         }}
       />
       <Typography color="textSecondary" variant="body2">
-        {value.quantity} in stock
+        {value.value} in stock
         {value.variants > 1 && ` in ${value.variants} variants`}
       </Typography>
     </TableCell>
