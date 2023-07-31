@@ -13,7 +13,7 @@ import {
 interface TableExpandCellProps {
   value: {
     name: {
-      name: string;
+      value: string;
     };
     sku: string;
     price: number;
@@ -31,7 +31,7 @@ const TableExpandCell = ({ value }: TableExpandCellProps) => {
             <Grid container spacing={3}>
               <Grid item md={6} xs={12}>
                 <TextField
-                  defaultValue={value.name.name}
+                  defaultValue={value.name.value}
                   fullWidth
                   label="Product name"
                   name="name"

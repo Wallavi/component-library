@@ -62,5 +62,5 @@ export const VisibleRows = <T extends Record<string, any>>(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
-    [order, orderBy, page, rowsPerPage]
+    [order, orderBy, page, rowsPerPage, rows]
   );

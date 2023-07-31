@@ -20,12 +20,13 @@ const TableList = <T extends Record<string, any>>({
   ...rest
 }: TableListProps<T>) => {
   type Row = (typeof rows)[number];
-  const [order, setOrder] = React.useState<"asc" | "desc">("asc");
-  const [orderBy, setOrderBy] = React.useState<string | symbol | number>("");
+  const [order, setOrder] = useState<"asc" | "desc">("asc");
+  const [orderBy, setOrderBy] = useState<string | symbol | number>("");
   const [openRow, setOpenRow] = useState<string | null | number>(null);
   const [rowsPerPage, setRowsPerPage] = useState(
     rowsPerPagePagination ? rowsPerPagePagination : 5
   );
+  // const [rowsToShow, setRowsToShow] = useState(rows);
   const [page, setPage] = useState(0);
 
   const handleOpenRow = (rowId: string | null | number) => {
@@ -55,6 +56,11 @@ const TableList = <T extends Record<string, any>>({
     };
 
   const rowsToShow = VisibleRows(page, rowsPerPage, rows, order, orderBy);
+
+  // useEffect(() => {
+  //   const visiblerow = VisibleRows(page, rowsPerPage, rows, order, orderBy);
+  //   setRowsToShow(visiblerow)
+  // }, [page, rowsPerPage, rows, order, orderBy])
 
   return (
     <TableContainer {...rest}>
