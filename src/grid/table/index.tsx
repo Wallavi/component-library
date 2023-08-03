@@ -91,8 +91,8 @@ const TableList = <T extends Record<string, any>>({
               const open = row.id === openRow;
 
               return (
-                <Fragment key={row.id}>
-                  <TableRow hover key={row.id}>
+                <Fragment key={`main-${row.id}`}>
+                  <TableRow hover key={`table-row-${row.id}`}>
                     {columns.map((column, idx) =>
                       // @ts-ignore
                       typeof row[column.field] === "object" &&
