@@ -8,6 +8,7 @@ import TableBody from "@mui/material/TableBody";
 import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TableSortLabel from "@mui/material/TableSortLabel";
+import Typography from "@mui/material/Typography";
 
 import { TableListProps } from "./types";
 
@@ -17,11 +18,12 @@ const TableList = <T extends Record<string, any>>({
   rows,
   columns,
   rowsPerPagePagination,
+  sortIconComponent,
   ...rest
 }: TableListProps<T>) => {
   type Row = (typeof rows)[number];
-  const [order, setOrder] = React.useState<"asc" | "desc">("asc");
-  const [orderBy, setOrderBy] = React.useState<string | symbol | number>("");
+  const [order, setOrder] = useState<"asc" | "desc">("asc");
+  const [orderBy, setOrderBy] = useState<string | symbol | number>("");
   const [openRow, setOpenRow] = useState<string | null | number>(null);
   const [rowsPerPage, setRowsPerPage] = useState(
     rowsPerPagePagination ? rowsPerPagePagination : 5
@@ -67,6 +69,7 @@ const TableList = <T extends Record<string, any>>({
                   active={orderBy === column.field}
                   direction={orderBy === column.field ? order : "asc"}
                   onClick={createSortHandler(column.field)}
+                  IconComponent={sortIconComponent}
                 >
                   {column.headerName}
                 </TableSortLabel>
@@ -75,79 +78,92 @@ const TableList = <T extends Record<string, any>>({
           </TableRow>
         </TableHead>
         <TableBody>
-          {rowsToShow.map((row) => {
-            const open = row.id === openRow;
+          {rowsToShow.length === 0 ? (
+            <TableRow className="no-data-found">
+              <TableCell colSpan={7}>
+                <Typography align="center" variant="h5">
+                  No hay datos encontrados
+                </Typography>
+              </TableCell>
+            </TableRow>
+          ) : (
+            rowsToShow.map((row) => {
+              const open = row.id === openRow;
 
-            return (
-              <Fragment key={row.id}>
-                <TableRow hover key={row.id}>
-                  {columns.map((column, idx) =>
-                    // @ts-ignore
-                    typeof row[column.field] === "object" &&
-                    !column.renderCell ? (
-                      <TableCell
-                        key={`${column.field as string}-${idx}`}
-                        width={column.width}
-                      >
-                        -
-                      </TableCell>
-                    ) : // @ts-ignore
-                    row[column.field] ===
-                      "id" ? null : typeof column.renderCell === "function" ? (
-                      <Fragment key={`${column.field as string}-${idx}`}>
-                        {column.renderCell({
-                          open: open,
-                          handleOpenRow: handleOpenRow,
-                          rowId: row.id,
-                          value: row[column.field],
-                          width: column.width,
-                        })}
-                      </Fragment>
-                    ) : React.isValidElement(row[column.field]) ? (
-                      <Fragment key={`${column.field as string}-${idx}`}>
-                        {row[column.field]}
-                      </Fragment>
-                    ) : (
-                      <TableCell
-                        key={`${column.field as string}-${idx}`}
-                        width={column.width}
-                      >
-                        {row[column.field]}
-                      </TableCell>
-                    )
-                  )}
-                </TableRow>
-                {columns.map(
-                  (column, idx) =>
-                    typeof column.expandCell === "function" &&
-                    open && (
-                      <TableRow key={`${column.field as string}-${idx}-expand`}>
+              return (
+                <Fragment key={`main-${row.id}`}>
+                  <TableRow hover key={`table-row-${row.id}`}>
+                    {columns.map((column, idx) =>
+                      // @ts-ignore
+                      typeof row[column.field] === "object" &&
+                      !column.renderCell ? (
                         <TableCell
-                          colSpan={7}
-                          sx={{
-                            p: 0,
-                            position: "relative",
-                            "&:after": {
-                              position: "absolute",
-                              content: '" "',
-                              top: 0,
-                              left: 0,
-                              backgroundColor: "primary.main",
-                              width: 3,
-                              height: "calc(100% + 1px)",
-                            },
-                          }}
+                          key={`${column.field as string}-${idx}`}
+                          width={column.width}
                         >
-                          {column.expandCell({
-                            value: row,
-                          })}
+                          -
                         </TableCell>
-                      </TableRow>
-                    )
-                )}
-              </Fragment>
-            );
-          })}
+                      ) : // @ts-ignore
+                      row[column.field] ===
+                        "id" ? null : typeof column.renderCell ===
+                        "function" ? (
+                        <Fragment key={`${column.field as string}-${idx}`}>
+                          {column.renderCell({
+                            open: open,
+                            handleOpenRow: handleOpenRow,
+                            rowId: row.id,
+                            value: row[column.field],
+                            width: column.width,
+                          })}
+                        </Fragment>
+                      ) : React.isValidElement(row[column.field]) ? (
+                        <Fragment key={`${column.field as string}-${idx}`}>
+                          {row[column.field]}
+                        </Fragment>
+                      ) : (
+                        <TableCell
+                          key={`${column.field as string}-${idx}`}
+                          width={column.width}
+                        >
+                          {row[column.field]}
+                        </TableCell>
+                      )
+                    )}
+                  </TableRow>
+                  {columns.map(
+                    (column, idx) =>
+                      typeof column.expandCell === "function" &&
+                      open && (
+                        <TableRow
+                          key={`${column.field as string}-${idx}-expand`}
+                        >
+                          <TableCell
+                            colSpan={7}
+                            sx={{
+                              p: 0,
+                              position: "relative",
+                              "&:after": {
+                                position: "absolute",
+                                content: '" "',
+                                top: 0,
+                                left: 0,
+                                backgroundColor: "primary.main",
+                                width: 3,
+                                height: "calc(100% + 1px)",
+                              },
+                            }}
+                          >
+                            {column.expandCell({
+                              value: row,
+                            })}
+                          </TableCell>
+                        </TableRow>
+                      )
+                  )}
+                </Fragment>
+              );
+            })
+          )}
         </TableBody>
         <TableFooter>
           <TableRow>

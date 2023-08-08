@@ -21,5 +21,8 @@ export interface TableListProps<T> {
   rows: T[];
   columns: TableColumn<T>[];
   rowsPerPagePagination?: number;
+  sortIconComponent?: React.JSXElementConstructor<{
+    className: string;
+  }>
   sx?: SxProps;
 }
