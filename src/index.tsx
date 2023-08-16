@@ -10,6 +10,11 @@ import CenterInputsContainer from "layout/CenterInputsContainer";
 
 // grid
 import TableList from "grid/table";
+import MenuChipsFiltered from "grid/filters/chip-filters";
+import MenuFilter from "grid/filters/menu-filters";
+
+//helpers
+import { handleFilter, updateFilter } from "grid/filters/helpers";
 
 export {
   Step,
@@ -19,4 +24,8 @@ export {
   LightTooltip,
   Dropdown,
   TableList,
+  MenuChipsFiltered,
+  MenuFilter,
+  handleFilter,
+  updateFilter,
 };
