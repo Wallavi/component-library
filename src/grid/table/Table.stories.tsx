@@ -1,5 +1,6 @@
 import React from "react";
 import TableList from "./index";
+import FilterTableListHooks from "./filters-table"
 import { columns, rows } from "./components/column-definition";
 import type { Meta, StoryObj } from "@storybook/react";
 import { TableListProps } from "./types";
@@ -53,3 +54,8 @@ export const Empty: Story = {
     columns: columns,
   },
 };
+
+export const FilterTable: Story = {
+  render: () => <FilterTableListHooks />,
+};
+

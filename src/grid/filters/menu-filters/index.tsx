@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import Button from "@mui/material/Button";
+import Checkbox from '@mui/material/Checkbox';
+
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -61,10 +63,17 @@ const MenuFilter = ({ setFilters, filters }: MenuFilterProps) => {
               handleClose({ ...option, filterLabel: filters.buttonLabel })
             }
             sx={{
-              paddingX: 4,
+              paddingLeft: 2,
+              paddingRight: 4,
               paddingY: 1,
             }}
           >
+            <Checkbox
+              checked={option.selected}
+              // onChange={() => handleClose({ ...option, filterLabel: filters.buttonLabel })}
+              inputProps={{ 'aria-label': `${option.label}` }}
+            />
+
             {option.label}
           </MenuItem>
         ))}
