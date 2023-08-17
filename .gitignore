@@ -91,6 +91,8 @@ sketch
 
 storybook-static/
 
+docs/
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
