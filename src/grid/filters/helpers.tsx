@@ -1,15 +1,12 @@
 import { DataFiltersProps, SetFilters } from "./types";
 
-interface UpdateFilterProps {
+/**
+ * The props type for {@link updateFilter} and {@link handleFilter}.
+ */
+
+export interface HelperFilterProps {
   filterSetter: SetFilters;
   filteredOption: DataFiltersProps;
-  selectedFilters: DataFiltersProps[];
-  setSelectedFilters: (param: DataFiltersProps[]) => void;
-}
-
-interface HandleFilterProps {
-  filterOption: DataFiltersProps;
-  filterSetter: SetFilters;
   selectedFilters: DataFiltersProps[];
   setSelectedFilters: (param: DataFiltersProps[]) => void;
 }
@@ -19,7 +16,7 @@ export const updateFilter = ({
   filteredOption,
   selectedFilters,
   setSelectedFilters,
-}: UpdateFilterProps) => {
+}: HelperFilterProps) => {
   filterSetter((draft) => {
     const findOption = draft.data.find(
       (option) => option.value === filteredOption.value
@@ -36,28 +33,28 @@ export const updateFilter = ({
 };
 
 export const handleFilter = ({
-  filterOption,
+  filteredOption,
   filterSetter,
   selectedFilters,
   setSelectedFilters,
-}: HandleFilterProps) => {
+}: HelperFilterProps) => {
   filterSetter((draft) => {
     const findOption = draft.data.find(
-      (option) => option.value === filterOption.value
+      (option) => option.value === filteredOption.value
     );
     if (findOption) {
-      findOption.selected = !filterOption.selected;
+      findOption.selected = !filteredOption.selected;
     }
   });
 
   const newSelectedFilter = selectedFilters.find(
-    (filter) => filter.value === filterOption.value
+    (filter) => filter.value === filteredOption.value
   );
   if (!newSelectedFilter) {
-    setSelectedFilters([...selectedFilters, filterOption]);
+    setSelectedFilters([...selectedFilters, filteredOption]);
   } else {
     const updatedFilters = selectedFilters.filter(
-      (filter) => filter.value !== filterOption.value
+      (filter) => filter.value !== filteredOption.value
     );
     setSelectedFilters(updatedFilters);
   }
