@@ -5,10 +5,15 @@ import MenuFilter from "./index";
 import { category, status, stock } from "./data-menu-filter-options";
 import { handleFilter } from "../helpers";
 
-import { DataFiltersProps, FilterProps } from "../types";
+import { DataFiltersProps, FilterProps, MenuFilterProps } from "../types";
 
 const meta: Meta<typeof MenuFilter> = {
   component: MenuFilter,
+  argTypes: {
+    filters: { data: {type: {data: "array"} } },
+    setFilters: {type: "function"}
+  },
+
 };
 export default meta;
 
@@ -35,7 +40,7 @@ const FilterMenuHooks = () => {
   // Sets a click handler to change the label's value
   const categoryFiltered = (filterOption: DataFiltersProps) => {
     handleFilter({
-      filterOption: filterOption,
+      filteredOption: filterOption,
       filterSetter: setCategoryFilter,
       selectedFilters: selectedFilters,
       setSelectedFilters: setSelectedFilters,
@@ -44,7 +49,7 @@ const FilterMenuHooks = () => {
 
   const statusFiltered = (filterOption: DataFiltersProps) => {
     handleFilter({
-      filterOption: filterOption,
+      filteredOption: filterOption,
       filterSetter: setStatusFilter,
       selectedFilters: selectedFilters,
       setSelectedFilters: setSelectedFilters,
@@ -53,7 +58,7 @@ const FilterMenuHooks = () => {
 
   const stockFiltered = (filterOption: DataFiltersProps) => {
     handleFilter({
-      filterOption: filterOption,
+      filteredOption: filterOption,
       filterSetter: setStockFilter,
       selectedFilters: selectedFilters,
       setSelectedFilters: setSelectedFilters,

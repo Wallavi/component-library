@@ -10,6 +10,71 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { MenuFilterProps, DataFiltersProps } from "../types";
 
+/**
+ * Renders a MenuFilter around some data.
+ *
+ * ```tsx
+ * const FilterMenuHooks = () => {
+ *   const [categoryFilter, setCategoryFilter] = useImmer<FilterProps>({
+ *     data: category,
+ *     buttonLabel: "Category",
+ *   });
+    const [selectedFilters, setSelectedFilters] = useState<DataFiltersProps[]>(
+      []
+    );
+
+    // Sets a click handler to change the categoryFilter and selectedFilters value
+    const categoryFiltered = (filterOption: DataFiltersProps) => {
+      handleFilter({
+        filteredOption: filterOption,
+        filterSetter: setCategoryFilter,
+        selectedFilters: selectedFilters,
+        setSelectedFilters: setSelectedFilters,
+      });
+    };
+
+    return (
+      <MenuFilter filters={categoryFilter} setFilters={categoryFiltered} />
+    );
+  };
+ * ```
+ *
+ * The data should be something like this
+ *
+ * ```
+  export const category = [
+    {
+      value: 'healthcare',
+      label: 'Healthcare',
+      selected: false,
+    },
+    {
+      value: 'makeup',
+      label: 'Makeup',
+      selected: false,
+    },
+    {
+      value: 'dress',
+      label: 'Dress',
+      selected: false,
+    },
+    {
+      value: 'skincare',
+      label: 'Skincare',
+      selected: false,
+    },
+    {
+      value: 'jewelry',
+      label: 'Jewelry',
+      selected: false,
+    },
+  ];
+ * ```
+ *
+ *
+ * @category Component
+ */
+
 const MenuFilter = ({ setFilters, filters }: MenuFilterProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

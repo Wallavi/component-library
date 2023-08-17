@@ -6,12 +6,6 @@ export interface DataFiltersProps {
   filterLabel?: string; // Added filterLabel property
 }
 
-// export interface FilterItemChipsProps {
-//   value: string;
-//   label: string;
-//   selected: boolean;
-// }
-
 export interface FilterProps {
   data: DataFiltersProps[];
   buttonLabel: string;
@@ -20,6 +14,10 @@ export interface FilterProps {
 export type SetFilters = (
   recipe: (draft: FilterProps) => void | FilterProps
 ) => void;
+
+/**
+ * The props type for {@link MenuFilter}
+ */
 
 export interface MenuFilterProps {
   setFilters: (value: DataFiltersProps) => void
@@ -30,6 +28,10 @@ export interface ChipFilterProps {
   filters: DataFiltersProps;
   deletedFilter: (current: DataFiltersProps) => void
 }
+
+/**
+ * The props type for {@link MenuChipsFiltered}
+ */
 
 export interface MenuChipsFilterProps {
   selectedFilters: DataFiltersProps[]

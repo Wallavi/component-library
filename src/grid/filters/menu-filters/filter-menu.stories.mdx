@@ -1,0 +1,30 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+
+import { MenuFilter } from "./index"; // Update the import path to match your directory structure
+import { MenuChipsFilterProps } from "../types"; // Update with the correct import path
+import { category } from "./data-menu-filter-options";
+
+<Meta title="Grid/filters/menu-filters/docs" component={MenuFilter} />
+
+# MenuFilter
+
+A component that provides filtering options.
+
+## Stories
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      setFilters: (option) => console.log(option), // Replace with your setFilters logic
+      filters: {
+        buttonLabel: "Category",
+        data: category,
+      },
+    }}
+  >
+    {(args) => <MenuFilter {...args} />}
+  </Story>
+</Canvas>
+
+## Props

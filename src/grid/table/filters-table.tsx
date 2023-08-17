@@ -39,7 +39,7 @@ const FilterTableListHooks = () => {
   // Sets a click handler to change the label's value
   const categoryFiltered = (filterOption: DataFiltersProps) => {
     handleFilter({
-      filterOption: filterOption,
+      filteredOption: filterOption,
       filterSetter: setCategoryFilter,
       selectedFilters: selectedFilters,
       setSelectedFilters: setSelectedFilters,
@@ -48,7 +48,7 @@ const FilterTableListHooks = () => {
 
   const statusFiltered = (filterOption: DataFiltersProps) => {
     handleFilter({
-      filterOption: filterOption,
+      filteredOption: filterOption,
       filterSetter: setStatusFilter,
       selectedFilters: selectedFilters,
       setSelectedFilters: setSelectedFilters,
@@ -57,7 +57,7 @@ const FilterTableListHooks = () => {
 
   const stockFiltered = (filterOption: DataFiltersProps) => {
     handleFilter({
-      filterOption: filterOption,
+      filteredOption: filterOption,
       filterSetter: setStockFilter,
       selectedFilters: selectedFilters,
       setSelectedFilters: setSelectedFilters,
