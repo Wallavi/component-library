@@ -38,7 +38,8 @@ import { MenuFilterProps, DataFiltersProps } from "../types";
     );
   };
  * ```
- *
+ * handleFilter helper is here {@link handleFilter}
+ * 
  * The data should be something like this
  *
  * ```
