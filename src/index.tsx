@@ -16,6 +16,9 @@ import MenuFilter from "grid/filters/menu-filters";
 //helpers
 import { handleFilter, updateFilter } from "grid/filters/helpers";
 
+//types
+export * from "grid/filters/types";
+
 export {
   Step,
   CenteredContainer,
