@@ -17,7 +17,14 @@ import MenuFilter from "grid/filters/menu-filters";
 import { handleFilter, updateFilter } from "grid/filters/helpers";
 
 //types
-export * from "grid/filters/types";
+export {
+  DataFiltersProps,
+  FilterProps,
+  SetFilters,
+  MenuFilterProps,
+  ChipFilterProps,
+  MenuChipsFilterProps,
+} from "grid/filters/types";
 
 export {
   Step,
