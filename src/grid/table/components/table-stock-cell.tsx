@@ -3,12 +3,12 @@ import TableCell from "@mui/material/TableCell";
 import LinearProgress from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
 
-interface TableStockProps {
+export interface TableStockProps {
   value: number;
   variants: number;
 }
 
-interface TableStockCellProps {
+export interface TableStockCellProps {
   value: TableStockProps;
   width?: string | number;
 }
