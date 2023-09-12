@@ -12,6 +12,7 @@ import CenterInputsContainer from "layout/CenterInputsContainer";
 import TableList from "grid/table";
 import MenuChipsFiltered from "grid/filters/chip-filters";
 import MenuFilter from "grid/filters/menu-filters";
+import MenuSearchFilter from "grid/filters/menu-search-filters";
 import TableExpandCell, {
   TableExpandCellProps,
 } from "grid/table/components/table-expand-cell";
@@ -52,6 +53,7 @@ export {
   TableList,
   MenuChipsFiltered,
   MenuFilter,
+  MenuSearchFilter,
   TableNameCell,
   TableExpandCell,
   OpenTableCell,

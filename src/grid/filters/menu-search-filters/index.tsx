@@ -37,7 +37,7 @@ import { MenuFilterProps, DataFiltersProps, FilterProps } from "../types";
     };
 
     return (
-      <MenuFilter filters={categoryFilter} setFilters={categoryFiltered} />
+      <MenuSearchFilter filters={categoryFilter} setFilters={categoryFiltered} />
     );
   };
  * ```
