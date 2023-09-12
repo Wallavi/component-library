@@ -44,10 +44,10 @@ export default [
     external: ["react", "react-dom"],
     exclude: "**/*.stories.tsx",
   },
-  {
-    input: "src/index.tsx",
-    output: [{ file: "dist/index.d.ts", format: "es" }],
-    plugins: [dts()],
-    external: ["react", "react-dom"],
-  },
+  // {
+  //   input: "src/index.tsx",
+  //   output: [{ file: "dist/index.d.ts", format: "es" }],
+  //   plugins: [dts()],
+  //   external: ["react", "react-dom"],
+  // },
 ];
