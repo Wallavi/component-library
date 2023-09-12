@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-interface OpenTableProps {
+export interface OpenTableProps {
   open: boolean;
   handleOpenRow: (id: string | null | number) => void;
   rowId: string | null | number;

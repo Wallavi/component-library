@@ -4,13 +4,13 @@ import Typography from "@mui/material/Typography";
 import TableCell from "@mui/material/TableCell";
 import ImageIcon from "@mui/icons-material/Image";
 
-interface TableNameProps {
+export interface TableNameProps {
   image: string;
   value: string;
   category: string;
 }
 
-interface TableNameCellProps {
+export interface TableNameCellProps {
   value: TableNameProps;
   width?: string | number;
 }

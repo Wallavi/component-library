@@ -10,7 +10,7 @@ import {
   Switch,
 } from "@mui/material";
 
-interface TableExpandCellProps {
+export interface TableExpandCellProps {
   value: {
     name: {
       value: string;
