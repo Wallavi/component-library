@@ -22,7 +22,7 @@ const Rollup = [
         exports: "named",
       },
     ],
-    plugins: [typescript({ declaration: true })],
+    plugins: [typescript({ declaration: false })],
     external: ["react", "react-dom"],
     exclude: "**/*.stories.tsx",
   },
@@ -44,13 +44,13 @@ const Rollup = [
     external: ["react", "react-dom"],
     exclude: "**/*.stories.tsx",
   },
-  // {
-  //   input: "src/index.tsx",
-  //   output: [{ file: "dist/index.d.ts", format: "es" }],
-  //   plugins: [dts()],
-  //   external: ["react", "react-dom"],
-  //   exclude: "**/*.stories.tsx",
-  // },
+  {
+    input: "src/index.tsx",
+    output: [{ file: "dist/index.d.ts", format: "es" }],
+    plugins: [dts()],
+    external: ["react", "react-dom"],
+    exclude: "**/*.stories.tsx",
+  },
 ];
 
 export default Rollup;
