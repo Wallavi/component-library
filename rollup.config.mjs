@@ -22,7 +22,7 @@ const Rollup = [
         exports: "named",
       },
     ],
-    plugins: [typescript({ declaration: false })],
+    plugins: [typescript({ declaration: true })],
     external: ["react", "react-dom"],
     exclude: "**/*.stories.tsx",
   },

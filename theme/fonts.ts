@@ -6,8 +6,8 @@ const primaryFonts = {
     fontSize: 17,
   },
   button: {
-    TextTransform: "none",
-  }
-}
+    fontSize: "1rem",
+  },
+};
 
-export default primaryFonts
+export default primaryFonts;
