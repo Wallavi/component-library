@@ -116,16 +116,19 @@ const ListItemImage = ({
           vertical: "bottom",
           horizontal: "right",
         }}
-        sx={{ padding: [3, 3, 0, 0] }}
+        sx={{ boxShadow: "none", border: "none" }}
+        slotProps={{
+          paper: { sx: { backgroundColor: "transparent", boxShadow: "none" } },
+        }}
       >
-        <Box>
+        <Box sx={{ width: 348, height: 245 }}>
           <IconButton
             edge="end"
             aria-label="close-preview"
             sx={{
               position: "absolute",
-              top: "-18px",
-              right: "-5px",
+              top: "5px",
+              right: "15px",
               backgroundColor: theme.palette.primary.main,
               color: theme.palette.common.white,
               zIndex: 1,
@@ -137,11 +140,11 @@ const ListItemImage = ({
           </IconButton>
           <Avatar
             sx={{
+              position: "absolute",
+              bottom: 0,
               width: 328,
               height: 220,
               borderRadius: 1,
-              float: "inline-end",
-              padding: [3, 3, 0, 0],
             }}
             src={srcImg}
             variant="square"

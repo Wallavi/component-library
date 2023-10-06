@@ -19,8 +19,8 @@ export const Primary: Story = {
     srcImg: testingImage,
   },
   render: () => (
-    <div style={{ height: "800px" }}>
-      <div style={{ height: "100px" }}></div>
+    <div style={{ height: "600px" }}>
+      <div style={{ height: "300px" }}></div>
       <ListItemImage
         primaryText={"Primary Text"}
         srcImg={testingImage}
