@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useFloating } from "@floating-ui/react-dom";
 import ClearIcon from "@mui/icons-material/Clear";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import {
@@ -8,6 +7,7 @@ import {
   IconButton,
   ListItem,
   ListItemAvatar,
+  Popover,
   Stack,
   Typography,
 } from "@mui/material";
@@ -24,13 +24,23 @@ const ListItemImage = ({
   secondaryText,
   srcImg,
 }: ListItemImgProps) => {
-  const { refs, floatingStyles } = useFloating({
-    placement: "top-end",
-  });
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null
+  );
   const [showPreview, setShowPreview] = useState<boolean>(false);
 
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+    setShowPreview(true);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setShowPreview(!showPreview);
+  };
+
   return (
-    <>
+    <Box>
       <ListItem
         sx={{
           border: "1px solid",
@@ -42,12 +52,11 @@ const ListItemImage = ({
         secondaryAction={
           <>
             <IconButton
-              ref={refs.setReference}
               edge="end"
               aria-label="visibility"
-              onClick={() => {
-                setShowPreview(true);
-              }}
+              onClick={(e) => handleClick(e)}
+              aria-describedby={"visibilityImg"}
+              sx={{ position: "relative" }}
             >
               <VisibilityIcon
                 sx={{ color: showPreview ? theme.palette.primary.main : "" }}
@@ -94,35 +103,52 @@ const ListItemImage = ({
             {secondaryText}
           </Typography>
         </Stack>
-        {showPreview && (
-          <Box ref={refs.setFloating} style={floatingStyles}>
-            <Box>
-              <IconButton
-                edge="end"
-                aria-label="close-preview"
-                sx={{
-                  position: "absolute",
-                  top: "-18px",
-                  right: "-5px",
-                  backgroundColor: theme.palette.primary.main,
-                  color: theme.palette.common.white,
-                  zIndex: 1,
-                  ":hover": { backgroundColor: theme.palette.primary.main },
-                }}
-                onClick={() => setShowPreview(!showPreview)}
-              >
-                <ClearIcon />
-              </IconButton>
-              <Avatar
-                sx={{ width: 328, height: 220, borderRadius: 1 }}
-                src={srcImg}
-                variant="square"
-              />
-            </Box>
-          </Box>
-        )}
       </ListItem>
-    </>
+      <Popover
+        id={"visibilityImg"}
+        open={showPreview}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        sx={{ padding: [3, 3, 0, 0] }}
+      >
+        <Box>
+          <IconButton
+            edge="end"
+            aria-label="close-preview"
+            sx={{
+              position: "absolute",
+              top: "-18px",
+              right: "-5px",
+              backgroundColor: theme.palette.primary.main,
+              color: theme.palette.common.white,
+              zIndex: 1,
+              ":hover": { backgroundColor: theme.palette.primary.main },
+            }}
+            onClick={handleClose}
+          >
+            <ClearIcon />
+          </IconButton>
+          <Avatar
+            sx={{
+              width: 328,
+              height: 220,
+              borderRadius: 1,
+              float: "inline-end",
+              padding: [3, 3, 0, 0],
+            }}
+            src={srcImg}
+            variant="square"
+          />
+        </Box>
+      </Popover>
+    </Box>
   );
 };
 
