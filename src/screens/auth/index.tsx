@@ -7,10 +7,10 @@ import SimpleCarousel from "./carousel";
 import Profile from "./profile";
 import PasswordRecovery from "./passwordRecovery";
 import SignUp, { SignUpInputProps } from "./signUp";
-import { signUpHelper } from "./signUp/_utils";
 import EmailVerification, {
   EmailVerificationInputProps,
 } from "./emailVerification";
+import NewPassword from "./newPassword";
 
 import Box from "@mui/material/Box";
 
@@ -23,6 +23,20 @@ const Authentication = () => {
   const [emailVerificationError, setEmailVerificationError] = useState<
     null | string
   >(null);
+  const [resetPasswordVerificationError, setResetPasswordVerificationError] =
+    useState<null | string>(null);
+  const [resetPasswordError, setResetPasswordError] = useState<null | string>(
+    null
+  );
+  const [loginError, setLoginError] = useState<null | string>(null);
+  const [signUpError, setSignUpError] = useState<null | string>(null);
+  const [passwordRecoveryError, setPasswordRecoveryError] = useState<
+    null | string
+  >(null);
+  const [confirmPassword, setConfirmPassword] = useState<{
+    email: string;
+    code: string;
+  }>({ email: "", code: "" });
 
   const sliders = [
     {
@@ -71,19 +85,37 @@ const Authentication = () => {
         setEmailUsername(username);
         setShowScreen("emailVerification");
       }
+      if (error.code === "NotAuthorizedException") {
+        setLoginError("Email o Contraseña incorrectos");
+      }
+      if (error.code === "UserNotFoundException") {
+        setLoginError("Email o Contraseña incorrectos");
+      }
     }
   };
 
-  const handleSignUp = ({ email, password }: SignUpInputProps) => {
-    signUpHelper({ username: email, password: password })
-      .then(() => {
-        console.log("Sign-up successful");
-        setEmailUsername(email);
-        setShowScreen("emailVerification");
-      })
-      .catch((error) => {
-        console.error("Error signing up:", error.code);
+  const handleSignUp = async ({ email, password }: SignUpInputProps) => {
+    try {
+      const { user } = await Auth.signUp({
+        username: email,
+        password,
+        attributes: {
+          email: email,
+        },
+        autoSignIn: {
+          // optional - enables auto sign in after user is confirmed
+          enabled: true,
+        },
       });
+      console.log(user);
+      setEmailUsername(email);
+      setShowScreen("emailVerification");
+    } catch (error) {
+      console.log("error signing up:", error);
+      if (error.code === "UsernameExistsException") {
+        setSignUpError("Este Usuario ya está registrado");
+      }
+    }
   };
 
   const handleConfirmSignUp = async ({
@@ -92,17 +124,15 @@ const Authentication = () => {
   }: EmailVerificationInputProps) => {
     try {
       await Auth.confirmSignUp(email, code);
-      try {
-        setEmailVerificationError(null);
-        const user = await Auth.currentAuthenticatedUser();
-        setUser(user);
-      } catch (err) {
-        console.error("Error getting current user:", err);
-      }
+      setEmailVerificationError(null);
+      window.location.reload();
     } catch (error) {
       console.log("error confirming sign up", error.code);
       if (error.code === "CodeMismatchException") {
         setEmailVerificationError("Código Invalido");
+      }
+      if (error.code === "NotAuthorizedException") {
+        setEmailVerificationError("Usuario no autorizado");
       }
     }
   };
@@ -113,6 +143,72 @@ const Authentication = () => {
       Auth.resendSignUp(emailUsername);
     } catch (error) {
       console.log("error resend sign up", error);
+    }
+  };
+
+  const handleConfirmPassword = async ({
+    email,
+    code,
+  }: {
+    email: string;
+    code: string;
+  }) => {
+    // Send confirmation code to user's email
+    // try {
+    //   await Auth.verifyCurrentUserAttributeSubmit(email, code);
+    //   setConfirmPassword({ email: email, code: code });
+    //   setShowScreen("resetPassword");
+    // } catch (err) {
+    //   console.log("failed with error", err);
+    //   if (err.code === "CodeMismatchException") {
+    //     setResetPasswordVerificationError("Código Invalido");
+    //   }
+    // }
+
+    setConfirmPassword({ email: email, code: code });
+    setShowScreen("resetPassword");
+  };
+
+  const handleResetPassword = async ({
+    newPassword,
+  }: {
+    newPassword: string;
+  }) => {
+    try {
+      const data = await Auth.forgotPasswordSubmit(
+        confirmPassword.email,
+        confirmPassword.code,
+        newPassword
+      );
+      console.log(data);
+      setShowScreen("login");
+      try {
+        const user = await Auth.currentAuthenticatedUser();
+        setUser(user);
+      } catch (err) {
+        console.error("Error getting current user:", err);
+      }
+    } catch (err) {
+      console.log(err);
+      if (err.code === "CodeMismatchException") {
+        setResetPasswordError("Código Invalido");
+        setResetPasswordVerificationError("Código Invalido");
+      }
+    }
+  };
+
+  // Collect confirmation code and new password
+  const handlePasswordRecovery = async ({ email }: { email: string }) => {
+    try {
+      const data = await Auth.forgotPassword(email);
+      setEmailUsername(email);
+      setShowScreen("passwordVerification");
+      console.log("handlePasswordRecovery", data);
+    } catch (err) {
+      console.log("handlePasswordRecoveryError", err.code);
+      if (err.code === "UserNotFoundException") {
+        setPasswordRecoveryError("Usuario no encontrado");
+      }
     }
   };
 
@@ -130,7 +226,7 @@ const Authentication = () => {
       }
     }
 
-    fetchData(); // Call the async function
+    fetchData();
   }, []);
 
   return (
@@ -151,6 +247,8 @@ const Authentication = () => {
                 }
                 handleSignUp={() => setShowScreen("signup")}
                 handleLogin={handleLogin}
+                loginError={loginError}
+                setLoginError={setLoginError}
               />
             ) : showScreen === "password-recovery" ? (
               <PasswordRecovery
@@ -160,6 +258,9 @@ const Authentication = () => {
                 }
                 handleCancel={() => setShowScreen("login")}
                 handleSignUp={() => setShowScreen("signup")}
+                handlePasswordRecovery={handlePasswordRecovery}
+                passwordRecoveryError={passwordRecoveryError}
+                setPasswordRecoveryError={setPasswordRecoveryError}
               />
             ) : showScreen === "signup" ? (
               <SignUp
@@ -169,6 +270,8 @@ const Authentication = () => {
                 }
                 handleLogin={() => setShowScreen("login")}
                 handleSignUp={handleSignUp}
+                signUpError={signUpError}
+                setSignUpError={setSignUpError}
               />
             ) : showScreen === "emailVerification" ? (
               <EmailVerification
@@ -177,9 +280,30 @@ const Authentication = () => {
                   "https://goho.vercel.app/_next/static/media/logo.14efb6e2.svg"
                 }
                 confirmEmail={emailUsername}
-                handleConfirmSignUp={handleConfirmSignUp}
+                handleConfirm={handleConfirmSignUp}
                 handleResendCode={handleResendCode}
                 emailVerificationError={emailVerificationError}
+              />
+            ) : showScreen === "passwordVerification" ? (
+              <EmailVerification
+                title={"Por favor, verifica tu correo electrónico"}
+                logo={
+                  "https://goho.vercel.app/_next/static/media/logo.14efb6e2.svg"
+                }
+                confirmEmail={emailUsername}
+                handleConfirm={handleConfirmPassword}
+                handleResendCode={handleResendCode}
+                emailVerificationError={resetPasswordVerificationError}
+              />
+            ) : showScreen === "resetPassword" ? (
+              <NewPassword
+                title={"Por favor, verifica tu correo electrónico"}
+                logo={
+                  "https://goho.vercel.app/_next/static/media/logo.14efb6e2.svg"
+                }
+                handleResetPassword={handleResetPassword}
+                resetPasswordError={resetPasswordError}
+                setResetPasswordError={setResetPasswordError}
               />
             ) : null}
           </Box>

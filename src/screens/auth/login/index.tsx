@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import validationSchema from "./validationSchema";
 
@@ -7,6 +7,11 @@ import AuthLayout from "../authLayout";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import FormHelperText from "@mui/material/FormHelperText";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 
 interface LoginProps {
   logo: string;
@@ -14,6 +19,8 @@ interface LoginProps {
   handleRecoveryPassword: () => void;
   handleSignUp: () => void;
   handleLogin: (values: { username: string; password: string }) => void;
+  loginError?: null | string;
+  setLoginError?: (values: string | null) => void;
 }
 
 const Login = ({
@@ -22,7 +29,11 @@ const Login = ({
   handleRecoveryPassword,
   handleSignUp,
   handleLogin,
+  loginError,
+  setLoginError,
 }: LoginProps) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -31,10 +42,22 @@ const Login = ({
     validationSchema: validationSchema, // Use the Yup validation schema
     onSubmit: (values) => {
       // Handle form submission here
-      console.log("Form values:", values);
       handleLogin({ username: values.email, password: values.password });
     },
   });
+
+  const handleOnChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    formik.handleChange(e);
+    if (setLoginError) {
+      setLoginError(null);
+    }
+  };
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <AuthLayout logo={logo} title={title}>
@@ -45,6 +68,7 @@ const Login = ({
         sx={{
           ".MuiButton-root": { marginTop: 1 },
           ".MuiButton-contained": { marginTop: 2, marginBottom: 1.5 },
+          ".MuiFormHelperText-root": { marginTop: 0.25, marginLeft: 0.5 },
         }}
         onSubmit={formik.handleSubmit}
       >
@@ -53,22 +77,41 @@ const Login = ({
           id="email"
           name="email"
           value={formik.values.email}
-          onChange={formik.handleChange}
+          onChange={handleOnChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
           sx={{ minHeight: 74 }}
         />
         <TextField
           label={"Contraseña"}
-          type="password"
+          type={showPassword ? "text" : "password"}
           id="password"
           name="password"
           value={formik.values.password}
-          onChange={formik.handleChange}
+          onChange={handleOnChange}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
           sx={{ minHeight: 74 }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={handleTogglePasswordVisibility} edge="end">
+                  <RemoveRedEyeIcon
+                    sx={{
+                      color: (theme) =>
+                        showPassword
+                          ? theme.palette.primary.main
+                          : theme.palette.grey[400],
+                    }}
+                  />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
+        <FormHelperText sx={{ height: 16 }} error>
+          {loginError}
+        </FormHelperText>
         <Button type="submit" variant="contained" sx={{ height: 45 }}>
           Iniciar sesión
         </Button>

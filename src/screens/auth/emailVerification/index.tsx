@@ -18,7 +18,7 @@ interface EmailVerificationProps {
   logo: string;
   title: string;
   confirmEmail: string;
-  handleConfirmSignUp: (value: EmailVerificationInputProps) => void;
+  handleConfirm: (value: EmailVerificationInputProps) => void;
   handleResendCode: () => void;
   emailVerificationError?: string | null;
 }
@@ -36,7 +36,7 @@ const EmailVerification = ({
   logo,
   title,
   confirmEmail,
-  handleConfirmSignUp,
+  handleConfirm,
   handleResendCode,
   emailVerificationError,
 }: EmailVerificationProps) => {
@@ -63,8 +63,7 @@ const EmailVerification = ({
     validationSchema: validationSchema, // Use the Yup validation schema
     onSubmit: (values) => {
       // Handle form submission here
-      console.log("Form values:", values);
-      handleConfirmSignUp({
+      handleConfirm({
         code: `${values.number1}${values.number2}${values.number3}${values.number4}${values.number5}${values.number6}`,
         email: confirmEmail,
       });
@@ -132,11 +131,6 @@ const EmailVerification = ({
     if (lastInputRef && lastInputRef.current) {
       lastInputRef.current.focus();
     }
-
-    formik.validateForm().then((errors) => {
-      // Handle validation errors here, if any
-      console.log("Validation errors after paste:", errors);
-    });
   };
 
   return (
@@ -204,12 +198,11 @@ const EmailVerification = ({
           {emailVerificationError ? (
             <FormHelperText error>{emailVerificationError}</FormHelperText>
           ) : (
-            (Boolean(formik.errors.number1) ||
-              Boolean(formik.errors.number2) ||
-              Boolean(formik.errors.number3) ||
-              Boolean(formik.errors.number4) ||
-              Boolean(formik.errors.number5) ||
-              Boolean(formik.errors.number6)) && (
+            verificationEmailInputs.some(
+              (inputValue) =>
+                formik.touched[inputValue.name] &&
+                formik.errors[inputValue.name]
+            ) && (
               <FormHelperText error>
                 El código de verificación no es correcto
               </FormHelperText>

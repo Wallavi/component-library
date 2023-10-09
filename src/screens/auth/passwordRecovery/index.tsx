@@ -7,12 +7,16 @@ import AuthLayout from "../authLayout";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import FormHelperText from "@mui/material/FormHelperText";
 
 interface LoginProps {
   logo: string;
   title: string;
   handleCancel: () => void;
   handleSignUp: () => void;
+  handlePasswordRecovery: (values: { email: string }) => void;
+  passwordRecoveryError?: string | null;
+  setPasswordRecoveryError?: (values: string | null) => void;
 }
 
 const PasswordRecovery = ({
@@ -20,18 +24,29 @@ const PasswordRecovery = ({
   title,
   handleCancel,
   handleSignUp,
+  handlePasswordRecovery,
+  passwordRecoveryError,
+  setPasswordRecoveryError,
 }: LoginProps) => {
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: "",
     },
     validationSchema: validationSchema, // Use the Yup validation schema
     onSubmit: (values) => {
       // Handle form submission here
-      console.log("Form values:", values);
+      handlePasswordRecovery({ email: values.email });
     },
   });
+
+  const handleOnChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    formik.handleChange(e);
+    if (setPasswordRecoveryError) {
+      setPasswordRecoveryError(null);
+    }
+  };
 
   return (
     <AuthLayout logo={logo} title={title}>
@@ -41,7 +56,8 @@ const PasswordRecovery = ({
         autoComplete="off"
         sx={{
           ".MuiButton-root": { marginTop: 1 },
-          ".MuiButton-contained": { marginTop: 1, marginBottom: 1 },
+          ".MuiButton-contained": { marginTop: 0.5, marginBottom: 1 },
+          ".MuiFormHelperText-root": { marginTop: 0.25, marginLeft: 0.5 },
         }}
         onSubmit={formik.handleSubmit}
       >
@@ -50,11 +66,14 @@ const PasswordRecovery = ({
           id="email"
           name="email"
           value={formik.values.email}
-          onChange={formik.handleChange}
+          onChange={handleOnChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
           sx={{ minHeight: 74 }}
         />
+        <FormHelperText sx={{ height: 16 }} error>
+          {passwordRecoveryError}
+        </FormHelperText>
         <Box display={"flex"} justifyContent={"space-between"}>
           <Button type="submit" variant="contained" sx={{ height: 45 }}>
             Enviar Codigo de Confirmación
