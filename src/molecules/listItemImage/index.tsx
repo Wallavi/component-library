@@ -17,12 +17,14 @@ interface ListItemImgProps {
   primaryText: string;
   secondaryText?: string;
   srcImg: string;
+  deleteItem?: () => void;
 }
 
 const ListItemImage = ({
   primaryText,
   secondaryText,
   srcImg,
+  deleteItem,
 }: ListItemImgProps) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
@@ -62,9 +64,15 @@ const ListItemImage = ({
                 sx={{ color: showPreview ? theme.palette.primary.main : "" }}
               />
             </IconButton>
-            <IconButton edge="end" aria-label="clear">
-              <ClearIcon />
-            </IconButton>
+            {deleteItem && (
+              <IconButton
+                edge="end"
+                aria-label="clear"
+                onClick={() => deleteItem()}
+              >
+                <ClearIcon />
+              </IconButton>
+            )}
           </>
         }
       >
@@ -78,7 +86,7 @@ const ListItemImage = ({
             sx={{ width: 40, height: 40, borderRadius: 1 }}
             variant="square"
             src={srcImg}
-          ></Avatar>
+          />
         </ListItemAvatar>
         <Stack
           sx={{ padding: [0.1, 0, 0.1, 0] }}

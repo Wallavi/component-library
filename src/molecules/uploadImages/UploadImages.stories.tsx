@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import UploadImages from "./index";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -6,12 +7,24 @@ const meta = {
   component: UploadImages,
 } satisfies Meta<typeof UploadImages>;
 
-type Story = StoryObj<typeof meta>;
-
 export default meta;
 
+type Story = StoryObj<typeof UploadImages>;
+
+const UploadImagesWithHooks = () => {
+  const [images, setImages] = useState<Array<any>>([]);
+
+  return (
+    <UploadImages
+      handleDropImage={(newFiles) => {
+        console.log("files..", newFiles);
+        let imagesC = [...images];
+        setImages(imagesC.concat(newFiles));
+      }}
+    />
+  );
+};
+
 export const Primary: Story = {
-    args: {
-     
-    },
-  };
+  render: () => <UploadImagesWithHooks />,
+};
