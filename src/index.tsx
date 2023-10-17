@@ -28,6 +28,13 @@ import TableStockCell, {
   TableStockProps,
 } from "grid/table/components/table-stock-cell";
 
+//auth
+import Login from "screens/auth/login";
+import PasswordRecovery from "screens/auth/passwordRecovery";
+import SignUp from "screens/auth/signUp";
+import EmailVerification from "screens/auth/emailVerification";
+import NewPassword from "screens/auth/newPassword";
+
 //helpers
 import { handleFilter, updateFilter } from "grid/filters/helpers";
 
@@ -58,6 +65,11 @@ export {
   TableExpandCell,
   OpenTableCell,
   TableStockCell,
+  Login,
+  PasswordRecovery,
+  SignUp,
+  EmailVerification,
+  NewPassword,
   handleFilter,
   updateFilter,
   TableExpandCellProps,
