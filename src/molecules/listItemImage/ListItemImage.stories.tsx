@@ -1,11 +1,18 @@
-import ListItemImage from "./index";
-import type { Meta, StoryObj } from "@storybook/react";
-import testingImage from "../../assets/testingImage.png";
 import React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+
+import ListItemImage from "./index";
+import testingImage from "../../assets/testingImage.png";
 
 const meta = {
-  title: "Atoms/ListItemImage",
+  title: "Molecules/ListItemImage",
   component: ListItemImage,
+  render: ({ ...args }) => (
+    <div style={{ height: "600px" }}>
+      <div style={{ height: "300px" }}></div>
+      <ListItemImage {...args} />{" "}
+    </div>
+  ),
 } satisfies Meta<typeof ListItemImage>;
 
 type Story = StoryObj<typeof meta>;
@@ -17,15 +24,8 @@ export const Primary: Story = {
     primaryText: "Primary Text",
     secondaryText: "Secondary Text",
     srcImg: testingImage,
+    deleteItem: () => {
+      console.log("deleteItem");
+    },
   },
-  render: () => (
-    <div style={{ height: "600px" }}>
-      <div style={{ height: "300px" }}></div>
-      <ListItemImage
-        primaryText={"Primary Text"}
-        srcImg={testingImage}
-        secondaryText="Secondary Text"
-      ></ListItemImage>{" "}
-    </div>
-  ),
 };

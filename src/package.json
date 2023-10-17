@@ -18,5 +18,8 @@
   "homepage": "https://github.com/Wallavi/component-library#readme",
   "dependencies": {
     "auto": "^10.42.2"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.5"
   }
 }
