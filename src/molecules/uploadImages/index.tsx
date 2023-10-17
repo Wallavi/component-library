@@ -6,24 +6,24 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { Typography } from "@mui/material";
 
 import resizeFile from "../../_helpers/resizeImage";
-import { v4 as uuidv4 } from "uuid";
 
 interface UploadImagesProps {
   handleDropImage: (files: Array<any>) => void;
 }
 
 const UploadImages = ({ handleDropImage }: UploadImagesProps) => {
-  const onDrop = async (droppedFiles: Array<any>) => {
+  const onDrop = async (droppedFiles: Array<File>) => {
     let files = [];
 
     for (let i = 0; i < droppedFiles.length; i++) {
       const image = await resizeFile(droppedFiles[i]);
+      const dataImg = droppedFiles[i];
       files.push({
         base64: image,
-        contentType: "image/jpeg",
-        name: uuidv4() + ".jpeg",
-        path: droppedFiles[i].path,
-        size: droppedFiles[i].size,
+        type: dataImg.type,
+        name: dataImg.name,
+        size: dataImg.size,
+        lastModified: dataImg.lastModified,
       });
     }
     handleDropImage(files);
@@ -32,7 +32,7 @@ const UploadImages = ({ handleDropImage }: UploadImagesProps) => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/jpeg,image/png" as unknown as Accept,
     noKeyboard: true,
-    maxSize: 20971520,
+    maxSize: 3000000,
     multiple: true,
     onDrop,
   });
@@ -47,6 +47,7 @@ const UploadImages = ({ handleDropImage }: UploadImagesProps) => {
           border: "1px",
           borderStyle: "dashed",
           borderRadius: 1,
+          cursor: "pointer",
         }}
       >
         <Box
@@ -65,7 +66,19 @@ const UploadImages = ({ handleDropImage }: UploadImagesProps) => {
               gap: "20px",
             }}
           >
-            <FileUploadIcon />
+            <Box
+              sx={{
+                width: "45px",
+                height: "45px",
+                backgroundColor: (theme) => theme.palette.grey[200],
+                borderRadius: "100px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <FileUploadIcon />
+            </Box>
             <Box>
               <Typography>Click para subir o arrastra la imagen</Typography>
               <Typography>(JPG, PNG de máximo 3 MB)</Typography>

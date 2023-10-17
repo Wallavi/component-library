@@ -17,7 +17,6 @@ const UploadImagesWithHooks = () => {
   return (
     <UploadImages
       handleDropImage={(newFiles) => {
-        console.log("files..", newFiles);
         let imagesC = [...images];
         setImages(imagesC.concat(newFiles));
       }}

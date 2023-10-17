@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardUploadImages from "./index";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -11,8 +11,11 @@ export default meta;
 
 type Story = StoryObj<typeof CardUploadImages>;
 
-const CardUploadImagesWithHooks = () => {
+const CardUploadImagesWithHooks = (args: any) => {
   const [images, setImages] = useState<Array<any>>([]);
+  useEffect(() => {
+    console.log("d-", args.disabled);
+  }, [args.disabled]);
 
   return (
     <CardUploadImages
@@ -26,11 +29,12 @@ const CardUploadImagesWithHooks = () => {
         imagesC.splice(idx, 1);
         setImages(imagesC);
       }}
-      customMap={{ primaryText: "path" }}
+      disabled={args.disabled}
     />
   );
 };
 
 export const Primary: Story = {
-  render: () => <CardUploadImagesWithHooks />,
+  args: { disabled: false },
+  render: (args) => <CardUploadImagesWithHooks {...args} />,
 };

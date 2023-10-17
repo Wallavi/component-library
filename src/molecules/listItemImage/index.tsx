@@ -18,6 +18,7 @@ interface ListItemImgProps {
   secondaryText?: string;
   srcImg: string;
   deleteItem?: () => void;
+  disabled?: boolean;
 }
 
 const ListItemImage = ({
@@ -25,6 +26,7 @@ const ListItemImage = ({
   secondaryText,
   srcImg,
   deleteItem,
+  disabled = false,
 }: ListItemImgProps) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
@@ -64,7 +66,7 @@ const ListItemImage = ({
                 sx={{ color: showPreview ? theme.palette.primary.main : "" }}
               />
             </IconButton>
-            {deleteItem && (
+            {deleteItem && !disabled && (
               <IconButton
                 edge="end"
                 aria-label="clear"
