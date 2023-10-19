@@ -23,11 +23,6 @@ export const updateFilter = ({
       findOption.selected = false;
     }
   });
-
-  // const updatedFilters = selectedFilters.filter(
-  //   (filter) => filter.value !== filteredOption.value
-  // );
-  // setSelectedFilters(updatedFilters);
 };
 
 export const handleFilter = ({

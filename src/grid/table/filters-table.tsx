@@ -120,7 +120,7 @@ const FilterTableListHooks = () => {
     };
     const fuse = new Fuse(rows, options);
     const newRowtoShow: typeof rows = [];
-    // const searchFilter = selectedFilters.find((filter) => filter.filterLabel === "Search");
+
     if (selectedFilters.length > 0) {
       selectedFilters.forEach((selectedFilter) => {
         if (selectedFilter.filterLabel === "Search") {
