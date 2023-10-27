@@ -27,6 +27,7 @@ import TableStockCell, {
   TableStockCellProps,
   TableStockProps,
 } from "grid/table/components/table-stock-cell";
+import PriceFilter from "grid/filters/price-filters";
 
 //auth
 import Login from "screens/auth/login";
@@ -65,6 +66,7 @@ export {
   TableExpandCell,
   OpenTableCell,
   TableStockCell,
+  PriceFilter,
   Login,
   PasswordRecovery,
   SignUp,
