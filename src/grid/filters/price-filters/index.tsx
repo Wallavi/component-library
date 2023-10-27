@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-// import Histogram from "./histogram";
 import Histogram from "./price-histogram";
 import MinimumDistanceSlider from "./price-slider";
 
