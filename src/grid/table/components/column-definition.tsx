@@ -65,14 +65,15 @@ export const rows = [
     name: {
       value: "Makeup Lancome",
       category: "makeup",
-      image: "https://plus.unsplash.com/premium_photo-1677526496597-aa0f49053ce2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFrZSUyMHVwfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+      image:
+        "https://plus.unsplash.com/premium_photo-1677526496597-aa0f49053ce2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFrZSUyMHVwfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
     },
     stock: {
       value: 10,
       variants: 2,
     },
     status: "Published",
-    price: 23.99,
+    price: 239900,
   },
   {
     id: 2,
@@ -80,14 +81,15 @@ export const rows = [
     name: {
       value: "Makeup Lipstick",
       category: "makeup",
-      image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWFrZSUyMHVwfGVufDB8fDB8fHww&auto=format&fit=crop&w=100&q=60"
+      image:
+        "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWFrZSUyMHVwfGVufDB8fDB8fHww&auto=format&fit=crop&w=100&q=60",
     },
     stock: {
       value: 0,
       variants: 0,
     },
     status: "Draft",
-    price: 95.0,
+    price: 950000,
   },
   {
     id: 3,
@@ -101,7 +103,7 @@ export const rows = [
       variants: 0,
     },
     status: "Draft",
-    price: 17.99,
+    price: 179900,
   },
   {
     id: 4,
@@ -115,7 +117,7 @@ export const rows = [
       variants: 4,
     },
     status: "Published",
-    price: 155.0,
+    price: 155000,
   },
   {
     id: 5,
@@ -129,7 +131,7 @@ export const rows = [
       variants: 3,
     },
     status: "Published",
-    price: 185.0,
+    price: 185000,
   },
   {
     id: 6,
@@ -143,7 +145,7 @@ export const rows = [
       variants: 6,
     },
     status: "Published",
-    price: 233.99,
+    price: 233990,
   },
   {
     id: 7,
@@ -157,7 +159,7 @@ export const rows = [
       variants: 0,
     },
     status: "Draft",
-    price: 92.0,
+    price: 920000,
   },
   {
     id: 8,
@@ -171,7 +173,7 @@ export const rows = [
       variants: 6,
     },
     status: "Draft",
-    price: 137.99,
+    price: 1379900,
   },
   {
     id: 9,
@@ -185,7 +187,7 @@ export const rows = [
       variants: 4,
     },
     status: "Published",
-    price: 175.0,
+    price: 1750000,
   },
   {
     id: 10,
@@ -199,6 +201,6 @@ export const rows = [
       variants: 8,
     },
     status: "Published",
-    price: 195.0,
+    price: 195000,
   },
 ];

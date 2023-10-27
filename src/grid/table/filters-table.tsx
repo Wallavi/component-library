@@ -10,6 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import TableList from "./index";
 import MenuFilter from "../filters/menu-filters";
 import MenuChipsFiltered from "../filters/chip-filters";
+import PriceFilter from "../filters/price-filters";
 import {
   category,
   status,
@@ -22,6 +23,7 @@ import { DataFiltersProps, FilterProps } from "../filters/types";
 import Fuse from "fuse.js";
 
 const FilterTableListHooks = () => {
+  const dataHousePrices = rows.map((row) => row.price);
   const [categoryFilter, setCategoryFilter] = useImmer<FilterProps>({
     data: category,
     buttonLabel: "Category",
@@ -34,6 +36,7 @@ const FilterTableListHooks = () => {
     data: stock,
     buttonLabel: "Stock",
   });
+  const [pricesFilter, setPricesFilter] = useState({ min: 0, max: 0 });
   const [search, setSearch] = useState("");
 
   const [rowsToShow, setRowsToShow] = useState(rows);
@@ -41,6 +44,37 @@ const FilterTableListHooks = () => {
   const [selectedFilters, setSelectedFilters] = useState<DataFiltersProps[]>(
     []
   );
+
+  const getFilterPrices = (valuePrices: { max: number; min: number }) => {
+    setPricesFilter(valuePrices);
+    const updateFilterPrices = selectedFilters.find(
+      (filter) => filter.filterLabel === "Prices"
+    );
+    if (updateFilterPrices) {
+      const newFilterPrices = selectedFilters?.map((filter) => {
+        if (filter.filterLabel === "Prices") {
+          return {
+            ...filter,
+            label: `$${valuePrices.min} - $${valuePrices.max}`,
+            value: `$${valuePrices.min} - $${valuePrices.max}`,
+          };
+        } else {
+          return filter;
+        }
+      });
+      setSelectedFilters(newFilterPrices);
+    } else if (pricesFilter.min > 0 || pricesFilter.max > 0) {
+      setSelectedFilters([
+        ...selectedFilters,
+        {
+          value: `$${valuePrices.min} - $${valuePrices.max}`,
+          label: `$${valuePrices.min} - $${valuePrices.max}`,
+          filterLabel: "Prices",
+          selected: true,
+        },
+      ]);
+    }
+  };
 
   // Sets a click handler to change the label's value
   const categoryFiltered = (filterOption: DataFiltersProps) => {
@@ -71,35 +105,54 @@ const FilterTableListHooks = () => {
   };
 
   const searchFiltered = (searchValue: string) => {
-    setSelectedFilters([
-      ...selectedFilters,
-      {
-        value: searchValue.toLowerCase(),
-        label: searchValue,
-        filterLabel: "Search",
-        selected: true,
-      },
-    ]);
+    const updateFilterSearch = selectedFilters.find(
+      (filter) => filter.filterLabel === "Search"
+    );
+    if (searchValue) {
+      if (updateFilterSearch) {
+        const newFilterSearch = selectedFilters?.map((filter) => {
+          if (filter.filterLabel === "Search") {
+            return {
+              ...filter,
+              value: searchValue.toLowerCase(),
+              label: searchValue,
+            };
+          } else {
+            return filter;
+          }
+        });
+        setSelectedFilters(newFilterSearch);
+      } else {
+        setSelectedFilters([
+          ...selectedFilters,
+          {
+            value: searchValue.toLowerCase(),
+            label: searchValue,
+            filterLabel: "Search",
+            selected: true,
+          },
+        ]);
+      }
+    } else if (updateFilterSearch) {
+      const newFilterSearch = selectedFilters?.filter(
+        (filter) => filter.filterLabel !== "Search"
+      );
+      setSelectedFilters(newFilterSearch);
+    }
   };
 
   const deletedFilter = (filteredOption: DataFiltersProps) => {
     updateFilter({
       filterSetter: setCategoryFilter,
       filteredOption: filteredOption,
-      selectedFilters: selectedFilters,
-      setSelectedFilters: setSelectedFilters,
     });
     updateFilter({
       filterSetter: setStatusFilter,
       filteredOption: filteredOption,
-      selectedFilters: selectedFilters,
-      setSelectedFilters: setSelectedFilters,
     });
     updateFilter({
       filterSetter: setStockFilter,
       filteredOption: filteredOption,
-      selectedFilters: selectedFilters,
-      setSelectedFilters: setSelectedFilters,
     });
     const updatedFilters = selectedFilters.filter(
       (filter) => filter.value !== filteredOption.value
@@ -107,11 +160,9 @@ const FilterTableListHooks = () => {
     setSelectedFilters(updatedFilters);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      setSearch("");
-      searchFiltered(search);
-    }
+  const handleKeyDown = (value: string) => {
+    setSearch(value);
+    searchFiltered(value);
   };
 
   useEffect(() => {
@@ -169,6 +220,15 @@ const FilterTableListHooks = () => {
               newRowtoShow.push(row);
             }
           }
+          if (selectedFilter.filterLabel === "Prices") {
+            if (
+              row.price >= pricesFilter.min &&
+              row.price <= pricesFilter.max &&
+              !newRowtoShow.includes(row)
+            ) {
+              newRowtoShow.push(row);
+            }
+          }
         });
       });
       setRowsToShow(newRowtoShow);
@@ -180,6 +240,7 @@ const FilterTableListHooks = () => {
     categoryFilter.buttonLabel,
     statusFilter.buttonLabel,
     stockFilter.buttonLabel,
+    pricesFilter,
   ]);
 
   return (
@@ -188,8 +249,9 @@ const FilterTableListHooks = () => {
         id="search-by-name"
         placeholder="Buscar por nombre"
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        onKeyDown={handleKeyDown}
+        onChange={(e) => handleKeyDown(e.target.value)}
+        // onKeyDown={handleKeyDown}
+        // onKeyUp={handleKeyDown}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -214,6 +276,11 @@ const FilterTableListHooks = () => {
           <MenuFilter filters={categoryFilter} setFilters={categoryFiltered} />
           <MenuFilter filters={statusFilter} setFilters={statusFiltered} />
           <MenuFilter filters={stockFilter} setFilters={stockFiltered} />
+          <PriceFilter
+            buttonLabel="Price"
+            prices={dataHousePrices}
+            getFilterPrices={getFilterPrices}
+          />
         </>
       </MenuChipsFiltered>
       <Box maxWidth={"100%"} overflow={"auto"}>
