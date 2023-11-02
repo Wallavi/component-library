@@ -4,6 +4,9 @@ import Input from "atoms/Input";
 import LightTooltip from "atoms/Tooltip";
 import Dropdown from "atoms/Dropdown";
 
+//molecules
+import CardUploadImages from "molecules/cardUploadImages";
+
 // layout
 import CenteredContainer from "layout/CenteredContainer";
 import CenterInputsContainer from "layout/CenterInputsContainer";
@@ -28,6 +31,7 @@ import TableStockCell, {
   TableStockProps,
 } from "grid/table/components/table-stock-cell";
 import PriceFilter from "grid/filters/price-filters";
+import InterestPlaces from "grid/filters/placeofinterest";
 
 //auth
 import Login from "screens/auth/login";
@@ -35,6 +39,7 @@ import PasswordRecovery from "screens/auth/passwordRecovery";
 import SignUp from "screens/auth/signUp";
 import EmailVerification from "screens/auth/emailVerification";
 import NewPassword from "screens/auth/newPassword";
+import SimpleCarousel from "screens/auth/carousel";
 
 //helpers
 import { handleFilter, updateFilter } from "grid/filters/helpers";
@@ -59,6 +64,7 @@ export {
   LightTooltip,
   Dropdown,
   TableList,
+  CardUploadImages,
   MenuChipsFiltered,
   MenuFilter,
   MenuSearchFilter,
@@ -70,6 +76,8 @@ export {
   Login,
   PasswordRecovery,
   SignUp,
+  SimpleCarousel,
+  InterestPlaces,
   EmailVerification,
   NewPassword,
   handleFilter,
