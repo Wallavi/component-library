@@ -8,7 +8,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { grey } from "@mui/material/colors";
 import SearchIcon from "@mui/icons-material/Search";
 
-import InterestPlaces, {LocationSelectedProps} from "grid/filters/placeofinterest";
+import InterestPlaces, {LocationSelectedProps} from "grid/filters/interest-place-filters";
 import TableList from "./index";
 import MenuFilter from "../filters/menu-filters";
 import MenuChipsFiltered from "../filters/chip-filters";
@@ -311,6 +311,8 @@ const FilterTableListHooks = () => {
     statusFilter.buttonLabel,
     stockFilter.buttonLabel,
     pricesFilter,
+    places,
+    searchedPlaces
   ]);
 
   return (
@@ -357,6 +359,9 @@ const FilterTableListHooks = () => {
             latitude={21.48073}
             zoom={14}
             locationSelected={locationSelected}
+            sx={{
+              width: 500, height: 200, marginBottom: 8
+            }}
           />
         </>
       </MenuChipsFiltered>

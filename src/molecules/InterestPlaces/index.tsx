@@ -6,14 +6,12 @@ import { AddressAutofill } from "@mapbox/search-js-react";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import TextField from "@mui/material/TextField";
-
+import { SxProps } from '@mui/material/styles';
 import { useTheme, alpha } from "@mui/material";
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+
 import ApartmentIcon from "@mui/icons-material/Apartment";
 
 const MAPBOX_TOKEN =
@@ -26,33 +24,30 @@ export interface LocationSelectedProps {
   address: string;
 }
 
-interface InterestPlacesProps {
-  buttonLabel: string;
+export interface InterestPlacesProps {
   longitude: number;
   latitude: number;
   zoom: number;
   address?: string;
   locationSelected: (value: LocationSelectedProps) => void;
+  sx?: SxProps;
 }
 
 const InterestPlaces = ({
-  buttonLabel,
   longitude,
   latitude,
   zoom,
   address,
   locationSelected,
+  sx
 }: InterestPlacesProps) => {
   const theme = useTheme();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [place, setPlace] = useState(address ? address : "");
   const [viewState, setViewState] = React.useState({
     longitude: longitude,
     latitude: latitude,
     zoom: zoom,
   });
-
-  const open = Boolean(anchorEl);
 
   const geojson: FeatureCollection = {
     type: "FeatureCollection",
@@ -75,14 +70,6 @@ const InterestPlaces = ({
       "circle-radius": 40,
       "circle-color": alpha(theme.palette.primary.main, 0.3),
     },
-  };
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
   };
 
   const handleViewState = (evt: ViewStateChangeEvent) => {
@@ -140,84 +127,62 @@ const InterestPlaces = ({
 
   return (
     <>
-      <Button
-        onClick={handleClick}
-        endIcon={<ExpandMoreIcon />}
-        sx={{
-          textTransform: "none",
-          color: (theme) => theme.palette.primary.dark,
-          marginRight: 2,
-        }}
-      >
-        {buttonLabel}
-      </Button>
-      <Menu
-        id="category-menu"
-        MenuListProps={{
-          "aria-labelledby": "category-button",
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={() => handleClose()}
-        onKeyDown={(e) => e.stopPropagation()}
-      >
-        <Box padding={2} onKeyDown={(e) => e.stopPropagation()}>
-          <form autoComplete="off">
-            {/* @ts-ignore */}
-            <AddressAutofill
-              accessToken={MAPBOX_TOKEN}
-              onRetrieve={handleRetrieve}
-              popoverOptions={{
-                offset: 20,
-              }}
-              theme={{
-                cssText: `
+      <Box padding={2} onKeyDown={(e) => e.stopPropagation()} sx={sx}>
+        <form autoComplete="off">
+          {/* @ts-ignore */}
+          <AddressAutofill
+            accessToken={MAPBOX_TOKEN}
+            onRetrieve={handleRetrieve}
+            popoverOptions={{
+              offset: 20,
+            }}
+            theme={{
+              cssText: `
                 .Results,
                 .Modal {
                   z-index: 3000
                 }
                 `,
-              }}
-              browserAutofillEnabled={false}
-            >
-              <TextField
-                fullWidth
-                value={place}
-                autoComplete="off"
-                id="mapbox-autofill"
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  setPlace(event.target.value);
-                }}
-                sx={{
-                  marginBottom: 1.5,
-                  ".MuiInputBase-root": {
-                    height: 56,
-                  },
-                }}
-                inputProps={{
-                  autoComplete: "off",
-                }}
-              />
-            </AddressAutofill>
-          </form>
-          <Map
-            {...viewState}
-            id="mymap"
-            onMove={(evt) => handleViewState(evt)}
-            onMoveEnd={(evt) => handleOnMoveEnd(evt)}
-            style={{ width: 500, height: 200 }}
-            mapStyle="mapbox://styles/mapbox/light-v11"
-            mapboxAccessToken={MAPBOX_TOKEN}
+            }}
+            browserAutofillEnabled={false}
           >
-            <Marker key={"zone1"} {...viewState}>
-              <ApartmentIcon color="primary" />
-            </Marker>
-            <Source id="my-data" type="geojson" data={geojson}>
-              <Layer {...layerStyle} />
-            </Source>
-          </Map>
-        </Box>
-      </Menu>
+            <TextField
+              fullWidth
+              value={place}
+              autoComplete="off"
+              id="mapbox-autofill"
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setPlace(event.target.value);
+              }}
+              sx={{
+                marginBottom: 1.5,
+                ".MuiInputBase-root": {
+                  height: 56,
+                },
+              }}
+              inputProps={{
+                autoComplete: "off",
+              }}
+            />
+          </AddressAutofill>
+        </form>
+        <Map
+          {...viewState}
+          id="mymap"
+          onMove={(evt) => handleViewState(evt)}
+          onMoveEnd={(evt) => handleOnMoveEnd(evt)}
+          style={{ width: "100%", height: "100%" }}
+          mapStyle="mapbox://styles/mapbox/light-v11"
+          mapboxAccessToken={MAPBOX_TOKEN}
+        >
+          <Marker key={"zone1"} {...viewState}>
+            <ApartmentIcon color="primary" />
+          </Marker>
+          <Source id="my-data" type="geojson" data={geojson}>
+            <Layer {...layerStyle} />
+          </Source>
+        </Map>
+      </Box>
     </>
   );
 };
