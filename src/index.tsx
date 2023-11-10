@@ -6,6 +6,7 @@ import Dropdown from "atoms/Dropdown";
 
 //molecules
 import CardUploadImages from "molecules/cardUploadImages";
+import InterestPlaces from "molecules/InterestPlaces";
 
 // layout
 import CenteredContainer from "layout/CenteredContainer";
@@ -31,7 +32,7 @@ import TableStockCell, {
   TableStockProps,
 } from "grid/table/components/table-stock-cell";
 import PriceFilter from "grid/filters/price-filters";
-import InterestPlaces from "grid/filters/placeofinterest";
+import InterestPlacesFilters from "grid/filters/interest-place-filters";
 
 //auth
 import Login from "screens/auth/login";
@@ -78,6 +79,7 @@ export {
   SignUp,
   SimpleCarousel,
   InterestPlaces,
+  InterestPlacesFilters,
   EmailVerification,
   NewPassword,
   handleFilter,

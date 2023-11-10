@@ -21,6 +21,7 @@ export const Primary: Story = {
     latitude: 21.48073,
     zoom: 14,
     locationSelected: locationSelected,
+    sx: {width: 500, height: 200, marginBottom: 8}
   },
 };
 
@@ -32,5 +33,6 @@ export const Edit: Story = {
     address: "Casino Campestre Infantil PAPALOTE, Nain, Hermosa Provincia, Tepic, Nayarit",
     zoom: 14,
     locationSelected: locationSelected,
+    sx: {width: 500, height: 200, marginBottom: 8}
   },
 };
