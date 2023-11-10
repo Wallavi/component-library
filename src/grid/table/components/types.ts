@@ -5,4 +5,5 @@ export interface RowsProps {
   stock: object | string;
   status: string;
   price: number;
+  address: object
 }
