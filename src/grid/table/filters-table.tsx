@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useImmer } from "use-immer";
+import * as turf from '@turf/turf';
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -7,6 +8,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { grey } from "@mui/material/colors";
 import SearchIcon from "@mui/icons-material/Search";
 
+import InterestPlaces, {LocationSelectedProps} from "grid/filters/placeofinterest";
 import TableList from "./index";
 import MenuFilter from "../filters/menu-filters";
 import MenuChipsFiltered from "../filters/chip-filters";
@@ -38,12 +40,50 @@ const FilterTableListHooks = () => {
   });
   const [pricesFilter, setPricesFilter] = useState({ min: 0, max: 0 });
   const [search, setSearch] = useState("");
+  const [searchedPlaces, setSearchedPlaces] = useState<LocationSelectedProps | null>(null);
 
   const [rowsToShow, setRowsToShow] = useState(rows);
 
   const [selectedFilters, setSelectedFilters] = useState<DataFiltersProps[]>(
     []
   );
+
+  const searchFiltered = (searchValue: string) => {
+    const updateFilterSearch = selectedFilters.find(
+      (filter) => filter.filterLabel === "Search"
+    );
+    if (searchValue) {
+      if (updateFilterSearch) {
+        const newFilterSearch = selectedFilters?.map((filter) => {
+          if (filter.filterLabel === "Search") {
+            return {
+              ...filter,
+              value: searchValue.toLowerCase(),
+              label: searchValue,
+            };
+          } else {
+            return filter;
+          }
+        });
+        setSelectedFilters(newFilterSearch);
+      } else {
+        setSelectedFilters([
+          ...selectedFilters,
+          {
+            value: searchValue.toLowerCase(),
+            label: searchValue,
+            filterLabel: "Search",
+            selected: true,
+          },
+        ]);
+      }
+    } else if (updateFilterSearch) {
+      const newFilterSearch = selectedFilters?.filter(
+        (filter) => filter.filterLabel !== "Search"
+      );
+      setSelectedFilters(newFilterSearch);
+    }
+  };
 
   const getFilterPrices = (valuePrices: { max: number; min: number }) => {
     setPricesFilter(valuePrices);
@@ -104,43 +144,6 @@ const FilterTableListHooks = () => {
     });
   };
 
-  const searchFiltered = (searchValue: string) => {
-    const updateFilterSearch = selectedFilters.find(
-      (filter) => filter.filterLabel === "Search"
-    );
-    if (searchValue) {
-      if (updateFilterSearch) {
-        const newFilterSearch = selectedFilters?.map((filter) => {
-          if (filter.filterLabel === "Search") {
-            return {
-              ...filter,
-              value: searchValue.toLowerCase(),
-              label: searchValue,
-            };
-          } else {
-            return filter;
-          }
-        });
-        setSelectedFilters(newFilterSearch);
-      } else {
-        setSelectedFilters([
-          ...selectedFilters,
-          {
-            value: searchValue.toLowerCase(),
-            label: searchValue,
-            filterLabel: "Search",
-            selected: true,
-          },
-        ]);
-      }
-    } else if (updateFilterSearch) {
-      const newFilterSearch = selectedFilters?.filter(
-        (filter) => filter.filterLabel !== "Search"
-      );
-      setSelectedFilters(newFilterSearch);
-    }
-  };
-
   const deletedFilter = (filteredOption: DataFiltersProps) => {
     updateFilter({
       filterSetter: setCategoryFilter,
@@ -165,12 +168,51 @@ const FilterTableListHooks = () => {
     searchFiltered(value);
   };
 
+  const maxDistanceMeters = 1500; // 5 kilometers
+
+  const places = rows.map(row => {
+    return turf.point([row.address.location.longitude,row.address.location.latitude], {name: row.address.value})
+  })
+
+  const locationSelected = (value: LocationSelectedProps) => {
+    setSearchedPlaces(value)
+    
+    const updateFilterPrices = selectedFilters.find(
+      (filter) => filter.filterLabel === "Location"
+    );
+    if (updateFilterPrices) {
+      const newFilterPrices = selectedFilters?.map((filter) => {
+        if (filter.filterLabel === "Location") {
+          return {
+            ...filter,
+            label: value.address,
+            value: value.address,
+          };
+        } else {
+          return filter;
+        }
+      });
+      setSelectedFilters(newFilterPrices);
+    } else {
+      setSelectedFilters([
+        ...selectedFilters,
+        {
+          value: value.address,
+          label: value.address,
+          filterLabel: "Location",
+          selected: true,
+        },
+      ]);
+    }
+  };
+
   useEffect(() => {
     const options = {
       keys: ["name.value"],
     };
     const fuse = new Fuse(rows, options);
     const newRowtoShow: typeof rows = [];
+    const placesNearUser:any = [];
 
     if (selectedFilters.length > 0) {
       selectedFilters.forEach((selectedFilter) => {
@@ -184,6 +226,24 @@ const FilterTableListHooks = () => {
           }
         }
       });
+    }
+    if (selectedFilters.length > 0 && searchedPlaces) {
+      const updateFilterPrices = selectedFilters.find(
+        (filter) => filter.filterLabel === "Location"
+      );
+      // selectedFilters.forEach((selectedFilter) => {
+      //   if (selectedFilter.filterLabel === "Location") {
+        if(updateFilterPrices){
+          const userLocation = turf.point([searchedPlaces.longitude, searchedPlaces.latitude]);
+          places.forEach((place) => {
+            const distance = turf.distance(userLocation, place, { units: 'meters' });
+            if(distance <= maxDistanceMeters){
+              placesNearUser.push(place)
+            }
+          });
+        }
+      //   }
+      // })
     }
     if (selectedFilters.length > 0) {
       rows.forEach((row) => {
@@ -227,6 +287,16 @@ const FilterTableListHooks = () => {
               !newRowtoShow.includes(row)
             ) {
               newRowtoShow.push(row);
+            }
+          }
+          if (selectedFilter.filterLabel === "Location") {
+            if(!newRowtoShow.includes(row)){
+              placesNearUser.forEach((place:any) => {
+                if(place.properties.name === row.address.value){
+                  newRowtoShow.push(row);
+                  return;
+                }
+              })
             }
           }
         });
@@ -280,6 +350,13 @@ const FilterTableListHooks = () => {
             buttonLabel="Price"
             prices={dataHousePrices}
             getFilterPrices={getFilterPrices}
+          />
+          <InterestPlaces 
+            buttonLabel={"Sitios de Interés"}
+            longitude={-104.8784836}
+            latitude={21.48073}
+            zoom={14}
+            locationSelected={locationSelected}
           />
         </>
       </MenuChipsFiltered>

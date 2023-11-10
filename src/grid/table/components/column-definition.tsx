@@ -4,6 +4,9 @@ import TableNameCell from "./table-name-cell";
 import TableStockCell from "./table-stock-cell";
 import TableExpandCell from "./table-expand-cell";
 
+import TableCell from "@mui/material/TableCell";
+import Box from "@mui/material/Box";
+
 import { TableColumn } from "../types";
 import { RowsProps } from "./types";
 
@@ -56,6 +59,23 @@ export const columns: TableColumn<RowsProps>[] = [
     field: "price",
     headerName: "Price",
   },
+  {
+    field: "address",
+    headerName: "Addres",
+    renderCell: ({value, width}) => (
+      <TableCell width={width}>
+        <Box
+        sx={{
+          alignItems: "center",
+          display: "flex",
+        }}
+      >
+        {/* @ts-ignore */}
+        <Box>{value.value}</Box>
+      </Box>
+      </TableCell>
+    )
+  },
 ];
 
 export const rows = [
@@ -71,6 +91,13 @@ export const rows = [
     stock: {
       value: 10,
       variants: 2,
+    },
+    address: {
+      value: "Cedro 305, Unión Popular, Tepic, Nayarit",
+      location: {
+        latitude: 21.4676429,
+        longitude: -104.8814867
+      }
     },
     status: "Published",
     price: 239900,
@@ -88,6 +115,13 @@ export const rows = [
       value: 0,
       variants: 0,
     },
+    address: {
+      value: "Av. Universidad 99, Ciudad del Valle, Tepic, Nayarit",
+      location: {
+        latitude: 21.4902438,
+        longitude: -104.8876583
+      }
+    },
     status: "Draft",
     price: 950000,
   },
@@ -101,6 +135,13 @@ export const rows = [
     stock: {
       value: 0,
       variants: 0,
+    },
+    address: {
+      value: "Colegio de Ciencias y Letras de Tepic S.C., Boulevard Tepic-Xalisco, Caja de Agua, Tepic, Nayarit",
+      location: {
+        latitude: 21.4963863,
+        longitude: -104.8992601
+      }
     },
     status: "Draft",
     price: 179900,
@@ -116,6 +157,13 @@ export const rows = [
       value: 30,
       variants: 4,
     },
+    address: {
+      value: "Av del Valle 5, Cd del Valle, 63157 Tepic, Nay.",
+      location: {
+        latitude: 21.4899254,
+        longitude: -104.888401
+      }
+    },
     status: "Published",
     price: 155000,
   },
@@ -129,6 +177,13 @@ export const rows = [
     stock: {
       value: 80,
       variants: 3,
+    },
+    address: {
+      value: "Florencia 101A, Cd del Valle, 63157 Tepic, Nay.",
+      location: {
+        latitude: 21.4897301,
+        longitude: -104.888168
+      }
     },
     status: "Published",
     price: 185000,
@@ -144,6 +199,13 @@ export const rows = [
       value: 60,
       variants: 6,
     },
+    address: {
+      value: "Av del Valle 86-91, Cd del Valle, 63157 Tepic, Nay.",
+      location: {
+        latitude: 21.4930276,
+        longitude: -104.888865
+      }
+    },
     status: "Published",
     price: 233990,
   },
@@ -157,6 +219,13 @@ export const rows = [
     stock: {
       value: 0,
       variants: 0,
+    },
+    address: {
+      value: "Coto Bonastella, Tepic, Nayarit",
+      location: {
+        latitude: 21.460024,
+        longitude: -104.843963
+      }
     },
     status: "Draft",
     price: 920000,
@@ -172,6 +241,13 @@ export const rows = [
       value: 60,
       variants: 6,
     },
+    address: {
+      value: "Coto Bonaura, Bonaterra, Tepic, Nayarit",
+      location: {
+        latitude: 21.4613177,
+        longitude: -104.8435426
+      }
+    },
     status: "Draft",
     price: 1379900,
   },
@@ -186,6 +262,13 @@ export const rows = [
       value: 30,
       variants: 4,
     },
+    address: {
+      value: "Bonaterra Coto Alegranza, Tepic, Nayarit",
+      location: {
+        latitude: 21.461343,
+        longitude: -104.8429951
+      }
+    },
     status: "Published",
     price: 1750000,
   },
@@ -199,6 +282,13 @@ export const rows = [
     stock: {
       value: 80,
       variants: 8,
+    },
+    address: {
+      value: "COTO BONAQUA, Paseo de Bari, Nayarit",
+      location: {
+        latitude: 21.4629449,
+        longitude: -104.842074
+      }
     },
     status: "Published",
     price: 195000,

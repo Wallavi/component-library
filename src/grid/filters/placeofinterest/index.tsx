@@ -19,7 +19,7 @@ import ApartmentIcon from "@mui/icons-material/Apartment";
 const MAPBOX_TOKEN =
   "pk.eyJ1Ijoiam9zaWFzd2FsbGF2aSIsImEiOiJjbG84dmgzNGQwNDE1Mmx0ZnhxaTZ3cTF5In0.9bEo0UC3I-4ToHpP1kGRtg";
 
-interface LocationSelectedProps {
+export interface LocationSelectedProps {
   longitude: number;
   latitude: number;
   zoom: number;
@@ -31,6 +31,7 @@ interface InterestPlacesProps {
   longitude: number;
   latitude: number;
   zoom: number;
+  address?: string;
   locationSelected: (value: LocationSelectedProps) => void;
 }
 
@@ -39,11 +40,12 @@ const InterestPlaces = ({
   longitude,
   latitude,
   zoom,
+  address,
   locationSelected,
 }: InterestPlacesProps) => {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [place, setPlace] = useState("");
+  const [place, setPlace] = useState(address ? address : "");
   const [viewState, setViewState] = React.useState({
     longitude: longitude,
     latitude: latitude,
