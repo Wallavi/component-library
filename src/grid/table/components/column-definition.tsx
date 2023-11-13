@@ -36,6 +36,11 @@ export const columns: TableColumn<RowsProps>[] = [
         // @ts-ignore
         value={value}
         width={width}
+        sx={{
+          ".MuiTypography-body1": {
+            fontWeight: 500
+          }
+        }}
       />
     ),
   },

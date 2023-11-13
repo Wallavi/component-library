@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TableCell from "@mui/material/TableCell";
 import ImageIcon from "@mui/icons-material/Image";
+import { SxProps } from '@mui/system';
 
 export interface TableNameProps {
   image: string;
@@ -13,11 +14,12 @@ export interface TableNameProps {
 export interface TableNameCellProps {
   value: TableNameProps;
   width?: string | number;
+  sx?: SxProps;
 }
 
-const TableNameCell = ({ value, width }: TableNameCellProps) => {
+const TableNameCell = ({ value, width, sx }: TableNameCellProps) => {
   return (
-    <TableCell width={width}>
+    <TableCell width={width} sx={sx}>
       <Box
         sx={{
           alignItems: "center",
@@ -61,9 +63,9 @@ const TableNameCell = ({ value, width }: TableNameCellProps) => {
             ml: 2,
           }}
         >
-          <Typography variant="subtitle2">{value.value}</Typography>
-          <Typography color="textSecondary" variant="body2">
-            in {value.category}
+          <Typography variant="body1">{value.value}</Typography>
+          <Typography sx={{color:(theme) => theme.palette.grey[600]}} variant="subtitle1">
+            {value.category}
           </Typography>
         </Box>
       </Box>
