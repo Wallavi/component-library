@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useImmer } from "use-immer";
-import * as turf from '@turf/turf';
+import * as turf from "@turf/turf";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -8,7 +8,9 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { grey } from "@mui/material/colors";
 import SearchIcon from "@mui/icons-material/Search";
 
-import InterestPlaces, {LocationSelectedProps} from "grid/filters/interest-place-filters";
+import InterestPlaces, {
+  LocationSelectedProps,
+} from "../filters/interest-place-filters";
 import TableList from "./index";
 import MenuFilter from "../filters/menu-filters";
 import MenuChipsFiltered from "../filters/chip-filters";
@@ -40,7 +42,8 @@ const FilterTableListHooks = () => {
   });
   const [pricesFilter, setPricesFilter] = useState({ min: 0, max: 0 });
   const [search, setSearch] = useState("");
-  const [searchedPlaces, setSearchedPlaces] = useState<LocationSelectedProps | null>(null);
+  const [searchedPlaces, setSearchedPlaces] =
+    useState<LocationSelectedProps | null>(null);
 
   const [rowsToShow, setRowsToShow] = useState(rows);
 
@@ -170,13 +173,16 @@ const FilterTableListHooks = () => {
 
   const maxDistanceMeters = 1500; // 5 kilometers
 
-  const places = rows.map(row => {
-    return turf.point([row.address.location.longitude,row.address.location.latitude], {name: row.address.value})
-  })
+  const places = rows.map((row) => {
+    return turf.point(
+      [row.address.location.longitude, row.address.location.latitude],
+      { name: row.address.value }
+    );
+  });
 
   const locationSelected = (value: LocationSelectedProps) => {
-    setSearchedPlaces(value)
-    
+    setSearchedPlaces(value);
+
     const updateFilterPrices = selectedFilters.find(
       (filter) => filter.filterLabel === "Location"
     );
@@ -206,13 +212,25 @@ const FilterTableListHooks = () => {
     }
   };
 
+  function arraysEqual(a: typeof rows, b: typeof rows) {
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return false;
+
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) return false;
+    }
+
+    return true;
+  }
+
   useEffect(() => {
     const options = {
       keys: ["name.value"],
     };
     const fuse = new Fuse(rows, options);
     const newRowtoShow: typeof rows = [];
-    const placesNearUser:any = [];
+    const placesNearUser: any = [];
 
     if (selectedFilters.length > 0) {
       selectedFilters.forEach((selectedFilter) => {
@@ -231,19 +249,20 @@ const FilterTableListHooks = () => {
       const updateFilterPrices = selectedFilters.find(
         (filter) => filter.filterLabel === "Location"
       );
-      // selectedFilters.forEach((selectedFilter) => {
-      //   if (selectedFilter.filterLabel === "Location") {
-        if(updateFilterPrices){
-          const userLocation = turf.point([searchedPlaces.longitude, searchedPlaces.latitude]);
-          places.forEach((place) => {
-            const distance = turf.distance(userLocation, place, { units: 'meters' });
-            if(distance <= maxDistanceMeters){
-              placesNearUser.push(place)
-            }
+      if (updateFilterPrices) {
+        const userLocation = turf.point([
+          searchedPlaces.longitude,
+          searchedPlaces.latitude,
+        ]);
+        places.forEach((place) => {
+          const distance = turf.distance(userLocation, place, {
+            units: "meters",
           });
-        }
-      //   }
-      // })
+          if (distance <= maxDistanceMeters) {
+            placesNearUser.push(place);
+          }
+        });
+      }
     }
     if (selectedFilters.length > 0) {
       rows.forEach((row) => {
@@ -290,20 +309,26 @@ const FilterTableListHooks = () => {
             }
           }
           if (selectedFilter.filterLabel === "Location") {
-            if(!newRowtoShow.includes(row)){
-              placesNearUser.forEach((place:any) => {
-                if(place.properties.name === row.address.value){
+            if (!newRowtoShow.includes(row)) {
+              placesNearUser.forEach((place: any) => {
+                if (place.properties.name === row.address.value) {
                   newRowtoShow.push(row);
                   return;
                 }
-              })
+              });
             }
           }
         });
       });
-      setRowsToShow(newRowtoShow);
+      // setRowsToShow(newRowtoShow);
+      if (!arraysEqual(newRowtoShow, rowsToShow)) {
+        setRowsToShow(newRowtoShow);
+      }
     } else {
-      setRowsToShow(rows);
+      // setRowsToShow(rows);
+      if (!arraysEqual(newRowtoShow, rowsToShow)) {
+        setRowsToShow(newRowtoShow);
+      }
     }
   }, [
     selectedFilters,
@@ -312,7 +337,8 @@ const FilterTableListHooks = () => {
     stockFilter.buttonLabel,
     pricesFilter,
     places,
-    searchedPlaces
+    searchedPlaces,
+    rowsToShow,
   ]);
 
   return (
@@ -353,14 +379,16 @@ const FilterTableListHooks = () => {
             prices={dataHousePrices}
             getFilterPrices={getFilterPrices}
           />
-          <InterestPlaces 
+          <InterestPlaces
             buttonLabel={"Sitios de Interés"}
             longitude={-104.8784836}
             latitude={21.48073}
             zoom={14}
             locationSelected={locationSelected}
             sx={{
-              width: 500, height: 200, marginBottom: 8
+              width: 500,
+              height: 200,
+              marginBottom: 8,
             }}
           />
         </>

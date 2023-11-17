@@ -1,16 +1,15 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
+import SuggestionPlaces from "../suggestion-places";
 import Map, { ViewStateChangeEvent, Marker, Source, Layer } from "react-map-gl";
 import type { CircleLayer } from "react-map-gl";
 import type { FeatureCollection } from "geojson";
-import { AddressAutofill } from "@mapbox/search-js-react";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import { SxProps } from '@mui/material/styles';
+import { SxProps } from "@mui/material/styles";
 import { useTheme, alpha } from "@mui/material";
 
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 
 import ApartmentIcon from "@mui/icons-material/Apartment";
 
@@ -39,7 +38,7 @@ const InterestPlaces = ({
   zoom,
   address,
   locationSelected,
-  sx
+  sx,
 }: InterestPlacesProps) => {
   const theme = useTheme();
   const [place, setPlace] = useState(address ? address : "");
@@ -76,24 +75,23 @@ const InterestPlaces = ({
     setViewState(evt.viewState);
   };
 
-  const handleRetrieve = useCallback(
-    (res: any) => {
-      const feature = res.features[0];
-      setPlace(feature.properties.full_address);
-      setViewState({
-        longitude: feature.geometry.coordinates[0],
-        latitude: feature.geometry.coordinates[1],
-        zoom: zoom,
-      });
-      locationSelected({
-        longitude: feature.geometry.coordinates[0],
-        latitude: feature.geometry.coordinates[1],
-        zoom: zoom,
-        address: feature.properties.full_address,
-      });
-    },
-    [zoom, locationSelected]
-  );
+  const getLocationSelected = (value: {
+    location: { lat: number; lng: number };
+    description: string;
+  }) => {
+    setPlace(value.description);
+    setViewState({
+      longitude: value.location.lng,
+      latitude: value.location.lat,
+      zoom: zoom,
+    });
+    locationSelected({
+      longitude: value.location.lng,
+      latitude: value.location.lat,
+      zoom: zoom,
+      address: value.description,
+    });
+  };
 
   const handleOnMoveEnd = (evt: ViewStateChangeEvent) => {
     const coordinates = [evt.viewState.longitude, evt.viewState.latitude];
@@ -129,42 +127,10 @@ const InterestPlaces = ({
     <>
       <Box padding={2} onKeyDown={(e) => e.stopPropagation()} sx={sx}>
         <form autoComplete="off">
-          {/* @ts-ignore */}
-          <AddressAutofill
-            accessToken={MAPBOX_TOKEN}
-            onRetrieve={handleRetrieve}
-            popoverOptions={{
-              offset: 20,
-            }}
-            theme={{
-              cssText: `
-                .Results,
-                .Modal {
-                  z-index: 3000
-                }
-                `,
-            }}
-            browserAutofillEnabled={false}
-          >
-            <TextField
-              fullWidth
-              value={place}
-              autoComplete="off"
-              id="mapbox-autofill"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setPlace(event.target.value);
-              }}
-              sx={{
-                marginBottom: 1.5,
-                ".MuiInputBase-root": {
-                  height: 56,
-                },
-              }}
-              inputProps={{
-                autoComplete: "off",
-              }}
-            />
-          </AddressAutofill>
+          <SuggestionPlaces
+            getLocationSelected={getLocationSelected}
+            autocompleteValue={{ description: place }}
+          />
         </form>
         <Map
           {...viewState}

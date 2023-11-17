@@ -1,6 +1,6 @@
 import Box, { BoxProps } from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import { errorAnimation } from "styles";
+import { errorAnimation } from "../../styles";
 
 interface CenteredContainerProps extends BoxProps {
   error?: boolean;

@@ -1,8 +1,8 @@
 import React from "react";
 import { Box } from "@mui/material";
-import UploadImages from "molecules/uploadImages";
-import ListItemImage from "molecules/listItemImage";
-import NoImagesUploaded from "molecules/noImagesUploaded";
+import UploadImages from "../uploadImages";
+import ListItemImage from "../listItemImage";
+import NoImagesUploaded from "../noImagesUploaded";
 
 interface CardUploadImagesProps {
   handleDropImage: (files: Array<any>) => void;
