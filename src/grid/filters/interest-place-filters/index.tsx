@@ -8,7 +8,7 @@ import { SxProps } from '@mui/material/styles';
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import InterestPlaces from "molecules/InterestPlaces";
+import InterestPlaces from "../../../molecules/InterestPlaces";
 
 export interface LocationSelectedProps {
   longitude: number;

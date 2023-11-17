@@ -1,5 +1,10 @@
+import terser from "@rollup/plugin-terser";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
+import postcss from "rollup-plugin-postcss";
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
 const Rollup = [
   {
@@ -9,20 +14,23 @@ const Rollup = [
         file: "dist/index.js",
         format: "cjs",
         sourcemap: true,
+        inlineDynamicImports: true,
       },
       {
         file: "dist/index.esm.js",
         format: "esm",
         sourcemap: true,
-      },
-      {
-        file: "dist/index.module.js",
-        format: "esm",
-        sourcemap: true,
-        exports: "named",
+        inlineDynamicImports: true,
       },
     ],
-    plugins: [typescript({ declaration: true })],
+    plugins: [
+      peerDepsExternal(),
+      resolve(),
+      commonjs(),
+      postcss(),
+      terser(),
+      typescript({ declaration: true }),
+    ],
     external: ["react", "react-dom"],
     exclude: "**/*.stories.tsx",
   },
@@ -44,6 +52,11 @@ const Rollup = [
     external: ["react", "react-dom"],
     exclude: "**/*.stories.tsx",
   },
+  // {
+  //   input: "src/index.ts",
+  //   output: [{ file: "dist/types.d.ts", format: "es" }],
+  //   plugins: [dts()],
+  // },
   {
     input: "src/index.tsx",
     output: [{ file: "dist/index.d.ts", format: "es" }],

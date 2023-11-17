@@ -1,6 +1,6 @@
 import React from "react";
 import { Stack } from "@mui/material";
-import ListItemImage from "molecules/listItemImage";
+import ListItemImage from "../listItemImage";
 
 interface ItemData {
   primaryText: string;
