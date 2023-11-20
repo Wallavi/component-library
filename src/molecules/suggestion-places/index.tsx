@@ -57,25 +57,27 @@ const SuggestionPlaces = ({
   };
 
   const getPlaceSelected = (value: SuggestionPlacesP) => {
-    const apiUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${value.place_id}&fields=geometry&key=${API_KEY}`;
-    fetch(apiUrl)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Handle the data from the API response
-        getLocationSelected({
-          ...data.result.geometry,
-          description: value.description,
+    if (value?.place_id) {
+      const apiUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${value.place_id}&fields=geometry&key=${API_KEY}`;
+      fetch(apiUrl)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Handle the data from the API response
+          getLocationSelected({
+            ...data.result.geometry,
+            description: value.description,
+          });
+        })
+        .catch((error) => {
+          // Handle errors
+          console.error("Error fetching data:", error);
         });
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Error fetching data:", error);
-      });
+    }
   };
 
   useEffect(() => {

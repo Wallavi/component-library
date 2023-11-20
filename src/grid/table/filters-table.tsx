@@ -171,7 +171,7 @@ const FilterTableListHooks = () => {
     searchFiltered(value);
   };
 
-  const maxDistanceMeters = 1500; // 5 kilometers
+  const maxDistanceMeters = 200; // 1 kilometers
 
   const places = rows.map((row) => {
     return turf.point(
@@ -258,7 +258,11 @@ const FilterTableListHooks = () => {
           const distance = turf.distance(userLocation, place, {
             units: "meters",
           });
-          if (distance <= maxDistanceMeters) {
+          if (
+            distance <=
+            maxDistanceMeters *
+              Math.pow(2, searchedPlaces.zoom + 2 - searchedPlaces.zoom)
+          ) {
             placesNearUser.push(place);
           }
         });
@@ -327,7 +331,7 @@ const FilterTableListHooks = () => {
     } else {
       // setRowsToShow(rows);
       if (!arraysEqual(newRowtoShow, rowsToShow)) {
-        setRowsToShow(newRowtoShow);
+        setRowsToShow(rows);
       }
     }
   }, [
@@ -348,8 +352,6 @@ const FilterTableListHooks = () => {
         placeholder="Buscar por nombre"
         value={search}
         onChange={(e) => handleKeyDown(e.target.value)}
-        // onKeyDown={handleKeyDown}
-        // onKeyUp={handleKeyDown}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
