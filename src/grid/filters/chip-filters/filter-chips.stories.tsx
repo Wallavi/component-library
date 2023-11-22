@@ -19,7 +19,7 @@ export default meta;
 
 type Story = StoryObj<typeof MenuFilter>;
 
-const FilterMenuHooks = () => {
+const FilterMenuHooks = ({filtersAppliedText}: {filtersAppliedText?: string}) => {
   const [categoryFilter, setCategoryFilter] = useImmer<FilterProps>({
     data: category,
     buttonLabel: "Category",
@@ -90,9 +90,10 @@ const FilterMenuHooks = () => {
     <MenuChipsFiltered
       selectedFilters={selectedFilters}
       deletedFilter={deletedFilter}
+      filtersAppliedText={filtersAppliedText}
     >
       <>
-        <MenuFilter filters={categoryFilter} setFilters={categoryFiltered} />
+        <MenuFilter filters={categoryFilter} setFilters={categoryFiltered}  />
         <MenuFilter filters={statusFilter} setFilters={statusFiltered} />
         <MenuFilter filters={stockFilter} setFilters={stockFiltered} />
       </>
@@ -102,4 +103,8 @@ const FilterMenuHooks = () => {
 
 export const Primary: Story = {
   render: () => <FilterMenuHooks />,
+};
+
+export const Edit: Story = {
+  render: () => <FilterMenuHooks filtersAppliedText="no hay filtros" />,
 };

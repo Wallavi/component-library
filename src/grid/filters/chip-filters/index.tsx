@@ -101,6 +101,7 @@ const MenuChipsFiltered = ({
   deletedFilter,
   selectedFilters,
   children,
+  filtersAppliedText
 }: MenuChipsFilterProps) => {
   return (
     <>
@@ -113,7 +114,7 @@ const MenuChipsFiltered = ({
                 deletedFilter={deletedFilter}
               />
             ))
-          : "No filters applied"}
+          : filtersAppliedText ? filtersAppliedText : "No hay filtros aplicados"}
       </Box>
       <Divider />
       <Box paddingY={2}>{children}</Box>

@@ -6,6 +6,7 @@ import TableExpandCell from "./table-expand-cell";
 
 import TableCell from "@mui/material/TableCell";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 import { TableColumn } from "../types";
 import { RowsProps } from "./types";
@@ -76,7 +77,7 @@ export const columns: TableColumn<RowsProps>[] = [
         }}
       >
         {/* @ts-ignore */}
-        <Box>{value.value}</Box>
+        <Typography>{value.value}</Typography>
       </Box>
       </TableCell>
     )

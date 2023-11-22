@@ -37,4 +37,5 @@ export interface MenuChipsFilterProps {
   selectedFilters: DataFiltersProps[]
   deletedFilter: (state: DataFiltersProps) => void
   children: React.ReactNode;
+  filtersAppliedText?: string;
 }

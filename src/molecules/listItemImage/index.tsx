@@ -97,18 +97,14 @@ const ListItemImage = ({
           spacing={1}
         >
           <Typography
-            sx={{ fontSize: 14, lineHeight: "17px", margin: 0 }}
-            variant="h1"
-            color={(theme) => theme.palette.grey[800]}
-            paragraph={true}
+            variant="listItemPrimary"
+            // paragraph={true}
           >
             {primaryText}
           </Typography>
           <Typography
-            sx={{ fontSize: 14, lineHeight: "17px", margin: 0 }}
-            variant="h1"
-            color={(theme) => theme.palette.grey[500]}
-            paragraph={true}
+            variant="listItemSecondary"
+            // paragraph={true}
           >
             {secondaryText}
           </Typography>
