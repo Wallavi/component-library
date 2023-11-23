@@ -66,7 +66,7 @@ const Rollup = [
         sourcemap: true,
       },
     ],
-    plugins: [typescript()],
+    plugins: [typescript({ declaration: true })],
     external: ["react", "react-dom"],
     exclude: "**/*.stories.tsx",
   },

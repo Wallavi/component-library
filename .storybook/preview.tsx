@@ -3,7 +3,8 @@ import React from "react";
 
 import { Preview } from "@storybook/react";
 import theme from "../theme/theme";
-import gohoTheme from "../theme/themes/goho";
+// import gohoTheme from "../theme/themes/goho";
+import gohoTheme from "../dist/gohoTheme"
 import { ThemeProvider } from "@mui/material/styles";
 import { DecoratorFn } from "@storybook/react";
 

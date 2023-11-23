@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material/styles';
 import primaryFonts from "./fonts";
 import colors from "./colors";
 import components from "./components";
