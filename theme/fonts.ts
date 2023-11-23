@@ -1,10 +1,7 @@
 import { grey } from "@mui/material/colors";
 
 const primaryFonts = {
-  fontFamily: [
-    'Inter',
-    'Roboto',
-  ].join(','),
+  fontFamily: ["Inter", "Roboto"].join(","),
   h6: {
     fontSize: 15,
   },
@@ -18,7 +15,7 @@ const primaryFonts = {
     fontSize: 14,
     color: grey[800],
     fontWeight: 500,
-    lineHeight: "17px"
+    lineHeight: "17px",
   },
   listItemSecondary: {
     fontSize: 14,

@@ -1,3 +1,3 @@
 import gohoTheme from "./theme";
 
-export default gohoTheme
+export default gohoTheme;

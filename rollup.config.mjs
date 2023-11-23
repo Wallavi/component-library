@@ -52,6 +52,24 @@ const Rollup = [
     external: ["react", "react-dom"],
     exclude: "**/*.stories.tsx",
   },
+  {
+    input: "theme/themes/goho/index.ts",
+    output: [
+      {
+        file: "dist/gohoTheme.js",
+        format: "cjs",
+        sourcemap: true,
+      },
+      {
+        file: "dist/gohoTheme.esm.js",
+        format: "esm",
+        sourcemap: true,
+      },
+    ],
+    plugins: [typescript()],
+    external: ["react", "react-dom"],
+    exclude: "**/*.stories.tsx",
+  },
   // {
   //   input: "src/index.ts",
   //   output: [{ file: "dist/types.d.ts", format: "es" }],
