@@ -122,7 +122,7 @@ const MenuSearchFilter = ({ setFilters, filters }: MenuFilterProps) => {
         endIcon={<ExpandMoreIcon />}
         sx={{
           textTransform: "none",
-          color: (theme) => theme.palette.primary.dark,
+          color: (theme) => theme.palette.grey[800],
           marginRight: 2,
         }}
       >
