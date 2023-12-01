@@ -1,23 +1,3 @@
-// import React from "react";
-// import theme from "../../../theme";
-// import { ThemeProvider, Theme } from "@mui/material/styles";
-
-// interface ThemeWrapperProps {
-//   children: React.ReactNode;
-//   customTheme?: Theme;
-// }
-
-// const ThemeWrapper = ({ children, customTheme }: ThemeWrapperProps) => {
-//   return (
-//     <ThemeProvider theme={customTheme ? customTheme : theme}>
-//       {children}
-//     </ThemeProvider>
-//   );
-// };
-
-// export default ThemeWrapper;
-
-
 import React, { createContext, useContext, ReactNode } from 'react';
 import { Theme } from '@mui/material/styles';
 
