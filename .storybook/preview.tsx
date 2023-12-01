@@ -7,8 +7,6 @@ import gohoTheme from "../dist/gohoTheme";
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { ThemeProvider } from "../dist";
 
-console.log("gohoTheme", gohoTheme);
-
 import { DecoratorFn } from "@storybook/react";
 
 export const parameters = {
