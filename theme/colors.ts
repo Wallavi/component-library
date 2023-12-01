@@ -1,3 +1,4 @@
+
 const PrimaryColor = {
   primary: {
     main: '#5590ff',
@@ -11,7 +12,7 @@ const PrimaryColor = {
   },
   middleblue: {
     main: "#99a7bf",
-  }
+  },
 }
 
 export default PrimaryColor

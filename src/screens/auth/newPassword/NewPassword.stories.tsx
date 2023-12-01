@@ -1,10 +1,10 @@
-import { PasswordRecovery } from "../../../../dist/";
+import { NewPassword } from "../../../../dist/";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Screens/PasswordRecovery",
-  component: PasswordRecovery,
-} satisfies Meta<typeof PasswordRecovery>;
+  title: "Screens/NewPassword",
+  component: NewPassword,
+} satisfies Meta<typeof NewPassword>;
 
 type Story = StoryObj<typeof meta>;
 
@@ -13,6 +13,6 @@ export default meta;
 export const Primary: Story = {
   args: {
     logo: "https://goho.vercel.app/_next/static/media/logo.14efb6e2.svg",
-    title: "Recuperación de contraseña",
+    title: "Escribe la nueva contraseña",
   },
 };

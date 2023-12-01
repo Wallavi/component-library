@@ -2,17 +2,24 @@ import React, { useState, useEffect } from "react";
 import { Amplify, Auth } from "aws-amplify";
 import { amplifyConfiguration } from "./aws-exports";
 
-import Login from "./login";
-import SimpleCarousel from "./carousel";
+import {Login, SimpleCarousel, PasswordRecovery, SignUp, EmailVerification, NewPassword} from '../../../dist'
+// import Login from "./login";
+// import SimpleCarousel from "./carousel";
 import Profile from "./profile";
-import PasswordRecovery from "./passwordRecovery";
-import SignUp, { SignUpInputProps } from "./signUp";
-import EmailVerification, {
+// import PasswordRecovery from "./passwordRecovery";
+// import SignUp, { SignUpInputProps } from "./signUp";
+import { SignUpInputProps } from "./signUp";
+// import EmailVerification, {
+//   EmailVerificationInputProps,
+// } from "./emailVerification";
+import {
   EmailVerificationInputProps,
 } from "./emailVerification";
-import NewPassword from "./newPassword";
+// import NewPassword from "./newPassword";
 
 import Box from "@mui/material/Box";
+// import gohoTheme from "../../../dist/gohoTheme";
+// import { ThemeProvider } from "@mui/material/styles";
 
 Amplify.configure(amplifyConfiguration);
 
@@ -249,6 +256,8 @@ const Authentication = () => {
                 handleLogin={handleLogin}
                 loginError={loginError}
                 setLoginError={setLoginError}
+                // theme={gohoTheme}
+                // extraProps={"here"}
               />
             ) : showScreen === "password-recovery" ? (
               <PasswordRecovery

@@ -17,7 +17,7 @@ const AuthLayout = ({ title, logo, children, sx }: AuthProps) => {
         <img src={logo} alt="Logo" />
       </Box>
       <Box className="auth-title" marginTop={12} marginBottom={8}>
-        <Typography sx={{ fontWeight: 500 }} variant="h4">
+        <Typography sx={{ fontWeight: 500, color: 'grey.800' }} variant="h4" >
           {title}
         </Typography>
       </Box>

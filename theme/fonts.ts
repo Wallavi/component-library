@@ -2,6 +2,9 @@ import { grey } from "@mui/material/colors";
 
 const primaryFonts = {
   fontFamily: ["Inter", "Roboto"].join(","),
+  h4: {
+    fontSize: 32,
+  },
   h6: {
     fontSize: 15,
   },

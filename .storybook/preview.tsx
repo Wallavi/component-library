@@ -2,10 +2,15 @@ import "../src/index.css";
 import React from "react";
 
 import { Preview } from "@storybook/react";
-import theme from "../theme/theme";
+import theme from "../dist/theme";
 // import gohoTheme from "../theme/themes/goho";
-import gohoTheme from "../dist/gohoTheme"
-import { ThemeProvider } from "@mui/material/styles";
+import gohoTheme from "../dist/gohoTheme";
+import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
+// import { ThemeProvider } from "../src/theme/wrapper";
+import { ThemeProvider } from "../dist";
+
+console.log("gohoTheme", gohoTheme);
+
 import { DecoratorFn } from "@storybook/react";
 
 export const parameters = {
@@ -58,14 +63,18 @@ export const withTheme: DecoratorFn = (StoryFn, context) => {
     case "goho": {
       return (
         <ThemeProvider theme={gohoTheme}>
-          <StoryFn />
+          <MuiThemeProvider theme={gohoTheme}>
+            <StoryFn />
+          </MuiThemeProvider>
         </ThemeProvider>
       );
     }
     default: {
       return (
         <ThemeProvider theme={theme}>
-          <StoryFn />
+          <MuiThemeProvider theme={theme}>
+            <StoryFn />
+          </MuiThemeProvider>
         </ThemeProvider>
       );
     }

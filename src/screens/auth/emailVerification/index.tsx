@@ -9,6 +9,9 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import FormHelperText from "@mui/material/FormHelperText";
 
+import { useThemeContext } from "../../../theme/wrapper";
+import { ThemeProvider } from "@mui/material/styles";
+
 export interface EmailVerificationInputProps {
   code: string;
   email: string;
@@ -40,6 +43,7 @@ const EmailVerification = ({
   handleResendCode,
   emailVerificationError,
 }: EmailVerificationProps) => {
+  const { theme } = useThemeContext();
   const initialValues: FormikInitialValuesProps =
     verificationEmailInputs.reduce(
       (acc, input) => ({
@@ -134,95 +138,103 @@ const EmailVerification = ({
   };
 
   return (
-    <AuthLayout
-      logo={logo}
-      title={title}
-      sx={{ ".auth-title": { marginBottom: 1 } }}
-    >
-      <Stack
-        component="form"
-        spacing={1}
-        autoComplete="off"
-        sx={{
-          ".MuiButton-root": { marginTop: 1 },
-          ".MuiButton-contained": { marginTop: 4, marginBottom: 1 },
-        }}
-        onSubmit={formik.handleSubmit}
+    <ThemeProvider theme={theme}>
+      <AuthLayout
+        logo={logo}
+        title={title}
+        sx={{ ".auth-title": { marginBottom: 1 } }}
       >
-        <Button
-          onClick={() => {}}
-          sx={{ width: 300, display: "block", textAlign: "initial" }}
+        <Stack
+          component="form"
+          spacing={1}
+          autoComplete="off"
+          sx={{
+            ".MuiButton-root": { marginTop: 1 },
+            ".MuiButton-contained": { marginTop: 4, marginBottom: 1 },
+          }}
+          onSubmit={formik.handleSubmit}
         >
-          <Box
-            component={"span"}
-            sx={{ marginRight: 0.5, color: (theme) => theme.palette.grey[800] }}
+          <Button
+            onClick={() => {}}
+            sx={{ width: 300, display: "block", textAlign: "initial" }}
           >
-            Enviamos un código de verificación al correo
-          </Box>
-          {confirmEmail}
-        </Button>
-        <Box display={"flex"} justifyContent={"space-between"}>
-          {verificationEmailInputs.map((inputValue) => (
-            <TextField
-              onPaste={(event) => {
-                handlePaste(event);
-              }}
-              key={inputValue.name}
-              id={inputValue.name}
-              name={inputValue.name}
-              value={formik.values[inputValue.name]}
-              onChange={(event) => {
-                handleInputChange(event, inputValue.name);
-              }}
-              inputRef={inputRefs[inputValue.name]}
-              error={
-                formik.touched[inputValue.name] &&
-                Boolean(formik.errors[inputValue.name])
-              }
-              onKeyDown={(event) => {
-                // @ts-ignore
-                handleInputChange(event, inputValue.name);
-              }}
+            <Box
+              component={"span"}
               sx={{
-                ".MuiOutlinedInput-root": {
-                  minHeight: 122,
-                  input: { textAlign: "center" },
-                },
-                width: 80,
-                input: { fontSize: 72, paddingX: 1 },
+                marginRight: 0.5,
+                color: (theme) => theme.palette.grey[800],
               }}
-            />
-          ))}
-        </Box>
-        <Box height={18}>
-          {emailVerificationError ? (
-            <FormHelperText error>{emailVerificationError}</FormHelperText>
-          ) : (
-            verificationEmailInputs.some(
-              (inputValue) =>
-                formik.touched[inputValue.name] &&
-                formik.errors[inputValue.name]
-            ) && (
-              <FormHelperText error>
-                El código de verificación no es correcto
-              </FormHelperText>
-            )
-          )}
-        </Box>
-        <Button type="submit" variant="contained" sx={{ height: 45 }}>
-          Confirmar cuenta
-        </Button>
-        <Button onClick={handleResendCode} sx={{ width: "fit-content" }}>
-          <Box
-            component={"span"}
-            sx={{ marginRight: 0.5, color: (theme) => theme.palette.grey[800] }}
-          >
-            ¿No recibiste ningún código?
+            >
+              Enviamos un código de verificación al correo
+            </Box>
+            {confirmEmail}
+          </Button>
+          <Box display={"flex"} justifyContent={"space-between"}>
+            {verificationEmailInputs.map((inputValue) => (
+              <TextField
+                onPaste={(event) => {
+                  handlePaste(event);
+                }}
+                key={inputValue.name}
+                id={inputValue.name}
+                name={inputValue.name}
+                value={formik.values[inputValue.name]}
+                onChange={(event) => {
+                  handleInputChange(event, inputValue.name);
+                }}
+                inputRef={inputRefs[inputValue.name]}
+                error={
+                  formik.touched[inputValue.name] &&
+                  Boolean(formik.errors[inputValue.name])
+                }
+                onKeyDown={(event) => {
+                  // @ts-ignore
+                  handleInputChange(event, inputValue.name);
+                }}
+                sx={{
+                  ".MuiOutlinedInput-root": {
+                    minHeight: 122,
+                    input: { textAlign: "center" },
+                  },
+                  width: 80,
+                  input: { fontSize: 72, paddingX: 1 },
+                }}
+              />
+            ))}
           </Box>
-          Enviar nuevamente
-        </Button>
-      </Stack>
-    </AuthLayout>
+          <Box height={18}>
+            {emailVerificationError ? (
+              <FormHelperText error>{emailVerificationError}</FormHelperText>
+            ) : (
+              verificationEmailInputs.some(
+                (inputValue) =>
+                  formik.touched[inputValue.name] &&
+                  formik.errors[inputValue.name]
+              ) && (
+                <FormHelperText error>
+                  El código de verificación no es correcto
+                </FormHelperText>
+              )
+            )}
+          </Box>
+          <Button type="submit" variant="contained" sx={{ height: 45 }}>
+            Confirmar cuenta
+          </Button>
+          <Button onClick={handleResendCode} sx={{ width: "fit-content" }}>
+            <Box
+              component={"span"}
+              sx={{
+                marginRight: 0.5,
+                color: (theme) => theme.palette.grey[800],
+              }}
+            >
+              ¿No recibiste ningún código?
+            </Box>
+            Enviar nuevamente
+          </Button>
+        </Stack>
+      </AuthLayout>
+    </ThemeProvider>
   );
 };
 

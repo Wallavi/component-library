@@ -5,6 +5,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
+import Typography from "@mui/material/Typography";
 
 const meta = {
   title: "Molecules/InterestPlaces",
@@ -24,9 +25,9 @@ const CardPlace = () => {
     <Card>
       <CardContent>
       <Box display={"flex"} justifyContent={"space-between"}>
-      <Box marginTop={3}>
+      <Typography marginTop={3}>
         Lugares de Interes
-      </Box>
+      </Typography>
       <InterestPlaces 
         longitude={-104.8784836}
         latitude={21.48073}

@@ -45,6 +45,9 @@ import SimpleCarousel from "screens/auth/carousel";
 //helpers
 import { handleFilter, updateFilter } from "grid/filters/helpers";
 
+//context
+import { ThemeProvider } from './theme/wrapper'
+
 //types
 export {
   DataFiltersProps,
@@ -84,6 +87,7 @@ export {
   NewPassword,
   handleFilter,
   updateFilter,
+  ThemeProvider,
   TableExpandCellProps,
   TableNameCellProps,
   TableNameProps,

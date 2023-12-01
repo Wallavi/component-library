@@ -1,4 +1,4 @@
-import SignUp from "./index";
+import { SignUp } from "../../../../dist/";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
