@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Amplify, Auth } from "aws-amplify";
 import { amplifyConfiguration } from "./aws-exports";
 
-import Login from "./login";
-import SimpleCarousel from "./carousel";
+import {
+  Login,
+  SimpleCarousel,
+  PasswordRecovery,
+  SignUp,
+  EmailVerification,
+  NewPassword,
+} from "../../../dist";
 import Profile from "./profile";
-import PasswordRecovery from "./passwordRecovery";
-import SignUp, { SignUpInputProps } from "./signUp";
-import EmailVerification, {
-  EmailVerificationInputProps,
-} from "./emailVerification";
-import NewPassword from "./newPassword";
+import { SignUpInputProps } from "./signUp";
+import { EmailVerificationInputProps } from "./emailVerification";
 
 import Box from "@mui/material/Box";
 

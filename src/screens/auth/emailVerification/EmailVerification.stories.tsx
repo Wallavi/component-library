@@ -1,4 +1,4 @@
-import EmailVerification from "./index";
+import { EmailVerification } from "../../../../dist/";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {

@@ -12,6 +12,9 @@ import IconButton from "@mui/material/IconButton";
 
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 
+import { useThemeContext } from "../../../theme/wrapper";
+import { ThemeProvider } from "@mui/material/styles";
+
 interface NewPasswordProps {
   logo: string;
   title: string;
@@ -27,6 +30,7 @@ const NewPassword = ({
   resetPasswordError,
   setResetPasswordError,
 }: NewPasswordProps) => {
+  const { theme } = useThemeContext();
   const [showPassword, setShowPassword] = useState({
     password: false,
     repeatPassword: false,
@@ -65,88 +69,93 @@ const NewPassword = ({
   };
 
   return (
-    <AuthLayout logo={logo} title={title}>
-      <Stack
-        component="form"
-        spacing={1}
-        autoComplete="off"
-        sx={{
-          ".MuiButton-root": { marginTop: 1 },
-          ".MuiButton-contained": { marginTop: 0.5, marginBottom: 1 },
-          ".MuiFormHelperText-root": { marginTop: 0.25, marginLeft: 0.5 },
-        }}
-        onSubmit={formik.handleSubmit}
-      >
-        <TextField
-          label={"Nueva contraseña"}
-          type={showPassword.password ? "text" : "password"}
-          id="password"
-          name="password"
-          value={formik.values.password}
-          onChange={handleOnChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={handleTogglePasswordVisibility} edge="end">
-                  <RemoveRedEyeIcon
-                    sx={{
-                      color: (theme) =>
-                        showPassword.password
-                          ? theme.palette.primary.main
-                          : theme.palette.grey[400],
-                    }}
-                  />
-                </IconButton>
-              </InputAdornment>
-            ),
+    <ThemeProvider theme={theme}>
+      <AuthLayout logo={logo} title={title}>
+        <Stack
+          component="form"
+          spacing={1}
+          autoComplete="off"
+          sx={{
+            ".MuiButton-root": { marginTop: 1 },
+            ".MuiButton-contained": { marginTop: 0.5, marginBottom: 1 },
+            ".MuiFormHelperText-root": { marginTop: 0.25, marginLeft: 0.5 },
           }}
-          sx={{ minHeight: 74 }}
-        />
-        <TextField
-          label={"Repetir contraseña"}
-          type={showPassword.repeatPassword ? "text" : "password"}
-          id="repeatPassword"
-          name="repeatPassword"
-          value={formik.values.repeatPassword}
-          onChange={handleOnChange}
-          error={
-            formik.touched.repeatPassword &&
-            Boolean(formik.errors.repeatPassword)
-          }
-          helperText={
-            formik.touched.repeatPassword && formik.errors.repeatPassword
-          }
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={handleToggleRepeatPasswordVisibility}
-                  edge="end"
-                >
-                  <RemoveRedEyeIcon
-                    sx={{
-                      color: (theme) =>
-                        showPassword.repeatPassword
-                          ? theme.palette.primary.main
-                          : theme.palette.grey[400],
-                    }}
-                  />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          sx={{ minHeight: 74 }}
-        />
-        <FormHelperText sx={{ height: 16 }} error>
-          {resetPasswordError}
-        </FormHelperText>
-        <Button type="submit" variant="contained" sx={{ height: 45 }}>
-          Iniciar Sesión
-        </Button>
-      </Stack>
-    </AuthLayout>
+          onSubmit={formik.handleSubmit}
+        >
+          <TextField
+            label={"Nueva contraseña"}
+            type={showPassword.password ? "text" : "password"}
+            id="password"
+            name="password"
+            value={formik.values.password}
+            onChange={handleOnChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={handleTogglePasswordVisibility}
+                    edge="end"
+                  >
+                    <RemoveRedEyeIcon
+                      sx={{
+                        color: (theme) =>
+                          showPassword.password
+                            ? theme.palette.primary.main
+                            : theme.palette.grey[400],
+                      }}
+                    />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            sx={{ minHeight: 74 }}
+          />
+          <TextField
+            label={"Repetir contraseña"}
+            type={showPassword.repeatPassword ? "text" : "password"}
+            id="repeatPassword"
+            name="repeatPassword"
+            value={formik.values.repeatPassword}
+            onChange={handleOnChange}
+            error={
+              formik.touched.repeatPassword &&
+              Boolean(formik.errors.repeatPassword)
+            }
+            helperText={
+              formik.touched.repeatPassword && formik.errors.repeatPassword
+            }
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={handleToggleRepeatPasswordVisibility}
+                    edge="end"
+                  >
+                    <RemoveRedEyeIcon
+                      sx={{
+                        color: (theme) =>
+                          showPassword.repeatPassword
+                            ? theme.palette.primary.main
+                            : theme.palette.grey[400],
+                      }}
+                    />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            sx={{ minHeight: 74 }}
+          />
+          <FormHelperText sx={{ height: 16 }} error>
+            {resetPasswordError}
+          </FormHelperText>
+          <Button type="submit" variant="contained" sx={{ height: 45 }}>
+            Iniciar Sesión
+          </Button>
+        </Stack>
+      </AuthLayout>
+    </ThemeProvider>
   );
 };
 

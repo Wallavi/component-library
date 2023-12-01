@@ -2,9 +2,13 @@ import "../src/index.css";
 import React from "react";
 
 import { Preview } from "@storybook/react";
-import theme from "../theme/theme";
-import gohoTheme from "../theme/themes/goho";
-import { ThemeProvider } from "@mui/material/styles";
+import theme from "../dist/theme";
+import gohoTheme from "../dist/gohoTheme";
+import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "../dist";
+
+console.log("gohoTheme", gohoTheme);
+
 import { DecoratorFn } from "@storybook/react";
 
 export const parameters = {
@@ -52,19 +56,22 @@ export const globalTypes = {
 export const withTheme: DecoratorFn = (StoryFn, context) => {
   // Get values from story parameter first, else fallback to globals
   const themeContext = context.parameters.theme || context.globals.theme;
-  // const storyTheme = theme === "default" ? undefined : gohoTheme;
   switch (themeContext) {
     case "goho": {
       return (
         <ThemeProvider theme={gohoTheme}>
-          <StoryFn />
+          <MuiThemeProvider theme={gohoTheme}>
+            <StoryFn />
+          </MuiThemeProvider>
         </ThemeProvider>
       );
     }
     default: {
       return (
         <ThemeProvider theme={theme}>
-          <StoryFn />
+          <MuiThemeProvider theme={theme}>
+            <StoryFn />
+          </MuiThemeProvider>
         </ThemeProvider>
       );
     }

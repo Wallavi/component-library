@@ -1,10 +1,10 @@
-import Carousel from "./index";
+import { SimpleCarousel } from "../../../../dist/";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "Screens/Carousel",
-  component: Carousel,
-} satisfies Meta<typeof Carousel>;
+  component: SimpleCarousel,
+} satisfies Meta<typeof SimpleCarousel>;
 
 type Story = StoryObj<typeof meta>;
 

@@ -5,6 +5,7 @@ import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import postcss from "rollup-plugin-postcss";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import url from "@rollup/plugin-url";
 
 const Rollup = [
   {
@@ -28,6 +29,7 @@ const Rollup = [
       resolve(),
       commonjs(),
       postcss(),
+      url(),
       terser(),
       typescript({ declaration: true }),
     ],
@@ -52,11 +54,24 @@ const Rollup = [
     external: ["react", "react-dom"],
     exclude: "**/*.stories.tsx",
   },
-  // {
-  //   input: "src/index.ts",
-  //   output: [{ file: "dist/types.d.ts", format: "es" }],
-  //   plugins: [dts()],
-  // },
+  {
+    input: "theme/themes/goho/index.ts",
+    output: [
+      {
+        file: "dist/gohoTheme.js",
+        format: "cjs",
+        sourcemap: true,
+      },
+      {
+        file: "dist/gohoTheme.esm.js",
+        format: "esm",
+        sourcemap: true,
+      },
+    ],
+    plugins: [typescript({ declaration: true })],
+    external: ["react", "react-dom"],
+    exclude: "**/*.stories.tsx",
+  },
   {
     input: "src/index.tsx",
     output: [{ file: "dist/index.d.ts", format: "es" }],

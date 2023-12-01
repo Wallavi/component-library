@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material/styles';
 import primaryFonts from "./fonts";
 import colors from "./colors";
 import components from "./components";
@@ -6,7 +6,7 @@ import components from "./components";
 const theme = createTheme({
   typography: primaryFonts,
   palette: colors,
-  components: components
+  components: components,
 });
 
 export default theme;
