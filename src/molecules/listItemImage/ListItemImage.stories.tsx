@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import ListItemImage from "./index";
+// @ts-ignore
 import testingImage from "../../assets/testingImage.png";
 
 const meta = {

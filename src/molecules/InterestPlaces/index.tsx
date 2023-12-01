@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SuggestionPlaces from "../suggestion-places";
 import Map, { ViewStateChangeEvent, Marker, Source, Layer } from "react-map-gl";
 import type { CircleLayer } from "react-map-gl";
@@ -14,7 +14,7 @@ import Box from "@mui/material/Box";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 
 const MAPBOX_TOKEN =
-  "pk.eyJ1Ijoiam9zaWFzd2FsbGF2aSIsImEiOiJjbG84dmgzNGQwNDE1Mmx0ZnhxaTZ3cTF5In0.9bEo0UC3I-4ToHpP1kGRtg";
+  "pk.eyJ1IjoicmxlZ29ycmV0YSIsImEiOiJjaXYzZDBwY2YwMHprMnpxbm93aW5ubDkxIn0.XvwIpNBJK-ZS3VsiTRNv4w";
 
 export interface LocationSelectedProps {
   longitude: number;
@@ -122,6 +122,16 @@ const InterestPlaces = ({
         console.error("Error:", error);
       });
   };
+
+  useEffect(() => {
+    console.log("execution")
+    setViewState({
+      longitude: longitude,
+      latitude: latitude,
+      zoom: zoom,
+    })
+  }, [longitude, latitude, zoom])
+  
 
   return (
     <>
