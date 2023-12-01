@@ -17,6 +17,7 @@ export const Primary: Story = {
       { primaryText: "first", secondaryText: "Testing", srcImg: testingImage },
       { primaryText: "second", secondaryText: "Testing", srcImg: testingImage },
       { primaryText: "third", secondaryText: "Testing", srcImg: testingImage },
+      { primaryText: "fourth", secondaryText: "Testing", srcImg: testingImage, show: false },
     ],
     deleteItem: (idx) => {
       alert("Delete item " + idx);

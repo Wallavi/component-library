@@ -6,6 +6,7 @@ interface ItemData {
   primaryText: string;
   secondaryText?: string;
   srcImg: string;
+  show?: boolean
 }
 
 interface ListUploadedImagesProps {
@@ -20,12 +21,12 @@ const ListUploadedImages = ({
   return (
     <Stack spacing={1.25}>
       {listUploaded.map((item: ItemData, idx: number) => (
-        <ListItemImage
+        item.show !== false ? <ListItemImage
           primaryText={item.primaryText}
           secondaryText={item.secondaryText}
           srcImg={item.srcImg}
           deleteItem={() => deleteItem(idx)}
-        />
+        /> : null
       ))}
     </Stack>
   );
