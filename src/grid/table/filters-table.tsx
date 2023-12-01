@@ -51,6 +51,10 @@ const FilterTableListHooks = () => {
     []
   );
 
+  const onClickTableRow = (value: {}) => {
+    console.log("onClickTableRow",value)
+  }
+
   const searchFiltered = (searchValue: string) => {
     const updateFilterSearch = selectedFilters.find(
       (filter) => filter.filterLabel === "Search"
@@ -400,6 +404,7 @@ const FilterTableListHooks = () => {
           rows={rowsToShow}
           columns={columns}
           rowsPerPagePagination={5}
+          onClickTableRow={onClickTableRow}
           sx={{
             minWidth: 1200,
             ".MuiTableHead-root": {
