@@ -1,5 +1,6 @@
 import ListUploadedImages from "./index";
 import type { Meta, StoryObj } from "@storybook/react";
+// @ts-ignore
 import testingImage from "../../assets/testingImage.png";
 
 const meta = {

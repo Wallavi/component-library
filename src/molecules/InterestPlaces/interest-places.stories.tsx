@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import InterestPlaces from "./index";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -6,6 +6,7 @@ import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 const meta = {
   title: "Molecules/InterestPlaces",
@@ -41,6 +42,32 @@ const CardPlace = () => {
   )
 }
 
+const EditingIntialValues = () => {
+  const [coordinates, setCoordinates] = useState({longitude: -104.8784836, latitude: 21.48073, zoom: 14})
+
+  const changeCoordinatesGDL = () => {
+    setCoordinates({longitude: -103.4177992, latitude: 20.6738512, zoom:14})
+  }
+
+  const changeCoordinatesCDMX = () => {
+    setCoordinates({longitude: -99.3084228, latitude: 19.3906594, zoom:14})
+  }
+
+  return (
+    <>
+      <Button onClick={changeCoordinatesGDL}>Change Coordinates to Guadalajara</Button>
+      <Button onClick={changeCoordinatesCDMX}>Change Coordinates to CDMX</Button>
+      <InterestPlaces 
+        longitude={coordinates.longitude}
+        latitude={coordinates.latitude}
+        zoom={coordinates.zoom}
+        locationSelected={() => {}}
+        sx={{width: 600, height: 300, marginBottom: 8}}
+      />
+    </>
+  )
+}
+
 export const Primary: Story = {
   args: {
     longitude: -104.8784836,
@@ -61,6 +88,10 @@ export const Edit: Story = {
     sx:{width: 800, height: 500}
   },
 };
+
+export const EditInitialCoordinates = {
+  render: () => <EditingIntialValues />
+}
 
 export const CardPlaces = {
   render: () => <CardPlace />,
