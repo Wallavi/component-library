@@ -19,6 +19,7 @@ const TableList = <T extends Record<string, any>>({
   columns,
   rowsPerPagePagination,
   sortIconComponent,
+  onClickTableRow,
   ...rest
 }: TableListProps<T>) => {
   type Row = (typeof rows)[number];
@@ -92,7 +93,7 @@ const TableList = <T extends Record<string, any>>({
 
               return (
                 <Fragment key={`main-${row.id}`}>
-                  <TableRow hover key={`table-row-${row.id}`}>
+                  <TableRow onClick={() => onClickTableRow && onClickTableRow(row)} hover key={`table-row-${row.id}`}>
                     {columns.map((column, idx) =>
                       // @ts-ignore
                       typeof row[column.field] === "object" &&

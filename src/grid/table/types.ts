@@ -25,4 +25,5 @@ export interface TableListProps<T> {
     className: string;
   }>
   sx?: SxProps;
+  onClickTableRow?: (value: T) => void
 }
