@@ -24,7 +24,7 @@ const CardUploadImages = ({
       {disabled ? (
         images.length > 0 ? (
           images.map((img, idx) => (
-            <ListItemImage
+            img.show !== false ? <ListItemImage
               key={"imgList" + idx}
               primaryText={img[customMap.primaryText]}
               secondaryText={
@@ -33,7 +33,7 @@ const CardUploadImages = ({
               srcImg={img.base64}
               deleteItem={() => (deleteItem ? deleteItem(idx) : undefined)}
               disabled={disabled}
-            />
+            /> : null
           ))
         ) : (
           <NoImagesUploaded />
@@ -42,7 +42,7 @@ const CardUploadImages = ({
         <>
           <UploadImages handleDropImage={handleDropImage} />
           {images.map((img, idx) => (
-            <ListItemImage
+            img.show !== false ? <ListItemImage
               key={"imgList" + idx}
               primaryText={img[customMap.primaryText]}
               secondaryText={
@@ -50,7 +50,7 @@ const CardUploadImages = ({
               }
               srcImg={img.base64}
               deleteItem={() => (deleteItem ? deleteItem(idx) : undefined)}
-            />
+            /> : null
           ))}
         </>
       )}
