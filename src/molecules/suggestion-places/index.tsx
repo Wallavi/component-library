@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Loader } from "@googlemaps/js-api-loader";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -9,15 +10,6 @@ const API_KEY = "AIzaSyBMlz15Dk7znSkuDgnaPkFFwNoEfIm_scE";
 interface SuggestionPlacesP {
   description: string;
   place_id?: string;
-}
-
-interface OptionPlacesProps {
-  predictions: [
-    {
-      description: string;
-      place_id: string;
-    }
-  ];
 }
 
 interface SuggestionPlacesProps {
@@ -33,83 +25,87 @@ const SuggestionPlaces = ({
   const [value, setValue] = useState<SuggestionPlacesP | null>(
     autocompleteValue ? autocompleteValue : null
   );
-  const [optionPlaces, setOptionPlaces] = useState<OptionPlacesProps>({
-    predictions: [{ description: "", place_id: "" }],
-  });
-
-  const getSuggestions = (inputValue: string) => {
-    const apiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${inputValue}&types=geocode&key=${API_KEY}`;
-    fetch(apiUrl, { method: "GET" })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Handle the data from the API response
-        setOptionPlaces(data);
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Error fetching data:", error);
-      });
-  };
+  const [optionPlaces, setOptionPlaces] = useState<SuggestionPlacesP[]>([
+    { description: "", place_id: "" },
+  ]);
 
   const getPlaceSelected = (value: SuggestionPlacesP) => {
     if (value?.place_id) {
-      const apiUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${value.place_id}&fields=geometry&key=${API_KEY}`;
-      fetch(apiUrl)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          // Handle the data from the API response
-          getLocationSelected({
-            ...data.result.geometry,
-            description: value.description,
-          });
-        })
-        .catch((error) => {
-          // Handle errors
-          console.error("Error fetching data:", error);
-        });
+      const request = {
+        placeId: value?.place_id,
+        fields: ["address_components", "geometry", "formatted_address"],
+      };
+      const service = new window.google.maps.places.PlacesService(
+        document.createElement("div")
+      );
+      service.getDetails(request, getLocationCallback);
     }
   };
 
-  useEffect(() => {
-    const apiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=tepic&types=geocode&key=${API_KEY}`;
-    fetch(apiUrl)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Handle the data from the API response
-        setOptionPlaces(data);
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+  const getLocationCallback = (
+    place: google.maps.places.PlaceResult,
+    status: google.maps.places.PlacesServiceStatus
+  ) => {
+    if (status !== google.maps.places.PlacesServiceStatus.OK || !place) {
+      console.error(status);
+      return;
+    }
+
+    getLocationSelected({
+      location: {
+        lat: place.geometry?.location.lat(),
+        lng: place.geometry?.location.lng(),
+      },
+      description: place.formatted_address,
+    });
+  };
 
   useEffect(() => {
-    if (inputValue) {
-      const timeoutId = setTimeout(() => {
-        getSuggestions(inputValue);
-      }, 800);
+    const loader = new Loader({
+      apiKey: API_KEY,
+      version: "weekly",
+      libraries: ["places"],
+    });
 
-      return () => {
-        clearTimeout(timeoutId);
+    let timeoutId: NodeJS.Timeout;
+
+    loader.load().then(() => {
+      const initService = (): void => {
+        const displaySuggestions = (
+          predictions: google.maps.places.QueryAutocompletePrediction[] | null,
+          status: google.maps.places.PlacesServiceStatus
+        ) => {
+          if (
+            status !== google.maps.places.PlacesServiceStatus.OK ||
+            !predictions
+          ) {
+            console.error(status);
+            return;
+          }
+
+          setOptionPlaces(predictions);
+        };
+
+        const service = new window.google.maps.places.AutocompleteService();
+        service.getQueryPredictions(
+          { input: inputValue ? inputValue : "tepic" },
+          displaySuggestions
+        );
       };
-    } else return;
-  }, [inputValue]);
+
+      // Clear the previous timeout when inputValue changes
+      clearTimeout(timeoutId);
+
+      // Set a new timeout
+      timeoutId = setTimeout(() => {
+        initService();
+      }, 800);
+    });
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [inputValue, setOptionPlaces]);
 
   useEffect(() => {
     if (autocompleteValue) {
@@ -132,7 +128,12 @@ const SuggestionPlaces = ({
         onInputChange={(event, newInputValue) => {
           setInputValue(newInputValue);
         }}
-        options={optionPlaces?.predictions.map((option) => option)}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent the default Enter key behavior
+          }
+        }}
+        options={optionPlaces?.map((option) => option)}
         renderInput={(params) => (
           <TextField
             {...params}
