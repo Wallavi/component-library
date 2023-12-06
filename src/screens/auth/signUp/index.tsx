@@ -29,6 +29,7 @@ export interface SignUpInputProps {
 interface SignUpProps {
   logo: string;
   title: string;
+  onClickBackButton?: () => void;
   handleLogin: () => void;
   handleSignUp: (value: SignUpInputProps) => void;
   signUpError?: string | null;
@@ -38,6 +39,7 @@ interface SignUpProps {
 const SignUp = ({
   logo,
   title,
+  onClickBackButton,
   handleLogin,
   handleSignUp,
   signUpError,
@@ -85,7 +87,7 @@ const SignUp = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <AuthLayout logo={logo} title={title}>
+      <AuthLayout logo={logo} title={title} onClickBackButton={onClickBackButton}>
         <Stack
           component="form"
           spacing={1.5}

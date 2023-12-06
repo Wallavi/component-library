@@ -15,6 +15,7 @@ import { ThemeProvider } from "@mui/material/styles";
 interface LoginProps {
   logo: string;
   title: string;
+  onClickBackButton?: () => void;
   handleCancel: () => void;
   handleSignUp: () => void;
   handlePasswordRecovery: (values: { email: string }) => void;
@@ -25,6 +26,7 @@ interface LoginProps {
 const PasswordRecovery = ({
   logo,
   title,
+  onClickBackButton,
   handleCancel,
   handleSignUp,
   handlePasswordRecovery,
@@ -54,7 +56,7 @@ const PasswordRecovery = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <AuthLayout logo={logo} title={title}>
+      <AuthLayout logo={logo} title={title} onClickBackButton={onClickBackButton}>
         <Stack
           component="form"
           spacing={1}

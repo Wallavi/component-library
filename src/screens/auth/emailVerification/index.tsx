@@ -20,6 +20,7 @@ export interface EmailVerificationInputProps {
 interface EmailVerificationProps {
   logo: string;
   title: string;
+  onClickBackButton?: () => void;
   confirmEmail: string;
   handleConfirm: (value: EmailVerificationInputProps) => void;
   handleResendCode: () => void;
@@ -38,6 +39,7 @@ interface FormikInitialValuesProps {
 const EmailVerification = ({
   logo,
   title,
+  onClickBackButton,
   confirmEmail,
   handleConfirm,
   handleResendCode,
@@ -142,6 +144,7 @@ const EmailVerification = ({
       <AuthLayout
         logo={logo}
         title={title}
+        onClickBackButton={onClickBackButton}
         sx={{ ".auth-title": { marginBottom: 1 } }}
       >
         <Stack

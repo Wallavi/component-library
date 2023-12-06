@@ -1,10 +1,10 @@
 const MuiButtonStyles = {
   MuiButton: {
     styleOverrides: {
-      root: {
-        textTransform: "none",
-        boxShadow: "none",
-      },
+      root: `
+        text-transform: none;
+        box-shadow: none;
+      `,
     },
   },
 };

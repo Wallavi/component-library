@@ -18,6 +18,7 @@ import { ThemeProvider } from "@mui/material/styles";
 interface NewPasswordProps {
   logo: string;
   title: string;
+  onClickBackButton?: () => void;
   handleResetPassword: (values: { newPassword: string }) => void;
   resetPasswordError?: string | null;
   setResetPasswordError?: (value: null) => void;
@@ -26,6 +27,7 @@ interface NewPasswordProps {
 const NewPassword = ({
   logo,
   title,
+  onClickBackButton,
   handleResetPassword,
   resetPasswordError,
   setResetPasswordError,
@@ -70,7 +72,7 @@ const NewPassword = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <AuthLayout logo={logo} title={title}>
+      <AuthLayout logo={logo} title={title} onClickBackButton={onClickBackButton}>
         <Stack
           component="form"
           spacing={1}
