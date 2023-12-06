@@ -20,6 +20,7 @@ const TableList = <T extends Record<string, any>>({
   rowsPerPagePagination,
   sortIconComponent,
   onClickTableRow,
+  labelRowsPerPage,
   ...rest
 }: TableListProps<T>) => {
   type Row = (typeof rows)[number];
@@ -169,12 +170,13 @@ const TableList = <T extends Record<string, any>>({
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+              rowsPerPageOptions={[5, 10, 25, { label: "Todas", value: rows.length }]}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handlePageChange}
               onRowsPerPageChange={handleRowsPerPageChange}
+              labelRowsPerPage={labelRowsPerPage ? labelRowsPerPage : "Filas por página"}
             />
           </TableRow>
         </TableFooter>

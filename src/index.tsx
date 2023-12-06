@@ -1,3 +1,5 @@
+import "typeface-inter";
+
 // atoms
 import Step from "atoms/Step";
 import Input from "atoms/Input";

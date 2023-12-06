@@ -25,5 +25,6 @@ export interface TableListProps<T> {
     className: string;
   }>
   sx?: SxProps;
-  onClickTableRow?: (value: T) => void
+  onClickTableRow?: (value: T) => void;
+  labelRowsPerPage?: string
 }
