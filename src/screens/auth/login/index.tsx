@@ -19,6 +19,7 @@ import { ThemeProvider } from "@mui/material/styles";
 interface LoginProps {
   logo: string;
   title: string;
+  onClickBackButton?: () => void;
   handleRecoveryPassword: () => void;
   handleSignUp: () => void;
   handleLogin: (values: { username: string; password: string }) => void;
@@ -29,6 +30,7 @@ interface LoginProps {
 const Login = ({
   logo,
   title,
+  onClickBackButton,
   handleRecoveryPassword,
   handleSignUp,
   handleLogin,
@@ -66,7 +68,7 @@ const Login = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <AuthLayout logo={logo} title={title}>
+      <AuthLayout logo={logo} title={title} onClickBackButton={onClickBackButton}>
         <Stack
           component="form"
           spacing={1.5}

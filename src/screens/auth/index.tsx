@@ -263,6 +263,7 @@ const Authentication = () => {
                 handlePasswordRecovery={handlePasswordRecovery}
                 passwordRecoveryError={passwordRecoveryError}
                 setPasswordRecoveryError={setPasswordRecoveryError}
+                onClickBackButton={() => setShowScreen("login")}
               />
             ) : showScreen === "signup" ? (
               <SignUp
@@ -274,6 +275,7 @@ const Authentication = () => {
                 handleSignUp={handleSignUp}
                 signUpError={signUpError}
                 setSignUpError={setSignUpError}
+                onClickBackButton={() => setShowScreen("login")}
               />
             ) : showScreen === "emailVerification" ? (
               <EmailVerification
