@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { BoxesProps } from './types'
 import Box from '@mui/material/Box'
 import CssBaseline from '@mui/material/CssBaseline'
 import ListItem from '@mui/material/ListItem'
@@ -20,15 +21,12 @@ import {
   ListItemIconDrawer,
 } from './styles'
 
-interface BoxesProps {
-  boxes: {
-    id: string
-    title: string
-    icon: any
-  }[]
-}
-
-export default function CustomDrawer({ boxes }: BoxesProps) {
+export default function CustomDrawer({
+  boxes,
+  customLargeLogo,
+  customSmallLogo,
+  handleItemOnClick,
+}: BoxesProps) {
   const [open, setOpen] = useState<boolean>(false)
   const [selectedBox, setSelectedBox] = useState<any>(null)
 
@@ -42,8 +40,9 @@ export default function CustomDrawer({ boxes }: BoxesProps) {
     setOpen(false)
   }
 
-  const handleItemClick = (box: any) => {
+  const handleItemClick = (box: object) => {
     setSelectedBox(box)
+    handleItemOnClick(box)
   }
 
   return (
@@ -54,14 +53,10 @@ export default function CustomDrawer({ boxes }: BoxesProps) {
           <ImageDrawer
             width={imageWidth}
             height={80}
-            src={
-              open
-                ? 'https://depot.center/static/media/horizontal-logo.a1f81371.svg'
-                : 'https://www.wallavi.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fproject-001.819f6bda.png&w=128&q=75'
-            }
+            src={open ? customLargeLogo : customSmallLogo}
             alt=""
           />
-          {[...boxes].map((box) => (
+          {boxes.map((box) => (
             <ListItem key={box.id} disablePadding sx={{ display: 'block' }}>
               <ListItemButtonDrawer
                 onClick={() => handleItemClick(box)}

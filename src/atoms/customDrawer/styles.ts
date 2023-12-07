@@ -1,5 +1,6 @@
 import { Theme, styled, CSSObject } from '@mui/material/styles'
 import { Typography } from '@mui/material'
+import { BoxesProps } from './types'
 import IconButton from '@mui/material/IconButton'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
@@ -12,13 +13,8 @@ interface DrawerProps {
 }
 
 interface ListItemButtonDrawerProps {
-  selectedBox: any
-  box: any
-}
-
-interface ListItemIconDrawerProps {
-  selectedBox: any
-  box: any
+  selectedBox: BoxesProps
+  box: object
 }
 
 const drawerWidth = 240
@@ -96,7 +92,7 @@ export const ListItemButtonDrawer = styled(ListItemButton)(
 )
 
 export const ListItemIconDrawer = styled(ListItemIcon)(
-  ({ selectedBox, box }: ListItemIconDrawerProps) => ({
+  ({ selectedBox, box }: ListItemButtonDrawerProps) => ({
     color: selectedBox === box ? 'rgb(85, 144, 255)' : 'rgb(117, 117, 117)',
   })
 )
