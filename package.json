@@ -24,7 +24,6 @@
     "yup": "^1.2.0"
   },
   "scripts": {
-    "prepare": "npm run build",
     "start": "npm run storybook",
     "build": "rollup -c",
     "test": "react-scripts test",
