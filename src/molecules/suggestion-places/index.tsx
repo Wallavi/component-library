@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-const API_KEY = "AIzaSyBMlz15Dk7znSkuDgnaPkFFwNoEfIm_scE";
+const API_KEY = "AIzaSyDRukW3WJWmvsTitLG-EftojR-cPyWvRuA";
 
 interface SuggestionPlacesP {
   description: string;
