@@ -48,6 +48,8 @@ const UploadImages = ({ handleDropImage }: UploadImagesProps) => {
           borderStyle: "dashed",
           borderRadius: 1,
           cursor: "pointer",
+          display: "flex",
+          justifyContent: "center"
         }}
       >
         <Box
@@ -55,7 +57,7 @@ const UploadImages = ({ handleDropImage }: UploadImagesProps) => {
           sx={{
             display: "flex",
             justifyContent: "center",
-            margin: "40px 0",
+            width: "100%"
           }}
         >
           <input {...getInputProps()} />
