@@ -142,5 +142,8 @@
   "bugs": {
     "url": "https://github.com/Wallavi/component-library/issues"
   },
-  "homepage": "https://github.com/Wallavi/component-library#readme"
+  "homepage": "https://github.com/Wallavi/component-library#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }
