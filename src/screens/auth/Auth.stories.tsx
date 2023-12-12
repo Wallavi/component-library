@@ -1,4 +1,4 @@
-import Auth from "./index";
+import Auth from "./index.example";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {

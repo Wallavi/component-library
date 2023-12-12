@@ -124,13 +124,18 @@ const InterestPlaces = ({
   };
 
   useEffect(() => {
-    console.log("execution")
     setViewState({
       longitude: longitude,
       latitude: latitude,
       zoom: zoom,
     })
   }, [longitude, latitude, zoom])
+
+  useEffect(() => {
+    if (address) {
+      setPlace(address);
+    }
+  }, [address]);
   
 
   return (

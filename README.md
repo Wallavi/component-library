@@ -64,5 +64,8 @@ to install the library we need login into npm github packages
 
 npm login --scope=@Wallavi --auth-type=legacy --registry=https://npm.pkg.github.com
 
+### `npm logout`
+npm logout --registry=https://npm.pkg.github.com
+
 ### Deployment
 

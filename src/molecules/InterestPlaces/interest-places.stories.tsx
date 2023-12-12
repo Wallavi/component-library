@@ -43,14 +43,14 @@ const CardPlace = () => {
 }
 
 const EditingIntialValues = () => {
-  const [coordinates, setCoordinates] = useState({longitude: -104.8784836, latitude: 21.48073, zoom: 14})
+  const [coordinates, setCoordinates] = useState({longitude: -104.8784836, latitude: 21.48073, zoom: 14, address: "Tepic"})
 
   const changeCoordinatesGDL = () => {
-    setCoordinates({longitude: -103.4177992, latitude: 20.6738512, zoom:14})
+    setCoordinates({longitude: -103.4177992, latitude: 20.6738512, zoom:14, address: "Guadalajara"})
   }
 
   const changeCoordinatesCDMX = () => {
-    setCoordinates({longitude: -99.3084228, latitude: 19.3906594, zoom:14})
+    setCoordinates({longitude: -99.3084228, latitude: 19.3906594, zoom:14, address: "Ciudad de Mexico"})
   }
 
   return (
@@ -63,6 +63,7 @@ const EditingIntialValues = () => {
         zoom={coordinates.zoom}
         locationSelected={() => {}}
         sx={{width: 600, height: 300, marginBottom: 8}}
+        address={coordinates.address}
       />
     </>
   )
