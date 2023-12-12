@@ -34,7 +34,7 @@ const Rollup = [
       typescript({ declaration: true }),
     ],
     external: ["react", "react-dom"],
-    exclude: "**/*.stories.tsx",
+    exclude: ["**/*.stories.tsx", "node_modules/@mui/base/**", "**/*.example.tsx"],
   },
   {
     input: "theme/index.ts",
@@ -52,7 +52,7 @@ const Rollup = [
     ],
     plugins: [typescript()],
     external: ["react", "react-dom"],
-    exclude: "**/*.stories.tsx",
+    exclude: ["**/*.stories.tsx", "node_modules/@mui/base/**", "**/*.example.tsx"],
   },
   {
     input: "theme/themes/goho/index.ts",
@@ -70,14 +70,14 @@ const Rollup = [
     ],
     plugins: [typescript({ declaration: true })],
     external: ["react", "react-dom"],
-    exclude: "**/*.stories.tsx",
+    exclude: ["**/*.stories.tsx", "node_modules/@mui/base/**", "**/*.example.tsx"],
   },
   {
     input: "src/index.tsx",
     output: [{ file: "dist/index.d.ts", format: "es" }],
     plugins: [dts()],
     external: ["react", "react-dom"],
-    exclude: "**/*.stories.tsx",
+    exclude: ["**/*.stories.tsx", "node_modules/@mui/base/**", "**/*.example.tsx"],
   },
 ];
 
