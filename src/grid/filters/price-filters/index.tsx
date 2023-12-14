@@ -9,7 +9,7 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import InputAdornment from "@mui/material/InputAdornment";
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 interface PriceValueProps {
   min: number;
@@ -55,12 +55,8 @@ const PriceFilter = ({
     <>
       <Button
         onClick={handleClick}
-        endIcon={<ExpandMoreIcon />}
-        sx={{
-          textTransform: "none",
-          color: (theme) => theme.palette.grey[800],
-          marginRight: 2,
-        }}
+        endIcon={<ArrowDropDownIcon />}
+        variant="filters"
       >
         {buttonLabel}
       </Button>

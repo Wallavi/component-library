@@ -1,3 +1,5 @@
+import { grey } from "@mui/material/colors";
+
 const MuiButtonStyles = {
   MuiButton: {
     styleOverrides: {
@@ -6,6 +8,21 @@ const MuiButtonStyles = {
         box-shadow: none;
       `,
     },
+    variants: [
+      {
+        props: { variant: 'filters' },
+        style: {
+          borderRadius: 8,
+          textTransform: "none",
+          color: grey[800],
+          cursor: "pointer",
+          marginRight: 2,
+          ':hover': {
+            backgroundColor: grey[50]
+          }
+        },
+      },
+    ],
   },
 };
 

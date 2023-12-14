@@ -4,6 +4,7 @@ import FilteredChips from "./filtered-chips";
 
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
 
 import { MenuChipsFilterProps } from "../types";
 
@@ -114,7 +115,7 @@ const MenuChipsFiltered = ({
                 deletedFilter={deletedFilter}
               />
             ))
-          : filtersAppliedText ? filtersAppliedText : "No hay filtros aplicados"}
+          : filtersAppliedText ? filtersAppliedText : <Typography>No hay filtros aplicados</Typography>}
       </Box>
       <Divider />
       <Box paddingY={2}>{children}</Box>

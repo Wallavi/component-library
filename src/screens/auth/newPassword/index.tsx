@@ -112,7 +112,13 @@ const NewPassword = ({
                 </InputAdornment>
               ),
             }}
-            sx={{ minHeight: 74 }}
+            sx={{
+              borderRadius: 8,
+              minHeight: 74,
+              ".MuiOutlinedInput-notchedOutline": {
+                borderColor: (theme) => theme.palette.grey[200],
+              },
+            }}
           />
           <TextField
             label={"Repetir contraseña"}
@@ -147,7 +153,13 @@ const NewPassword = ({
                 </InputAdornment>
               ),
             }}
-            sx={{ minHeight: 74 }}
+            sx={{
+              borderRadius: 8,
+              minHeight: 74,
+              ".MuiOutlinedInput-notchedOutline": {
+                borderColor: (theme) => theme.palette.grey[200],
+              },
+            }}
           />
           <FormHelperText sx={{ height: 16 }} error>
             {resetPasswordError}

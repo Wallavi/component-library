@@ -28,3 +28,8 @@ declare module '@mui/material/Typography' {
   }
 }
 
+declare module '@mui/material/Button' {
+  interface ButtonPropsVariantOverrides {
+    filters: true;
+  }
+}

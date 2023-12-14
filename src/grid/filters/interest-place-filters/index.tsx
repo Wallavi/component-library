@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import { SxProps } from '@mui/material/styles';
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 import InterestPlaces from "../../../molecules/InterestPlaces";
 
@@ -51,12 +51,8 @@ const InterestPlacesFilters = ({
     <>
       <Button
         onClick={handleClick}
-        endIcon={<ExpandMoreIcon />}
-        sx={{
-          textTransform: "none",
-          color: (theme) => theme.palette.grey[800],
-          marginRight: 2,
-        }}
+        endIcon={<ArrowDropDownIcon />}
+        variant="filters"
       >
         {buttonLabel}
       </Button>

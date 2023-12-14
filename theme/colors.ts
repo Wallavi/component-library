@@ -1,3 +1,4 @@
+import { grey } from "@mui/material/colors";
 
 const PrimaryColor = {
   primary: {
@@ -13,6 +14,9 @@ const PrimaryColor = {
   middleblue: {
     main: "#99a7bf",
   },
+  text: {
+    primary: grey[800] 
+  }
 }
 
 export default PrimaryColor

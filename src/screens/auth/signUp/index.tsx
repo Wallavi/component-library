@@ -112,7 +112,13 @@ const SignUp = ({
             onChange={handleOnChange}
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
-            sx={{ minHeight: 74 }}
+            sx={{
+              borderRadius: 8,
+              minHeight: 74,
+              ".MuiOutlinedInput-notchedOutline": {
+                borderColor: (theme) => theme.palette.grey[200],
+              },
+            }}
           />
           <TextField
             label={"Contraseña"}
@@ -142,7 +148,13 @@ const SignUp = ({
                 </InputAdornment>
               ),
             }}
-            sx={{ minHeight: 74 }}
+            sx={{
+              borderRadius: 8,
+              minHeight: 74,
+              ".MuiOutlinedInput-notchedOutline": {
+                borderColor: (theme) => theme.palette.grey[200],
+              },
+            }}
           />
           <TextField
             label={"Confirmar contraseña"}
@@ -177,7 +189,13 @@ const SignUp = ({
                 </InputAdornment>
               ),
             }}
-            sx={{ minHeight: 74 }}
+            sx={{
+              borderRadius: 8,
+              minHeight: 74,
+              ".MuiOutlinedInput-notchedOutline": {
+                borderColor: (theme) => theme.palette.grey[200],
+              },
+            }}
           />
           <FormControl
             required

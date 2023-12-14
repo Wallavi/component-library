@@ -6,6 +6,7 @@ import components from "./components";
 const theme = createTheme({
   typography: primaryFonts,
   palette: colors,
+  // @ts-ignore
   components: components,
 });
 
