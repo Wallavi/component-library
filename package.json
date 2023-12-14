@@ -1,6 +1,6 @@
 {
   "name": "@wallavi/component-library",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "dependencies": {
     "@emotion/css": "^11.10.8",
     "@emotion/react": "^11.10.8",
@@ -56,16 +56,6 @@
           "import/no-anonymous-default-export": "off"
         }
       }
-    ]
-  },
-  "babel": {
-    "presets": [
-      [
-        "react-app",
-        {
-          "absoluteRuntime:false": false
-        }
-      ]
     ]
   },
   "browserslist": {

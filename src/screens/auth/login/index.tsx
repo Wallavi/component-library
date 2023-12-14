@@ -68,7 +68,11 @@ const Login = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <AuthLayout logo={logo} title={title} onClickBackButton={onClickBackButton}>
+      <AuthLayout
+        logo={logo}
+        title={title}
+        onClickBackButton={onClickBackButton}
+      >
         <Stack
           component="form"
           spacing={1.5}
@@ -88,7 +92,13 @@ const Login = ({
             onChange={handleOnChange}
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
-            sx={{ minHeight: 74 }}
+            sx={{
+              borderRadius: 8,
+              minHeight: 74,
+              ".MuiOutlinedInput-notchedOutline": {
+                borderColor: (theme) => theme.palette.grey[200],
+              },
+            }}
           />
           <TextField
             label={"Contraseña"}
@@ -99,7 +109,13 @@ const Login = ({
             onChange={handleOnChange}
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
-            sx={{ minHeight: 74 }}
+            sx={{
+              borderRadius: 8,
+              minHeight: 74,
+              ".MuiOutlinedInput-notchedOutline": {
+                borderColor: (theme) => theme.palette.grey[200],
+              },
+            }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -142,7 +158,7 @@ const Login = ({
             >
               ¿No tienes una cuenta?
             </Box>
-            Registrate aqui
+            Regístrate aquí
           </Button>
         </Stack>
       </AuthLayout>

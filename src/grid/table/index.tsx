@@ -83,7 +83,7 @@ const TableList = <T extends Record<string, any>>({
           {rowsToShow.length === 0 ? (
             <TableRow className="no-data-found">
               <TableCell colSpan={7}>
-                <Typography align="center" variant="h5">
+                <Typography align="center" variant="h6">
                   No hay datos encontrados
                 </Typography>
               </TableCell>
@@ -177,6 +177,7 @@ const TableList = <T extends Record<string, any>>({
               onPageChange={handlePageChange}
               onRowsPerPageChange={handleRowsPerPageChange}
               labelRowsPerPage={labelRowsPerPage ? labelRowsPerPage : "Filas por página"}
+              labelDisplayedRows={({from, to, count}) => { return `${from}–${to} de ${count !== -1 ? count : `mas que ${to}`}`; }}
             />
           </TableRow>
         </TableFooter>

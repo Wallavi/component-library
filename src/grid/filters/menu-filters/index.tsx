@@ -5,8 +5,7 @@ import Menu from "@mui/material/Menu";
 import Button from "@mui/material/Button";
 import Checkbox from '@mui/material/Checkbox';
 
-
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 import { MenuFilterProps, DataFiltersProps } from "../types";
 
@@ -97,12 +96,8 @@ const MenuFilter = ({ setFilters, filters }: MenuFilterProps) => {
     <>
       <Button
         onClick={handleClick}
-        endIcon={<ExpandMoreIcon />}
-        sx={{
-          textTransform: "none",
-          color: (theme) => theme.palette.grey[800],
-          marginRight: 2,
-        }}
+        endIcon={<ArrowDropDownIcon />}
+        variant="filters"
       >
         {filters.buttonLabel}
       </Button>
