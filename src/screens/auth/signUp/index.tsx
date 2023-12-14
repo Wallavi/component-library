@@ -95,11 +95,6 @@ const SignUp = ({
           sx={{
             ".MuiButton-root": { marginTop: 1 },
             ".MuiButton-contained": { marginTop: 2, marginBottom: 1.5 },
-            fieldset: {
-              ".MuiFormHelperText-root": { marginTop: 0, marginLeft: 1.5 },
-              marginTop: 0.5,
-              ".MuiFormControlLabel-root": { marginLeft: 0 },
-            },
             ".MuiFormHelperText-root": { marginTop: 0, marginLeft: 0.5 },
           }}
           onSubmit={formik.handleSubmit}
@@ -204,7 +199,7 @@ const SignUp = ({
               Boolean(formik.errors.agree_to_terms)
             }
             component="fieldset"
-            sx={{ minHeight: 60 }}
+            sx={{ minHeight: 62 }}
             variant="standard"
           >
             <FormControlLabel
