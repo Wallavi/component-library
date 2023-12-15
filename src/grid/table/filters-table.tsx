@@ -8,9 +8,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { grey } from "@mui/material/colors";
 import SearchIcon from "@mui/icons-material/Search";
 
-import InterestPlaces, {
-  LocationSelectedProps,
-} from "../filters/interest-place-filters";
+import { InterestPlacesFilters, MenuSearchFilter, LocationSelectedProps } from "../../../dist";
 import TableList from "./index";
 import MenuFilter from "../filters/menu-filters";
 import MenuChipsFiltered from "../filters/chip-filters";
@@ -379,13 +377,13 @@ const FilterTableListHooks = () => {
         <>
           <MenuFilter filters={categoryFilter} setFilters={categoryFiltered} />
           <MenuFilter filters={statusFilter} setFilters={statusFiltered} />
-          <MenuFilter filters={stockFilter} setFilters={stockFiltered} />
+          <MenuSearchFilter filters={stockFilter} setFilters={stockFiltered} />
           <PriceFilter
             buttonLabel="Price"
             prices={dataHousePrices}
             getFilterPrices={getFilterPrices}
           />
-          <InterestPlaces
+          <InterestPlacesFilters
             buttonLabel={"Sitios de Interés"}
             longitude={-104.8784836}
             latitude={21.48073}

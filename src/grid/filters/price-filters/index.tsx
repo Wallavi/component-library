@@ -4,7 +4,7 @@ import Histogram from "./price-histogram";
 import MinimumDistanceSlider from "./price-slider";
 
 import Menu from "@mui/material/Menu";
-import Button from "@mui/material/Button";
+import FilterButton from "atoms/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -53,13 +53,13 @@ const PriceFilter = ({
 
   return (
     <>
-      <Button
+      <FilterButton
         onClick={handleClick}
         endIcon={<ArrowDropDownIcon />}
         variant="filters"
       >
         {buttonLabel}
-      </Button>
+      </FilterButton>
       <Menu
         id="category-menu"
         MenuListProps={{
