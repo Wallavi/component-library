@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import Button from "@mui/material/Button";
+import {ButtonProps} from "@mui/material/Button";
+import FilterButton from "../../../atoms/Button";
 import Menu from "@mui/material/Menu";
 import { SxProps } from '@mui/material/styles';
 
@@ -17,7 +18,7 @@ export interface LocationSelectedProps {
   address: string;
 }
 
-interface InterestPlacesProps {
+interface InterestPlacesProps extends ButtonProps {
   buttonLabel: string;
   longitude: number;
   latitude: number;
@@ -34,7 +35,8 @@ const InterestPlacesFilters = ({
   zoom,
   address,
   locationSelected,
-  sx
+  sx,
+  ...rest
 }: InterestPlacesProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -49,13 +51,13 @@ const InterestPlacesFilters = ({
 
   return (
     <>
-      <Button
+      <FilterButton
         onClick={handleClick}
         endIcon={<ArrowDropDownIcon />}
-        variant="filters"
+        {...rest}
       >
         {buttonLabel}
-      </Button>
+      </FilterButton>
       <Menu
         id="category-menu"
         MenuListProps={{

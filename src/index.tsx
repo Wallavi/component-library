@@ -34,7 +34,7 @@ import TableStockCell, {
   TableStockProps,
 } from "grid/table/components/table-stock-cell";
 import PriceFilter from "grid/filters/price-filters";
-import InterestPlacesFilters from "grid/filters/interest-place-filters";
+import InterestPlacesFilters, {LocationSelectedProps} from "grid/filters/interest-place-filters";
 
 //auth
 import Login from "screens/auth/login";
@@ -96,4 +96,5 @@ export {
   OpenTableProps,
   TableStockCellProps,
   TableStockProps,
+  LocationSelectedProps
 };

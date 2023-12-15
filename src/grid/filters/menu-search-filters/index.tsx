@@ -4,7 +4,7 @@ import Fuse from "fuse.js";
 
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import Button from "@mui/material/Button";
+import FilterButton from "atoms/Button";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -117,13 +117,13 @@ const MenuSearchFilter = ({ setFilters, filters }: MenuFilterProps) => {
 
   return (
     <>
-      <Button
+      <FilterButton
         onClick={handleClick}
         endIcon={<ArrowDropDownIcon />}
         variant="filters"
       >
         {filters.buttonLabel}
-      </Button>
+      </FilterButton>
       <Menu
         id="category-menu"
         MenuListProps={{
@@ -164,7 +164,6 @@ const MenuSearchFilter = ({ setFilters, filters }: MenuFilterProps) => {
           >
             <Checkbox
               checked={option.selected}
-              // onChange={() => handleClose({ ...option, filterLabel: filters.buttonLabel })}
               inputProps={{ "aria-label": `${option.label}` }}
             />
 

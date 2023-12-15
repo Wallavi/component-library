@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import Button from "@mui/material/Button";
+import FilterButton from "atoms/Button";
 import Checkbox from '@mui/material/Checkbox';
 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -94,13 +94,13 @@ const MenuFilter = ({ setFilters, filters }: MenuFilterProps) => {
 
   return (
     <>
-      <Button
+      <FilterButton
         onClick={handleClick}
         endIcon={<ArrowDropDownIcon />}
         variant="filters"
       >
         {filters.buttonLabel}
-      </Button>
+      </FilterButton>
       <Menu
         id="category-menu"
         MenuListProps={{
@@ -131,7 +131,6 @@ const MenuFilter = ({ setFilters, filters }: MenuFilterProps) => {
           >
             <Checkbox
               checked={option.selected}
-              // onChange={() => handleClose({ ...option, filterLabel: filters.buttonLabel })}
               inputProps={{ 'aria-label': `${option.label}` }}
             />
 
