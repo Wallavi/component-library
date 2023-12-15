@@ -86,11 +86,13 @@ const SuggestionPlaces = ({
           setOptionPlaces(predictions);
         };
 
-        const service = new window.google.maps.places.AutocompleteService();
-        service.getQueryPredictions(
-          { input: inputValue ? inputValue : "tepic" },
-          displaySuggestions
-        );
+        if(new window.google.maps.places.AutocompleteService()){
+          const service = new window.google.maps.places.AutocompleteService();
+          service.getQueryPredictions(
+            { input: inputValue ? inputValue : "tepic" },
+            displaySuggestions
+          );
+        }
       };
 
       // Clear the previous timeout when inputValue changes
