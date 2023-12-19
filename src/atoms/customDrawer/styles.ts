@@ -1,6 +1,6 @@
 import { Theme, styled, CSSObject } from '@mui/material/styles'
 import { Typography } from '@mui/material'
-import { BoxesProps } from './types'
+import { BoxProp } from './types'
 import IconButton from '@mui/material/IconButton'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
@@ -13,8 +13,8 @@ interface DrawerProps {
 }
 
 interface ListItemButtonDrawerProps {
-  selectedBox: BoxesProps
-  box: object
+  selectedbox: BoxProp | null
+  box: BoxProp
 }
 
 const drawerWidth = 240
@@ -81,10 +81,10 @@ export const ListDrawer = styled(List)({
 })
 
 export const ListItemButtonDrawer = styled(ListItemButton)(
-  ({ selectedBox, box }: ListItemButtonDrawerProps) => ({
+  ({ selectedbox, box }: ListItemButtonDrawerProps) => ({
     minHeight: 48,
-    borderRadius: selectedBox === box ? '10px' : '0',
-    background: selectedBox === box ? 'rgb(245, 245, 245)' : 'inherit',
+    borderRadius: selectedbox === box ? '10px' : '0',
+    background: selectedbox === box ? 'rgb(245, 245, 245)' : 'inherit',
     '&:hover': {
       borderRadius: '10px',
     },
@@ -92,8 +92,8 @@ export const ListItemButtonDrawer = styled(ListItemButton)(
 )
 
 export const ListItemIconDrawer = styled(ListItemIcon)(
-  ({ selectedBox, box }: ListItemButtonDrawerProps) => ({
-    color: selectedBox === box ? 'rgb(85, 144, 255)' : 'rgb(117, 117, 117)',
+  ({ selectedbox, box }: ListItemButtonDrawerProps) => ({
+    color: selectedbox === box ? 'rgb(85, 144, 255)' : 'rgb(117, 117, 117)',
   })
 )
 

@@ -53,5 +53,9 @@ const boxes = [
 export const Primary: Story = {
   args: {
     boxes: boxes,
+    customLargeLogo:
+      'https://depot.center/static/media/horizontal-logo.a1f81371.svg',
+    customSmallLogo:
+      'https://www.wallavi.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fproject-001.819f6bda.png&w=128&q=75',
   },
 }

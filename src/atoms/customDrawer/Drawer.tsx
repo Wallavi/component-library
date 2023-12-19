@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { BoxesProps } from './types'
+import { BoxesProps, BoxProp } from './types'
 import Box from '@mui/material/Box'
 import CssBaseline from '@mui/material/CssBaseline'
 import ListItem from '@mui/material/ListItem'
@@ -23,13 +23,12 @@ import {
 
 export default function CustomDrawer({
   boxes,
-  customLargeLogo,
-  customSmallLogo,
+  customLargeLogo = 'https://depot.center/static/media/horizontal-logo.a1f81371.svg',
+  customSmallLogo = 'https://www.wallavi.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fproject-001.819f6bda.png&w=128&q=75',
   handleItemOnClick,
 }: BoxesProps) {
   const [open, setOpen] = useState<boolean>(false)
   const [selectedBox, setSelectedBox] = useState<any>(null)
-
   const imageWidth = !open ? '40' : '120'
 
   const handleDrawerOpen = () => {
@@ -40,9 +39,11 @@ export default function CustomDrawer({
     setOpen(false)
   }
 
-  const handleItemClick = (box: object) => {
+  const handleItemClick = (box: BoxProp) => {
     setSelectedBox(box)
-    handleItemOnClick(box)
+    if (handleItemOnClick) {
+      handleItemOnClick(box)
+    }
   }
 
   return (
@@ -60,7 +61,7 @@ export default function CustomDrawer({
             <ListItem key={box.id} disablePadding sx={{ display: 'block' }}>
               <ListItemButtonDrawer
                 onClick={() => handleItemClick(box)}
-                selectedBox={selectedBox}
+                selectedbox={selectedBox}
                 box={box}
                 sx={{
                   justifyContent: open ? 'initial' : 'center',
@@ -68,7 +69,7 @@ export default function CustomDrawer({
                 }}
               >
                 <ListItemIconDrawer
-                  selectedBox={selectedBox}
+                  selectedbox={selectedBox}
                   box={box}
                   sx={{
                     minWidth: 0,
