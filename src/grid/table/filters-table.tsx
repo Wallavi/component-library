@@ -9,6 +9,9 @@ import { grey } from "@mui/material/colors";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { InterestPlacesFilters, MenuSearchFilter, LocationSelectedProps } from "../../../dist";
+// import InterestPlacesFilters from "../filters/interest-place-filters"
+// import MenuSearchFilter from "../filters/menu-search-filters"
+// import { LocationSelectedProps } from "molecules/InterestPlaces";
 import TableList from "./index";
 import MenuFilter from "../filters/menu-filters";
 import MenuChipsFiltered from "../filters/chip-filters";
