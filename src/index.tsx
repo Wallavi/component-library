@@ -5,12 +5,13 @@ import Step from "atoms/Step";
 import Input from "atoms/Input";
 import LightTooltip from "atoms/Tooltip";
 import Dropdown from "atoms/Dropdown";
+import Switch from "atoms/Switch";
 
 //molecules
 import CardUploadImages from "molecules/cardUploadImages";
 import InterestPlaces from "molecules/InterestPlaces";
 
-// layout
+// layouts
 import CenteredContainer from "layout/CenteredContainer";
 import CenterInputsContainer from "layout/CenterInputsContainer";
 
@@ -34,9 +35,11 @@ import TableStockCell, {
   TableStockProps,
 } from "grid/table/components/table-stock-cell";
 import PriceFilter from "grid/filters/price-filters";
-import InterestPlacesFilters, {LocationSelectedProps} from "grid/filters/interest-place-filters";
+import InterestPlacesFilters, {
+  LocationSelectedProps,
+} from "grid/filters/interest-place-filters";
 
-//auth
+//auth screen
 import Login from "screens/auth/login";
 import PasswordRecovery from "screens/auth/passwordRecovery";
 import SignUp from "screens/auth/signUp";
@@ -48,7 +51,7 @@ import SimpleCarousel from "screens/auth/carousel";
 import { handleFilter, updateFilter } from "grid/filters/helpers";
 
 //context
-import { ThemeProvider } from './theme/wrapper'
+import { ThemeProvider } from "./theme/wrapper";
 
 //types
 export {
@@ -63,14 +66,20 @@ export { RenderCellProps, TableColumn, TableListProps } from "grid/table/types";
 export { RowsProps } from "grid/table/components/types";
 
 export {
+  // atoms
   Step,
+  Input,
+  Dropdown,
+  Switch,
+  LightTooltip,
+  // molecules
+  CardUploadImages,
+  InterestPlaces,
+  // layouts
   CenteredContainer,
   CenterInputsContainer,
-  Input,
-  LightTooltip,
-  Dropdown,
+  // grid
   TableList,
-  CardUploadImages,
   MenuChipsFiltered,
   MenuFilter,
   MenuSearchFilter,
@@ -79,16 +88,16 @@ export {
   OpenTableCell,
   TableStockCell,
   PriceFilter,
+  InterestPlacesFilters,
+  handleFilter,
+  updateFilter,
+  // auth screen
   Login,
   PasswordRecovery,
   SignUp,
   SimpleCarousel,
-  InterestPlaces,
-  InterestPlacesFilters,
   EmailVerification,
   NewPassword,
-  handleFilter,
-  updateFilter,
   ThemeProvider,
   TableExpandCellProps,
   TableNameCellProps,
@@ -96,5 +105,5 @@ export {
   OpenTableProps,
   TableStockCellProps,
   TableStockProps,
-  LocationSelectedProps
+  LocationSelectedProps,
 };
