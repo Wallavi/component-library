@@ -1,0 +1,109 @@
+{
+  "name": "@wallavi/component-library",
+  "version": "1.0.5",
+  "dependencies": {
+    "@emotion/css": "^11.10.8",
+    "@emotion/react": "^11.10.8",
+    "@emotion/styled": "^11.10.8",
+    "@googlemaps/js-api-loader": "^1.16.2",
+    "@mui/material": "^5.12.3",
+    "@turf/turf": "^6.5.0",
+    "@types/d3": "^7.4.2",
+    "@types/mapbox-gl": "^2.7.17",
+    "@types/react-map-gl": "^6.1.5",
+    "aws-amplify": "^5.3.11",
+    "d3": "^7.8.5",
+    "formik": "^2.4.4",
+    "fuse.js": "^6.6.2",
+    "mapbox-gl": "^2.15.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-map-gl": "^7.1.6",
+    "swiper": "^9.4.1",
+    "typeface-inter": "^3.18.1",
+    "yup": "^1.2.0"
+  },
+  "scripts": {
+    "start": "npm run storybook",
+    "prepare": "npm run build",
+    "build": "rollup -c",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "typedocs": "npx typedoc src/documentation.ts"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "not safari < 10",
+      "not chrome < 51",
+      "not android < 5",
+      "not ie < 12"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.5",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mdx-js/loader": "^2.3.0",
+    "@mui/icons-material": "^5.11.16",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/googlemaps": "^3.43.3",
+    "chromatic": "^6.17.4",
+    "cross-env": "^7.0.3",
+    "js-base64": "^3.7.5",
+    "react-dropzone": "^14.2.3",
+    "react-image-file-resizer": "^0.4.8",
+    "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.8",
+    "rollup": "^3.23.0",
+    "rollup-plugin-dts": "^5.3.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "semantic-release": "^21.0.2",
+    "storybook": "^7.0.8",
+    "typedoc": "^0.24.8",
+    "typescript": "^4.9",
+    "use-immer": "^0.9.0",
+    "uuid": "^9.0.0",
+    "web-vitals": "^3.3.1"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wallavi/component-library.git"
+  },
+  "author": "Ulises Salmeron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wallavi/component-library/issues"
+  },
+  "homepage": "https://github.com/Wallavi/component-library#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}
