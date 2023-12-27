@@ -35,6 +35,9 @@ jobs:
       - name: Enter into library directory
         run: cd library
 
+      - name: Print current directory
+        run: pwd
+
       - name: Install dependencies
         run: npm install
 
