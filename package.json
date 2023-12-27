@@ -7,6 +7,7 @@
     "install-library": "cd library && rm -rf node_modules && rm -rf dist && npm install",
     "create-distribution": "cd library && rm -rf dist && npm prepare",
     "install-storybook": "cd storybook && rm -rf node_modules && npm install",
+    "build-storybook": "npm run install-library && npm run install-storybook && npm run build-storybook",
     "storybook": "cd storybook && npm run storybook"
   },
   "author": "Josias Ortiz",
