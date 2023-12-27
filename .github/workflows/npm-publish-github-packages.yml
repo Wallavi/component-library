@@ -34,10 +34,10 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: library
+        working-directory: component-library/library
 
       - name: Publish to GitHub Packages
         run: npm publish
-        working-directory: library
+        working-directory: component-library/library
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
