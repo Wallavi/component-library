@@ -1,9 +1,9 @@
 import React from "react";
 import type { Preview } from "@storybook/react";
-import theme from "@wallavi/component-library/dist/theme"
-import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
+import defaultTheme from "@wallavi/component-library/dist/theme";
 import gohoTheme from "@wallavi/component-library/dist/gohoTheme";
-import { ThemeProvider } from "@wallavi/component-library";
+import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
+import { ThemeProvider as WallaviThemeProvider } from "@wallavi/component-library";
 
 import { DecoratorFn } from "@storybook/react";
 
@@ -55,20 +55,20 @@ export const withTheme: DecoratorFn = (StoryFn, context) => {
   switch (themeContext) {
     case "goho": {
       return (
-        <ThemeProvider theme={gohoTheme}>
-          <MuiThemeProvider theme={gohoTheme}>
+        <MuiThemeProvider theme={gohoTheme}>
+          <WallaviThemeProvider theme={gohoTheme}>
             <StoryFn />
-          </MuiThemeProvider>
-        </ThemeProvider>
+          </WallaviThemeProvider>
+        </MuiThemeProvider>
       );
     }
     default: {
       return (
-        <ThemeProvider theme={theme}>
-          <MuiThemeProvider theme={theme}>
+        <MuiThemeProvider theme={defaultTheme}>
+          <WallaviThemeProvider theme={defaultTheme}>
             <StoryFn />
-          </MuiThemeProvider>
-        </ThemeProvider>
+          </WallaviThemeProvider>
+        </MuiThemeProvider>
       );
     }
   }

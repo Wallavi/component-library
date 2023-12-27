@@ -1,12 +1,12 @@
-import { Palette, PaletteOptions } from '@mui/material/styles';
+import { Palette, PaletteOptions } from "@mui/material/styles";
 
-declare module '@mui/material/styles' {
+declare module "@mui/material/styles" {
   interface Palette {
-    middleblue: Palette['primary'];
+    middleblue: Palette["primary"];
   }
 
   interface PaletteOptions {
-    middleblue: PaletteOptions['primary'];
+    middleblue: PaletteOptions["primary"];
   }
 
   interface TypographyVariants {
@@ -19,16 +19,30 @@ declare module '@mui/material/styles' {
     listItemPrimary?: React.CSSProperties;
     listItemSecondary: React.CSSProperties;
   }
+
+  interface BreakpointOverrides {
+    // default breakpoints
+    xs: true;
+    sm: true;
+    md: true;
+    lg: true;
+    xl: true;
+    // adds custom breakpoints
+    mobile: true;
+    tablet: true;
+    laptop: true;
+    desktop: true;
+  }
 }
 
-declare module '@mui/material/Typography' {
+declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     listItemPrimary: true;
     listItemSecondary: true;
   }
 }
 
-declare module '@mui/material/Button' {
+declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
     filters: true;
   }
