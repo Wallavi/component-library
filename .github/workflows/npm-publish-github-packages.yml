@@ -32,16 +32,10 @@ jobs:
           node-version: 18
           registry-url: https://npm.pkg.github.com/
 
-      - name: Enter into library directory
-        run: cd library
-
-      - name: Print current directory
-        run: pwd
-
       - name: Install dependencies
-        run: npm install
+        run: cd library && npm install
 
       - name: Publish to GitHub Packages
-        run: npm publish
+        run: cd library && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
