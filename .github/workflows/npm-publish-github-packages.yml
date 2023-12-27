@@ -23,13 +23,21 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 18
           registry-url: https://npm.pkg.github.com/
-      - run: npm install
-      - run: npm publish
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: library
+
+      - name: Publish to GitHub Packages
+        run: npm publish
         working-directory: library
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
