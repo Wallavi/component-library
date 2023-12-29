@@ -2,8 +2,10 @@ import React from "react";
 import type { Preview } from "@storybook/react";
 import defaultTheme from "@wallavi/component-library/dist/theme";
 import gohoTheme from "@wallavi/component-library/dist/gohoTheme";
+import depotCenterTheme from "@wallavi/component-library/dist/depotCenter";
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { ThemeProvider as WallaviThemeProvider } from "@wallavi/component-library";
+import "../src/app/globals.css";
 
 import { DecoratorFn } from "@storybook/react";
 
@@ -42,6 +44,7 @@ export const globalTypes = {
       items: [
         { value: "default", icon: "circlehollow", title: "default" },
         { value: "goho", icon: "circle", title: "goho" },
+        { value: "depotCenter", icon: "circle", title: "depotCenter" },
       ],
       // Property that specifies if the name of the item will be displayed
       showName: true,
@@ -57,6 +60,15 @@ export const withTheme: DecoratorFn = (StoryFn, context) => {
       return (
         <MuiThemeProvider theme={gohoTheme}>
           <WallaviThemeProvider theme={gohoTheme}>
+            <StoryFn />
+          </WallaviThemeProvider>
+        </MuiThemeProvider>
+      );
+    }
+    case "depotCenter": {
+      return (
+        <MuiThemeProvider theme={depotCenterTheme}>
+          <WallaviThemeProvider theme={depotCenterTheme}>
             <StoryFn />
           </WallaviThemeProvider>
         </MuiThemeProvider>

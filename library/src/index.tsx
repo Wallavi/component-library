@@ -15,6 +15,7 @@ import SuggestionPlaces from "molecules/suggestion-places";
 // layout
 import CenteredContainer from "layout/CenteredContainer";
 import CenterInputsContainer from "layout/CenterInputsContainer";
+import SectionContainer from "layout/SectionContainer";
 
 // grid
 import TableList from "grid/table";
@@ -82,6 +83,7 @@ export {
   // layouts
   CenteredContainer,
   CenterInputsContainer,
+  SectionContainer,
   // grid
   TableList,
   MenuChipsFiltered,

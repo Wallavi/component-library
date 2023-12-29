@@ -1,8 +1,8 @@
-import { grey } from "@mui/material/colors";
+import { PaletteOptions } from "@mui/material/styles/createPalette";
 
-const PrimaryColor = {
+const colorsTheme: PaletteOptions = {
   primary: {
-    main: "#E77B2C",
+    main: "#5590ff",
     dark: "#323946",
   },
   error: {
@@ -14,9 +14,6 @@ const PrimaryColor = {
   middleblue: {
     main: "#99a7bf",
   },
-  text: {
-    primary: grey[800],
-  },
 };
 
-export default PrimaryColor;
+export default colorsTheme;
