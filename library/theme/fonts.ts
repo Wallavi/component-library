@@ -15,6 +15,7 @@ const primaryFonts = {
   },
   button: {
     fontSize: 14,
+    fontWeight: 400,
   },
   listItemPrimary: {
     fontSize: 14,
@@ -31,7 +32,7 @@ const primaryFonts = {
   body1: {
     fontSize: 15,
     color: grey[800],
-    fontWeight: 500,
+    fontWeight: 400,
     lineHeight: "17px",
   },
   body2: {

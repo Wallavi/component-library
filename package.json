@@ -5,7 +5,7 @@
   "main": "library/dist/index.js",
   "scripts": {
     "install-library": "cd library && rm -rf node_modules && rm -rf dist && npm install",
-    "create-distribution": "cd library && rm -rf dist && npm prepare",
+    "create-distribution": "cd library && rm -rf dist && npm run prepare",
     "install-storybook": "cd storybook && rm -rf node_modules && npm install",
     "prepare-build-storybook": "cd storybook && npm run build-storybook",
     "build-storybook": "npm run install-library && npm run install-storybook && npm run prepare-build-storybook",
