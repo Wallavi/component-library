@@ -15,6 +15,7 @@ const primaryFonts = {
   },
   button: {
     fontSize: 14,
+    fontWeight: 400,
   },
   listItemPrimary: {
     fontSize: 14,
