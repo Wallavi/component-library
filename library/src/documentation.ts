@@ -1,14 +1,12 @@
 // atoms
-import Input from "atoms/Input";
 import LightTooltip from "atoms/Tooltip";
-import Dropdown from "atoms/Dropdown";
 
 // layout
 import CenteredContainer from "layout/CenteredContainer";
 import CenterInputsContainer from "layout/CenterInputsContainer";
 
 // grid
-import TableList from "grid/table";
+// import TableList from "grid/table";
 import MenuChipsFiltered from "grid/filters/chip-filters";
 import MenuFilter from "grid/filters/menu-filters";
 import TableExpandCell, {
@@ -44,10 +42,8 @@ export { RowsProps } from "grid/table/components/types";
 export {
   CenteredContainer,
   CenterInputsContainer,
-  Input,
   LightTooltip,
-  Dropdown,
-  TableList,
+  // TableList,
   MenuChipsFiltered,
   MenuFilter,
   TableNameCell,
