@@ -64,12 +64,11 @@ const SuggestionPlaces = ({
     const loader = new Loader({
       apiKey: API_KEY,
       version: "weekly",
-      libraries: ["places"],
     });
 
     let timeoutId: NodeJS.Timeout;
 
-    loader.load().then(() => {
+    loader.importLibrary("places").then(() => {
       const initService = (): void => {
         const displaySuggestions = (
           predictions: google.maps.places.QueryAutocompletePrediction[] | null,
@@ -86,7 +85,7 @@ const SuggestionPlaces = ({
           setOptionPlaces(predictions);
         };
 
-        if(new window.google.maps.places.AutocompleteService()){
+        if (new window.google.maps.places.AutocompleteService()) {
           const service = new window.google.maps.places.AutocompleteService();
           service.getQueryPredictions(
             { input: inputValue ? inputValue : "tepic" },
@@ -131,7 +130,7 @@ const SuggestionPlaces = ({
           setInputValue(newInputValue);
         }}
         onKeyDown={(event) => {
-          if (event.key === 'Enter') {
+          if (event.key === "Enter") {
             event.preventDefault(); // Prevent the default Enter key behavior
           }
         }}
