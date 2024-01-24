@@ -21,25 +21,23 @@ const SectionContainer = ({
     <ThemeProvider theme={theme}>
       <styles.MainBox
         {...props}
-        className={clsx("wallavi-mainBox", { mobileMode: mobile })}
+        className={clsx("mainBox", { mobileMode: mobile })}
       >
         {(title || chipLabel) && (
-          <styles.TitleBox className="wallavi-titleBox">
+          <styles.TitleBox className="titleBox">
             {title && (
-              <styles.TitleLabel className="wallavi-titleLabel" variant="h5">
+              <styles.TitleLabel className="titleLabel" variant="h5">
                 {title}
               </styles.TitleLabel>
             )}
             {chipLabel && (
-              <styles.ChipLabel className="wallavi-chipLabel">
+              <styles.ChipLabel className="chipLabel">
                 {chipLabel}
               </styles.ChipLabel>
             )}
           </styles.TitleBox>
         )}
-        <styles.BodyBox className="wallavi-bodyBox">
-          {props.children}
-        </styles.BodyBox>
+        <styles.BodyBox className="bodyBox">{props.children}</styles.BodyBox>
       </styles.MainBox>
     </ThemeProvider>
   );

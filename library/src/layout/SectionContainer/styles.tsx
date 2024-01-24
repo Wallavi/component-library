@@ -13,7 +13,7 @@ const mainBox_mobile: CSSObject = {
 };
 
 const titleBox_mobile: CSSObject = {
-  maxWidth: "100%",
+  width: "100%",
 };
 
 const MainBox = styled(Box)(({ theme }) => ({
@@ -32,23 +32,23 @@ const MainBox = styled(Box)(({ theme }) => ({
   // screen mobile OR tablet
   [theme.breakpoints.down("laptop")]: {
     ...mainBox_mobile,
-    "> .wallavi-titleBox": {
+    "> .titleBox": {
       ...titleBox_mobile,
     },
   },
   // force mobile mode
   "&.mobileMode": {
     ...mainBox_mobile,
-    "> .wallavi-titleBox": {
+    "> .titleBox": {
       ...titleBox_mobile,
     },
   },
 }));
 
 const TitleBox = styled(Box)(({ theme }) => ({
-  width: "fit-content",
-  minWidth: "100px",
-  maxWidth: "40%",
+  width: "35%",
+  minWidth: "min-content",
+  flexShrink: 0,
   display: "flex",
   flexDirection: "row",
   justifyContent: "flex-start",
@@ -69,6 +69,9 @@ const TitleLabel = styled(Typography)(({ theme }) => ({
   color: grey["800"],
   flexShrink: 25,
   minWidth: "min-content",
+  [theme.breakpoints.down("laptop")]: {
+    fontSize: theme.typography.h6.fontSize,
+  },
 }));
 
 const ChipLabel = styled(Typography)(({ theme }) => ({
@@ -79,10 +82,10 @@ const ChipLabel = styled(Typography)(({ theme }) => ({
   lineHeight: "normal",
   borderRadius: 20,
   backgroundColor: theme.palette.primary.main,
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  flexShrink: 1,
+  flexShrink: 0,
+  [theme.breakpoints.down("laptop")]: {
+    fontSize: theme.typography.body2.fontSize,
+  },
 }));
 
 const customComponents = {

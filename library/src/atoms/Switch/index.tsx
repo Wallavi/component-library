@@ -6,7 +6,7 @@ import { useThemeContext } from "theme/wrapper";
 interface CustomSwitchProps extends SwitchProps {
   handleChecked: (
     event: React.ChangeEvent<HTMLInputElement>,
-    isSelected: boolean
+    isChecked: boolean
   ) => void;
 }
 

@@ -1,5 +1,4 @@
 import { Box, Typography, styled } from "@mui/material";
-import { blue, grey, orange } from "@mui/material/colors";
 import { SectionContainer } from "@wallavi/component-library";
 import React from "react";
 
@@ -10,13 +9,13 @@ const MainBox = styled(Box)({
   gap: 8,
   alignItems: "flex-start",
   backgroundColor: "#e4e4e4",
-  ".wallavi-mainBox": {
+  ".mainBox": {
     //border: "1px solid black",
   },
-  ".wallavi-titleBox": {
+  ".titleBox": {
     //border: "1px solid blue",
   },
-  ".wallavi-bodyBox": {
+  ".bodyBox": {
     //border: "1px solid purple",
   },
 });

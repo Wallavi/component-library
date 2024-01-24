@@ -24,8 +24,8 @@ export const Default: Story = {
 
 export const Preview: Story = {
   args: {
-    title: "Este es un ejemplo de un titulo de seccion demasiado largo",
-    chipLabel: "Texto extra",
+    title: "Titulo de la seccion",
+    chipLabel: "label",
     mobile: false,
   },
   render: (args) => (
