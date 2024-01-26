@@ -5,6 +5,7 @@ import Input from "atoms/Input";
 import LightTooltip from "atoms/Tooltip";
 import Dropdown from "atoms/Dropdown";
 import CustomDrawer from "atoms/customDrawer/Drawer";
+import Switch from "atoms/Switch";
 
 //molecules
 import CardUploadImages from "molecules/cardUploadImages";
@@ -14,6 +15,7 @@ import SuggestionPlaces from "molecules/suggestion-places";
 // layout
 import CenteredContainer from "layout/CenteredContainer";
 import CenterInputsContainer from "layout/CenterInputsContainer";
+import SectionContainer from "layout/SectionContainer";
 
 // grid
 import TableList from "grid/table";
@@ -35,13 +37,17 @@ import TableStockCell, {
   TableStockProps,
 } from "grid/table/components/table-stock-cell";
 import PriceFilter from "grid/filters/price-filters";
-import InterestPlacesFilters, {LocationSelectedProps} from "grid/filters/interest-place-filters";
+import InterestPlacesFilters, {
+  LocationSelectedProps,
+} from "grid/filters/interest-place-filters";
 
 //auth
 import Login from "screens/auth/login";
 import PasswordRecovery from "screens/auth/passwordRecovery";
-import SignUp, {SignUpInputProps} from "screens/auth/signUp";
-import EmailVerification, {EmailVerificationInputProps} from "screens/auth/emailVerification";
+import SignUp, { SignUpInputProps } from "screens/auth/signUp";
+import EmailVerification, {
+  EmailVerificationInputProps,
+} from "screens/auth/emailVerification";
 import NewPassword from "screens/auth/newPassword";
 import SimpleCarousel from "screens/auth/carousel";
 
@@ -49,7 +55,7 @@ import SimpleCarousel from "screens/auth/carousel";
 import { handleFilter, updateFilter } from "grid/filters/helpers";
 
 //context
-import { ThemeProvider } from './theme/wrapper'
+import { ThemeProvider, useThemeContext } from "./theme/wrapper";
 
 //types
 export {
@@ -64,14 +70,22 @@ export { RenderCellProps, TableColumn, TableListProps } from "grid/table/types";
 export { RowsProps } from "grid/table/components/types";
 
 export {
-  CenteredContainer,
-  CenterInputsContainer,
-  Input,
-  LightTooltip,
+  // atoms
   CustomDrawer,
   Dropdown,
-  TableList,
+  Input,
+  Switch,
+  LightTooltip,
+  // molecules
   CardUploadImages,
+  InterestPlaces,
+  SuggestionPlaces,
+  // layouts
+  CenteredContainer,
+  CenterInputsContainer,
+  SectionContainer,
+  // grid
+  TableList,
   MenuChipsFiltered,
   MenuFilter,
   MenuSearchFilter,
@@ -80,18 +94,20 @@ export {
   OpenTableCell,
   TableStockCell,
   PriceFilter,
+  InterestPlacesFilters,
+  // auth
   Login,
   PasswordRecovery,
   SignUp,
   SimpleCarousel,
-  InterestPlaces,
-  InterestPlacesFilters,
   EmailVerification,
   NewPassword,
+  // helpers
   handleFilter,
   updateFilter,
-  SuggestionPlaces,
+  // theme
   ThemeProvider,
+  useThemeContext,
   TableExpandCellProps,
   TableNameCellProps,
   TableNameProps,
@@ -100,5 +116,5 @@ export {
   TableStockProps,
   LocationSelectedProps,
   EmailVerificationInputProps,
-  SignUpInputProps
+  SignUpInputProps,
 };
