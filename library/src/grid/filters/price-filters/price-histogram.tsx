@@ -4,6 +4,11 @@ import * as d3 from "d3";
 
 import { grey } from "@mui/material/colors";
 
+interface pricesValue {
+  min: number;
+  max: number;
+}
+
 interface HistogramProps {
   data: number[];
   width: number;
@@ -11,6 +16,7 @@ interface HistogramProps {
   maxPrice: number;
   minPrice: number;
   numberOfSlices: number;
+  priceValue: pricesValue;
 }
 
 const Histogram: React.FC<HistogramProps> = ({
@@ -20,6 +26,7 @@ const Histogram: React.FC<HistogramProps> = ({
   maxPrice,
   minPrice,
   numberOfSlices,
+  priceValue,
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
 
@@ -48,28 +55,51 @@ const Histogram: React.FC<HistogramProps> = ({
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove(); // Clear any previous rendering
 
-    const g = svg.append("g").attr("fill", grey[800]);
+    const g = svg.append("g");
     //   .attr("transform", `translate(${margin.left},${margin.top})`);
 
     g.selectAll("rect")
       .data(bins)
       .enter()
       .append("rect")
-      .attr("x", (d) => x(d.x0))
+      .attr("x", (d) => x(d.x0) + 5)
       .attr("y", (d) => y(d.length))
       .attr("width", (d) => {
         const secondD = x(d.x0) > 0 ? x(d.x0) : 0;
-        return x(d.x1) - secondD - 1;
+        const size = x(d.x1) - secondD > 20 ? 20 : x(d.x1) - secondD;
+        return size;
       })
-      .attr("height", (d) => y(0) - y(d.length));
+      .attr("height", (d) => y(0) - y(d.length))
+      .attr("border-radius", 20)
+      .attr("rx", 5) // Horizontal radius for rounded corners
+      .attr("ry", 5)
+      .attr("fill", grey[800])
+      .transition()
+      .duration(500)
+      .attr("fill", (d) => getColor(d, priceValue));
 
     g.append("g");
     //   .attr("transform", `translate(0,${innerHeight})`)
 
     // g.append("g").call(d3.axisLeft(y));
-  }, [data, width, height, maxPrice, minPrice, numberOfSlices]);
+  }, [data, width, height, maxPrice, minPrice, numberOfSlices, priceValue]);
 
   return <svg ref={svgRef} width={width} height={height} />;
+};
+
+const getColor = (bin: d3.Bin<number, number>, values: pricesValue) => {
+  const minValue = bin.x0;
+  const maxValue = bin.x1;
+
+  // You may want to customize this logic based on your specific requirements
+  const averageValue = (minValue + maxValue) / 2;
+
+  // Customize this function to define your color mapping logic based on the value
+  if (averageValue >= values.min && averageValue <= values.max) {
+    return grey[800];
+  } else {
+    return grey[200];
+  }
 };
 
 export default Histogram;

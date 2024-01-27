@@ -51,6 +51,13 @@ const PriceFilter = ({
     setAnchorEl(null);
   };
 
+  const onChange = (e: React.ChangeEvent<HTMLElement>, type: string) => {
+    e.preventDefault();
+    const newValue: number = parseInt(e.target.value || "0");
+    if (newValue >= 0 && newValue <= maxPrice)
+      setPriceValue({ ...priceValue, [`${type}`]: newValue });
+  };
+
   useEffect(() => {
     getFilterPrices(priceValue);
   }, [priceValue]);
@@ -69,16 +76,18 @@ const PriceFilter = ({
         open={open}
         onClose={() => handleClose()}
         onKeyDown={(e) => e.stopPropagation()}
+        sx={{ "& .MuiList-root": { padding: "0" } }}
       >
-        <Box width={500} padding={2} onKeyDown={(e) => e.stopPropagation()}>
+        <Box width={600} padding={2} onKeyDown={(e) => e.stopPropagation()}>
           <Box display={"flex"} justifyContent={"center"}>
             <Histogram
               data={prices}
-              width={460}
-              height={120}
+              width={600}
+              height={70}
               maxPrice={maxPrice}
               minPrice={minPrice}
               numberOfSlices={numberOfSlices}
+              priceValue={priceValue}
             />
           </Box>
           <Box>
@@ -94,44 +103,41 @@ const PriceFilter = ({
             display={"flex"}
             justifyContent={"space-between"}
             alignItems={"center"}
+            marginTop={"40px"}
           >
             <TextField
               label="Mínimo"
               type="number"
               value={priceValue.min}
-              onChange={(event) =>
-                setPriceValue({
-                  ...priceValue,
-                  min: parseInt(event.target.value),
-                })
-              }
+              onChange={(e) => onChange(e, "min")}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">$</InputAdornment>
                 ),
               }}
               sx={{
-                width: 210,
+                flex: 1,
               }}
             />
-            <Box border={1} width={20} height={1} />
+            <Box
+              border={1}
+              width={20}
+              height={1}
+              marginLeft={"10px"}
+              marginRight={"10px"}
+            />
             <TextField
               label="Máximo"
               type="number"
               value={priceValue.max}
-              onChange={(event) =>
-                setPriceValue({
-                  ...priceValue,
-                  max: parseInt(event.target.value),
-                })
-              }
+              onChange={(e) => onChange(e, "max")}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">$</InputAdornment>
                 ),
               }}
               sx={{
-                width: 210,
+                flex: 1,
               }}
             />
           </Box>
