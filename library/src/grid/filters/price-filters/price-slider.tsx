@@ -83,7 +83,7 @@ export default function MinimumDistanceSlider({
           color: (theme) => theme.palette.grey[400],
           width: "calc(100% - 30px)",
           "& .MuiSlider-rail": {
-            backgroundColor: "rgba(238, 238, 238, 1)", // Set rail color with opacity
+            backgroundColor: (theme) => `${theme.palette.grey[400]}`, // Set rail color with opacity
             opacity: 1,
             width: "calc(100% + 30px)",
             marginLeft: "-15px",
