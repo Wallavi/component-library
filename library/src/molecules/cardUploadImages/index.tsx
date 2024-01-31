@@ -13,6 +13,8 @@ interface CardUploadImagesProps {
   images: Array<any>;
   customMap?: { primaryText: string; secondaryText?: string };
   disabled?: boolean;
+  label?: string;
+  labelDescription?: string;
 }
 
 const CardUploadImages = ({
@@ -21,6 +23,8 @@ const CardUploadImages = ({
   images,
   customMap = { primaryText: "name" },
   disabled = false,
+  label = "Click para subir o arrastra el logo",
+  labelDescription = "(JPG, PNG de máximo 3 MB)",
 }: CardUploadImagesProps) => {
   const { theme } = useThemeContext();
   return (
@@ -47,7 +51,11 @@ const CardUploadImages = ({
           )
         ) : (
           <>
-            <UploadImages handleDropImage={handleDropImage} />
+            <UploadImages
+              handleDropImage={handleDropImage}
+              label={label}
+              labelDescription={labelDescription}
+            />
             {images.map((img, idx) =>
               img.show !== false ? (
                 <ListItemImage
