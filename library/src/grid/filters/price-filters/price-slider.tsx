@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 
@@ -26,7 +26,7 @@ export default function MinimumDistanceSlider({
   numberOfSlices,
   priceValue,
 }: MinimumDistanceSliderProps) {
-  const [value, setValue] = React.useState<number[]>([
+  const [value, setValue] = useState<number[]>([
     priceValue.min,
     priceValue.max,
   ]);
@@ -41,22 +41,33 @@ export default function MinimumDistanceSlider({
     }
 
     if (activeThumb === 0) {
-      setValue([Math.min(newValue[0], value[1] - numberOfSlices), value[1]]);
+      setValue([Math.min(newValue[0], value[1] - 1), value[1]]);
       setPrices({
-        min: Math.min(newValue[0], value[1] - numberOfSlices),
+        min: Math.min(newValue[0], value[1] - 1),
         max: value[1],
       });
     } else {
-      setValue([value[0], Math.max(newValue[1], value[0] + numberOfSlices)]);
+      setValue([value[0], Math.max(newValue[1], value[0] + 1)]);
       setPrices({
         min: value[0],
-        max: Math.max(newValue[1], value[0] + numberOfSlices),
+        max: Math.max(newValue[1], value[0] + 1),
       });
     }
   };
 
+  useEffect(() => {
+    setValue([priceValue.min, priceValue.max]);
+  }, [priceValue]);
+
   return (
-    <Box sx={{ width: "100%", paddingLeft: 1, paddingRight: 1, marginTop: -2 }}>
+    <Box
+      sx={{
+        width: "100%",
+        marginTop: "-15px",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
       <Slider
         getAriaLabel={() => "Minimum distance"}
         value={value}
@@ -64,11 +75,25 @@ export default function MinimumDistanceSlider({
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
         disableSwap
-        step={numberOfSlices}
+        step={1}
         min={minPrice}
         max={maxPrice}
+        size={"small"}
         sx={{
           color: (theme) => theme.palette.grey[400],
+          width: "calc(100% - 30px)",
+          "& .MuiSlider-rail": {
+            backgroundColor: (theme) => `${theme.palette.grey[400]}`, // Set rail color with opacity
+            opacity: 1,
+            width: "calc(100% + 30px)",
+            marginLeft: "-15px",
+          },
+          "& .MuiSlider-thumb": {
+            width: "30px",
+            height: "30px",
+            background: "white",
+            border: (theme) => `1px solid ${theme.palette.grey[400]}`,
+          },
         }}
       />
     </Box>

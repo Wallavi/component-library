@@ -9,9 +9,15 @@ import resizeFile from "../../_helpers/resizeImage";
 
 interface UploadImagesProps {
   handleDropImage: (files: Array<any>) => void;
+  label: string;
+  labelDescription: string;
 }
 
-const UploadImages = ({ handleDropImage }: UploadImagesProps) => {
+const UploadImages = ({
+  handleDropImage,
+  label,
+  labelDescription,
+}: UploadImagesProps) => {
   const onDrop = async (droppedFiles: Array<File>) => {
     let files = [];
 
@@ -49,7 +55,7 @@ const UploadImages = ({ handleDropImage }: UploadImagesProps) => {
           borderRadius: 1,
           cursor: "pointer",
           display: "flex",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <Box
@@ -57,7 +63,7 @@ const UploadImages = ({ handleDropImage }: UploadImagesProps) => {
           sx={{
             display: "flex",
             justifyContent: "center",
-            width: "100%"
+            width: "100%",
           }}
         >
           <input {...getInputProps()} />
@@ -82,8 +88,8 @@ const UploadImages = ({ handleDropImage }: UploadImagesProps) => {
               <FileUploadIcon />
             </Box>
             <Box>
-              <Typography>Click para subir o arrastra la imagen</Typography>
-              <Typography>(JPG, PNG de máximo 3 MB)</Typography>
+              <Typography>{label}</Typography>
+              <Typography>{labelDescription}</Typography>
             </Box>
           </Box>
         </Box>
