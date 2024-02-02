@@ -23,7 +23,7 @@ const CardUploadImages = ({
   images,
   customMap = { primaryText: "name" },
   disabled = false,
-  label = "Click para subir o arrastra el logo",
+  label = "Click para subir o arrastra la imagen",
   labelDescription = "(JPG, PNG de máximo 3 MB)",
 }: CardUploadImagesProps) => {
   const { theme } = useThemeContext();
