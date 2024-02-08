@@ -66,7 +66,25 @@ const Rollup = [
         sourcemap: true,
       },
     ],
-    plugins: [typescript({ declaration: true })],
+    plugins: [typescript()],
+    external: ["react", "react-dom"],
+    exclude: ["**/*.stories.tsx", "node_modules/@mui/base/**"],
+  },
+  {
+    input: "theme/themes/depotCenter/index.ts",
+    output: [
+      {
+        file: "dist/depotCenter.js",
+        format: "cjs",
+        sourcemap: true,
+      },
+      {
+        file: "dist/depotCenter.esm.js",
+        format: "esm",
+        sourcemap: true,
+      },
+    ],
+    plugins: [typescript()],
     external: ["react", "react-dom"],
     exclude: ["**/*.stories.tsx", "node_modules/@mui/base/**"],
   },
