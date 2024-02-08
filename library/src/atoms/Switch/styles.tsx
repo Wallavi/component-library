@@ -11,7 +11,7 @@ const SwitchMUI = styled(Switch)(({ theme }) => ({
     top: 0,
     bottom: 0,
     padding: 0,
-    color: "#424242", // no selected
+    color: theme.palette.grey[800], // no selected
     ".MuiSwitch-input": {
       left: 0,
       width: "calc(90px + 17px)",
@@ -25,7 +25,7 @@ const SwitchMUI = styled(Switch)(({ theme }) => ({
       color: theme.palette.primary.main,
       transform: "translateX(90px)",
       "&.Mui-disabled": {
-        color: "#757575",
+        color: theme.palette.grey[600],
       },
       "+ .MuiSwitch-track": {
         opacity: 0.65,
@@ -37,9 +37,9 @@ const SwitchMUI = styled(Switch)(({ theme }) => ({
     },
     // state disabled
     "&.Mui-disabled": {
-      color: "#757575",
+      color: theme.palette.grey[600],
       "+ .MuiSwitch-track": {
-        backgroundColor: "#BDBDBD",
+        backgroundColor: theme.palette.grey[400],
         opacity: 1,
       },
     },
@@ -48,7 +48,7 @@ const SwitchMUI = styled(Switch)(({ theme }) => ({
     width: 90,
     height: 14,
     marginTop: 1,
-    backgroundColor: "#BDBDBD",
+    backgroundColor: theme.palette.grey[400],
     opacity: 1,
   },
   // design tablet
