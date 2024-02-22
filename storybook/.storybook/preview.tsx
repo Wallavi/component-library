@@ -3,8 +3,10 @@ import type { Preview } from "@storybook/react";
 import defaultTheme from "@wallavi/component-library/dist/theme";
 import gohoTheme from "@wallavi/component-library/dist/gohoTheme";
 import depotCenterTheme from "@wallavi/component-library/dist/depotCenter";
+import busesCloud from "@wallavi/component-library/dist/busesCloud";
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { ThemeProvider as WallaviThemeProvider } from "@wallavi/component-library";
+//import { ThemeProvider as WallaviThemeProvider } from "../../library/src/theme/wrapper"; //only for development;
 import "../src/app/globals.css";
 
 import { DecoratorFn } from "@storybook/react";
@@ -45,6 +47,7 @@ export const globalTypes = {
         { value: "default", icon: "circlehollow", title: "default" },
         { value: "goho", icon: "circle", title: "goho" },
         { value: "depotCenter", icon: "circle", title: "depotCenter" },
+        { value: "busesCloud", icon: "circle", title: "busesCloud" },
       ],
       // Property that specifies if the name of the item will be displayed
       showName: true,
@@ -69,6 +72,15 @@ export const withTheme: DecoratorFn = (StoryFn, context) => {
       return (
         <MuiThemeProvider theme={depotCenterTheme}>
           <WallaviThemeProvider theme={depotCenterTheme}>
+            <StoryFn />
+          </WallaviThemeProvider>
+        </MuiThemeProvider>
+      );
+    }
+    case "busesCloud": {
+      return (
+        <MuiThemeProvider theme={busesCloud}>
+          <WallaviThemeProvider theme={busesCloud}>
             <StoryFn />
           </WallaviThemeProvider>
         </MuiThemeProvider>

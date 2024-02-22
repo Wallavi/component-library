@@ -4,6 +4,7 @@ import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import postcss from "rollup-plugin-postcss";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import image from "@rollup/plugin-image";
 
 const Rollup = [
   {
@@ -30,6 +31,7 @@ const Rollup = [
       // url(),
       terser(),
       typescript({ declaration: true }),
+      image(),
     ],
     external: ["react", "react-dom"],
     exclude: ["**/*.stories.tsx", "node_modules/@mui/base/**"],
@@ -80,6 +82,24 @@ const Rollup = [
       },
       {
         file: "dist/depotCenter.esm.js",
+        format: "esm",
+        sourcemap: true,
+      },
+    ],
+    plugins: [typescript()],
+    external: ["react", "react-dom"],
+    exclude: ["**/*.stories.tsx", "node_modules/@mui/base/**"],
+  },
+  {
+    input: "theme/themes/busesCloud/index.ts",
+    output: [
+      {
+        file: "dist/busesCloud.js",
+        format: "cjs",
+        sourcemap: true,
+      },
+      {
+        file: "dist/busesCloud.esm.js",
         format: "esm",
         sourcemap: true,
       },

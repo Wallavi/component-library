@@ -6,6 +6,7 @@ import LightTooltip from "atoms/Tooltip";
 import Dropdown from "atoms/Dropdown";
 import CustomDrawer from "atoms/customDrawer/Drawer";
 import Switch from "atoms/Switch";
+import { ScrollWrapper, Scrollable } from "atoms/ScrollWrapper";
 
 //molecules
 import CardUploadImages from "molecules/cardUploadImages";
@@ -57,6 +58,14 @@ import { handleFilter, updateFilter } from "grid/filters/helpers";
 //context
 import { ThemeProvider, useThemeContext } from "./theme/wrapper";
 
+//charts
+import { CircularChart } from "charts/circular";
+import { BarsChart } from "charts/bars";
+import { CurvesChart } from "charts/curves";
+import { CardChart } from "charts/card";
+import { CitiesChart } from "charts/cities";
+import { SellersChart } from "charts/sellers";
+
 //types
 export {
   DataFiltersProps,
@@ -76,6 +85,8 @@ export {
   Input,
   Switch,
   LightTooltip,
+  ScrollWrapper,
+  Scrollable,
   // molecules
   CardUploadImages,
   InterestPlaces,
@@ -117,4 +128,11 @@ export {
   LocationSelectedProps,
   EmailVerificationInputProps,
   SignUpInputProps,
+  //charts
+  BarsChart,
+  CircularChart,
+  CurvesChart,
+  CardChart,
+  CitiesChart,
+  SellersChart,
 };
