@@ -5,10 +5,10 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableBody from "@mui/material/TableBody";
-import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import Typography from "@mui/material/Typography";
+import { grey } from "@mui/material/colors";
 
 import { TableListProps } from "./types";
 
@@ -16,6 +16,7 @@ import { VisibleRows } from "./sorting-pagination";
 
 import { useThemeContext } from "../../theme/wrapper";
 import { ThemeProvider } from "@mui/material/styles";
+import { Box } from "@mui/material";
 
 const TableList = <T extends Record<string, any>>({
   rows,
@@ -70,8 +71,11 @@ const TableList = <T extends Record<string, any>>({
         <Table>
           <TableHead>
             <TableRow>
-              {columns.map((column) => (
-                <TableCell key={column.field as string} width={column.width}>
+              {columns.map((column, i) => (
+                <TableCell
+                  key={`${column.field as string}-${i}`}
+                  width={column.width}
+                >
                   <TableSortLabel
                     active={orderBy === column.field}
                     direction={orderBy === column.field ? order : "asc"}
@@ -176,33 +180,27 @@ const TableList = <T extends Record<string, any>>({
               })
             )}
           </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[
-                  5,
-                  10,
-                  25,
-                  { label: "Todas", value: rows.length },
-                ]}
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handlePageChange}
-                onRowsPerPageChange={handleRowsPerPageChange}
-                labelRowsPerPage={
-                  labelRowsPerPage ? labelRowsPerPage : "Filas por página"
-                }
-                labelDisplayedRows={({ from, to, count }) => {
-                  return `${from}–${to} de ${
-                    count !== -1 ? count : `mas que ${to}`
-                  }`;
-                }}
-              />
-            </TableRow>
-          </TableFooter>
         </Table>
       </TableContainer>
+      <TablePagination
+        sx={{
+          display: "block",
+          borderBottom: `1px solid ${grey[300]}`,
+        }}
+        component="div"
+        rowsPerPageOptions={[5, 10, 25, { label: "Todas", value: rows.length }]}
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
+        labelRowsPerPage={
+          labelRowsPerPage ? labelRowsPerPage : "Filas por página"
+        }
+        labelDisplayedRows={({ from, to, count }) => {
+          return `${from}–${to} de ${count !== -1 ? count : `mas que ${to}`}`;
+        }}
+      />
     </ThemeProvider>
   );
 };
