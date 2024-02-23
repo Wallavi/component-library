@@ -2,13 +2,7 @@ import { BarsChartData } from "../types";
 import { RefObject } from "react";
 import * as d3 from "d3";
 import { chartColors } from "../utils";
-
-export interface Padding {
-  left: number;
-  top: number;
-  right: number;
-  bottom: number;
-}
+import { Padding } from "../types";
 
 export const renderGraph = (
   data: BarsChartData[],

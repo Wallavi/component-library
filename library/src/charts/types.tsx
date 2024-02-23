@@ -22,13 +22,6 @@ export interface BarsChartData {
   value: number;
 }
 
-export interface Padding {
-  left: number;
-  top: number;
-  right: number;
-  bottom: number;
-}
-
 export interface CardData {
   label: string;
   value: string;

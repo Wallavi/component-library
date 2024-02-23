@@ -3,7 +3,7 @@ import { Container } from "../styles";
 import { renderGraph } from "./curvesUtils";
 import { randomColor } from "../utils";
 import { useThemeContext } from "../../theme/wrapper";
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@emotion/react";
 
 interface ChartProps {
   data: Object;
@@ -30,8 +30,8 @@ export const CurvesChart = ({
   showLines = false,
   tension = 0,
   colors = [],
-  label = "Ventas netas",
-  subLabel = "Status de la operación",
+  label,
+  subLabel,
   showInfo = true,
   onclick,
 }: ChartProps) => {

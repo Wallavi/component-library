@@ -6,7 +6,8 @@ import LightTooltip from "atoms/Tooltip";
 import Dropdown from "atoms/Dropdown";
 import CustomDrawer from "atoms/customDrawer/Drawer";
 import Switch from "atoms/Switch";
-import { ScrollWrapper, Scrollable } from "atoms/ScrollWrapper";
+import { Scrollable } from "atoms/ScrollWrapper";
+import { ScrollWrapper } from "atoms/ScrollWrapper/styles";
 
 //molecules
 import CardUploadImages from "molecules/cardUploadImages";

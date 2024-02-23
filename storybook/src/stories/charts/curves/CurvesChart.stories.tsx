@@ -43,5 +43,6 @@ export const Primary: Story = {
     label: "Mejores ciudades",
     tension: 0.1,
     colors: ["#00A99D", "#EA456D"],
+    subLabel: "Status de la operación",
   },
 };

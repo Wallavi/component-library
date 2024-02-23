@@ -12,8 +12,5 @@
     "storybook": "cd storybook && npm run storybook"
   },
   "author": "Josias Ortiz",
-  "license": "ISC",
-  "devDependencies": {
-    "@rollup/plugin-image": "^3.0.3"
-  }
+  "license": "ISC"
 }
