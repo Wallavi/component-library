@@ -72,7 +72,11 @@ const NewPassword = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <AuthLayout logo={logo} title={title} onClickBackButton={onClickBackButton}>
+      <AuthLayout
+        logo={logo}
+        title={title}
+        onClickBackButton={onClickBackButton}
+      >
         <Stack
           component="form"
           spacing={1}
@@ -164,7 +168,11 @@ const NewPassword = ({
           <FormHelperText sx={{ height: 16 }} error>
             {resetPasswordError}
           </FormHelperText>
-          <Button type="submit" variant="contained" sx={{ height: 45 }}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ height: 45, color: theme.palette.common.white }}
+          >
             Iniciar Sesión
           </Button>
         </Stack>

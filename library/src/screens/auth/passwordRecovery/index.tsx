@@ -56,7 +56,11 @@ const PasswordRecovery = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <AuthLayout logo={logo} title={title} onClickBackButton={onClickBackButton}>
+      <AuthLayout
+        logo={logo}
+        title={title}
+        onClickBackButton={onClickBackButton}
+      >
         <Stack
           component="form"
           spacing={1}
@@ -88,7 +92,11 @@ const PasswordRecovery = ({
             {passwordRecoveryError}
           </FormHelperText>
           <Box display={"flex"} justifyContent={"space-between"}>
-            <Button type="submit" variant="contained" sx={{ height: 45 }}>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ height: 45, color: theme.palette.common.white }}
+            >
               Enviar Codigo de Confirmación
             </Button>
             <Button

@@ -220,7 +220,11 @@ const EmailVerification = ({
               )
             )}
           </Box>
-          <Button type="submit" variant="contained" sx={{ height: 45 }}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ height: 45, color: theme.palette.common.white }}
+          >
             Confirmar cuenta
           </Button>
           <Button onClick={handleResendCode} sx={{ width: "fit-content" }}>
