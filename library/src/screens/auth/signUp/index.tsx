@@ -87,7 +87,11 @@ const SignUp = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <AuthLayout logo={logo} title={title} onClickBackButton={onClickBackButton}>
+      <AuthLayout
+        logo={logo}
+        title={title}
+        onClickBackButton={onClickBackButton}
+      >
         <Stack
           component="form"
           spacing={1.5}
@@ -221,7 +225,11 @@ const SignUp = ({
           <FormHelperText sx={{ height: 16 }} error>
             {signUpError}
           </FormHelperText>
-          <Button type="submit" variant="contained" sx={{ height: 45 }}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ height: 45, color: theme.palette.common.white }}
+          >
             Registrarme
           </Button>
           <Button onClick={handleLogin} sx={{ width: "fit-content" }}>

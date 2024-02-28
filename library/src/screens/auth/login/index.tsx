@@ -139,7 +139,11 @@ const Login = ({
           <FormHelperText sx={{ height: 16 }} error>
             {loginError}
           </FormHelperText>
-          <Button type="submit" variant="contained" sx={{ height: 45 }}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ height: 45, color: theme.palette.common.white }}
+          >
             Iniciar sesión
           </Button>
           <Button
