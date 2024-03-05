@@ -11,6 +11,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 
 import { useThemeContext } from "../../../theme/wrapper";
 import { ThemeProvider } from "@mui/material/styles";
+import { ButtonsContainer } from "./styles";
 
 interface LoginProps {
   logo: string;
@@ -91,8 +92,9 @@ const PasswordRecovery = ({
           <FormHelperText sx={{ height: 16 }} error>
             {passwordRecoveryError}
           </FormHelperText>
-          <Box display={"flex"} justifyContent={"space-between"}>
+          <ButtonsContainer>
             <Button
+              className="send-code-button"
               type="submit"
               variant="contained"
               sx={{ height: 45, color: theme.palette.common.white }}
@@ -100,10 +102,10 @@ const PasswordRecovery = ({
               Enviar Codigo de Confirmación
             </Button>
             <Button
+              className="cancel-button"
               variant="contained"
               sx={{
                 height: 45,
-                width: 260,
                 backgroundColor: (theme) => theme.palette.grey[200],
                 color: (theme) => theme.palette.grey[800],
                 ":hover": {
@@ -114,8 +116,11 @@ const PasswordRecovery = ({
             >
               Cancelar
             </Button>
-          </Box>
-          <Button onClick={handleSignUp} sx={{ width: "fit-content" }}>
+          </ButtonsContainer>
+          <Button
+            onClick={handleSignUp}
+            sx={{ width: "fit-content", padding: 0 }}
+          >
             <Box
               component={"span"}
               sx={{
