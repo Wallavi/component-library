@@ -10,6 +10,7 @@ import Stack from "@mui/material/Stack";
 import FormHelperText from "@mui/material/FormHelperText";
 
 import { useThemeContext } from "../../../theme/wrapper";
+import { CodeVerificatorContainer } from "./styles";
 import { ThemeProvider } from "@mui/material/styles";
 
 export interface EmailVerificationInputProps {
@@ -172,7 +173,7 @@ const EmailVerification = ({
             </Box>
             {confirmEmail}
           </Button>
-          <Box display={"flex"} justifyContent={"space-between"}>
+          <CodeVerificatorContainer>
             {verificationEmailInputs.map((inputValue) => (
               <TextField
                 onPaste={(event) => {
@@ -194,17 +195,9 @@ const EmailVerification = ({
                   // @ts-ignore
                   handleInputChange(event, inputValue.name);
                 }}
-                sx={{
-                  ".MuiOutlinedInput-root": {
-                    minHeight: 122,
-                    input: { textAlign: "center" },
-                  },
-                  width: 80,
-                  input: { fontSize: 72, paddingX: 1 },
-                }}
               />
             ))}
-          </Box>
+          </CodeVerificatorContainer>
           <Box height={18}>
             {emailVerificationError ? (
               <FormHelperText error>{emailVerificationError}</FormHelperText>
@@ -227,7 +220,10 @@ const EmailVerification = ({
           >
             Confirmar cuenta
           </Button>
-          <Button onClick={handleResendCode} sx={{ width: "fit-content" }}>
+          <Button
+            onClick={handleResendCode}
+            sx={{ width: "fit-content", whiteSpace: "nowrap" }}
+          >
             <Box
               component={"span"}
               sx={{

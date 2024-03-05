@@ -186,6 +186,20 @@ const TableList = <T extends Record<string, any>>({
         sx={{
           display: "block",
           borderBottom: `1px solid ${grey[300]}`,
+          [`${theme.breakpoints.down("sm")}`]: {
+            ".MuiTablePagination-toolbar": {
+              display: "flex",
+              flexWrap: "wrap",
+              padding: 0,
+
+              ".MuiTablePagination-actions": {
+                display: "flex",
+                flex: "1",
+                margin: 0,
+                justifyContent: "space-between",
+              },
+            },
+          },
         }}
         component="div"
         rowsPerPageOptions={[5, 10, 25, { label: "Todas", value: rows.length }]}
