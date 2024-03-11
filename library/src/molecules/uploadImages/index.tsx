@@ -30,6 +30,7 @@ const UploadImages = ({
         name: dataImg.name,
         size: dataImg.size,
         lastModified: dataImg.lastModified,
+        originalFile: dataImg,
       });
     }
     handleDropImage(files);
