@@ -49,7 +49,7 @@ const UploadImages = ({
       <Box
         sx={{
           height: "125px",
-          minWidth: "483px",
+          width: "100%",
           borderColor: (theme) => theme.palette.grey[800],
           border: "1px",
           borderStyle: "dashed",
