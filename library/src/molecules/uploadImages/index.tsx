@@ -57,6 +57,7 @@ const UploadImages = ({
           cursor: "pointer",
           display: "flex",
           justifyContent: "center",
+          padding: "20px",
         }}
       >
         <Box
@@ -84,6 +85,7 @@ const UploadImages = ({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                padding: "10px",
               }}
             >
               <FileUploadIcon />
